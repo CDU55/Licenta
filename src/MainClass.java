@@ -1,8 +1,12 @@
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
 import AbstractSyntaxTree.Explanation;
 import FormulaRemodelers.PostfixNotation;
+import Parsers.CheckSyntax;
+import Parsers.ParseException;
+import Parsers.PropositionalLogicParser;
 import PropositionalLogicAnalysis.SatisfiabilityChecker;
 import PropositionalLogicAnalysis.TautologyChecker;
 import PropositionalLogicFormula.Formula;
@@ -13,7 +17,7 @@ public class MainClass {
 		// TODO Auto-generated method stub
 
 		Formula f=new Formula("!p<->(q->p) /\\ (x /\\ !x) ");
-		Formula f2=new Formula("(A->(B <-> !B) -> !A)");
+		Formula f2=new Formula("p -> !p");
 		/*List<String> variables=new ArrayList<String>();
 		f.syntaxTree.getAllVariables(f.syntaxTree.getRoot(), variables);
 		List<String>subFormulas=new ArrayList<String>();
@@ -23,10 +27,9 @@ public class MainClass {
 		{
 			System.out.println(s);
 		}*/
-		System.out.println(f2.analyse(new TautologyChecker()));
-		System.out.println(f2.toString());
-		System.out.println(f2.syntaxTree.toString());
-
+		String formula="!(A(B))";
+		System.out.println(CheckSyntax.checkPropositionalLogicSyntax(formula));
+		
 		
 	}
 

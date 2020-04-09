@@ -1,0 +1,97 @@
+options
+{
+  static = true;
+}
+
+PARSER_BEGIN(PropositionalLogicParser)
+import java.io.StringReader;
+
+public class PropositionalLogicParser
+{
+  public static String parse(StringReader stringReader) throws ParseException
+  {
+    PropositionalLogicParser parser = new PropositionalLogicParser(stringReader);
+      try
+      {
+        if (PropositionalLogicParser.one_line()==0)
+        {
+          return "OK";
+        }
+      }
+      catch (Exception e)
+      {
+        System.out.println("NOK.");
+        return e.getMessage();
+      }
+      catch (Error e)
+      {
+        System.out.println("Oops.");
+        return e.getMessage();
+      }
+    }
+  }
+
+PARSER_END(PropositionalLogicParser)
+
+SKIP :
+{
+  " "
+| "\r"
+| "\t"
+| "\n"
+}
+
+TOKEN : /* OPERATORS */
+{
+  < NEGATION:"!" >
+| < CONJUNCTION : "/\\" >
+| < DISJUNCTION : "\\/" >
+| < IMPLICATION : "->" >
+| < REVERSE_IMPLICATION : "<-" >
+| < DOUBLE_IMPLICATION:"<->" >
+}
+
+TOKEN :
+{
+  < LETTER : ["a"-"z","A"-"Z"] >
+}
+
+int one_line() :
+{}
+{
+  binary() 
+  {
+    return 0;
+  }
+
+}
+
+void binary() :
+{}
+{
+  unary()
+  (
+    (
+  	 < CONJUNCTION >
+    | < DISJUNCTION >
+    | < IMPLICATION >
+    | < REVERSE_IMPLICATION >
+    | < DOUBLE_IMPLICATION >
+    )
+    unary()
+  )*
+}
+
+void unary() :
+{}
+{
+  (< NEGATION >)+ formula()
+| formula()
+}
+
+void formula() :
+{}
+{
+  < LETTER >
+| "(" binary() ")"
+}
