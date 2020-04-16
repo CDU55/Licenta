@@ -8,9 +8,9 @@ public class CheckSyntax {
 	{
 		String parsingResult="Default";
 		 try {
-			parsingResult=PropositionalLogicParser.parse(new StringReader(formula));
+			parsingResult=PropositionalLogicParser.parse(new StringReader("("+formula+")"));
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
 		}
 		 return parsingResult;
 	}

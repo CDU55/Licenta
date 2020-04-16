@@ -3,10 +3,6 @@ package AbstractSyntaxTree;
 import java.util.ArrayList;
 import java.util.List;
 
-import Operators.CorrespondingConnector;
-import Operators.OperatorPrecedence;
-import Operators.TypeTester;
-
 public abstract class Tree {
 	
 	protected TreeNode root;

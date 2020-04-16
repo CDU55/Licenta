@@ -4,13 +4,23 @@ options
 }
 
 PARSER_BEGIN(PropositionalLogicParser)
+package Parsers;
+
 import java.io.StringReader;
 
 public class PropositionalLogicParser
 {
+  public static PropositionalLogicParser parser;
   public static String parse(StringReader stringReader) throws ParseException
   {
-    PropositionalLogicParser parser = new PropositionalLogicParser(stringReader);
+    if(parser==null)
+    {
+      parser=new PropositionalLogicParser(stringReader);
+    }
+    else
+    {
+      ReInit(stringReader);
+    }
       try
       {
         if (PropositionalLogicParser.one_line()==0)
@@ -20,14 +30,13 @@ public class PropositionalLogicParser
       }
       catch (Exception e)
       {
-        System.out.println("NOK.");
-        return e.getMessage();
+        return "NOK."+"\n"+e.getMessage();
       }
       catch (Error e)
       {
-        System.out.println("Oops.");
-        return e.getMessage();
+        return "Ooops."+"\n"+e.getMessage();
       }
+  		return "Nope";
     }
   }
 
@@ -59,7 +68,7 @@ TOKEN :
 int one_line() :
 {}
 {
-  binary() 
+  (binary()) 
   {
     return 0;
   }
@@ -85,13 +94,11 @@ void binary() :
 void unary() :
 {}
 {
-  (< NEGATION >)+ formula()
-| formula()
+(    (< NEGATION >)+ formula() | formula())
 }
 
 void formula() :
 {}
 {
-  < LETTER >
-| "(" binary() ")"
+ (   < LETTER >| "(" binary() ")")
 }

@@ -33,7 +33,7 @@ public abstract class FormulaAnalyser {
 	public boolean analyse(Formula formula)
 	{
 		evaluationDone=false;
-		Formula testFormula=new Formula(formula.toString());
+		Formula testFormula=new Formula(formula.syntaxTree.getRoot());
 		List<String> variables=testFormula.syntaxTree.getVariables();
 		testFormula.syntaxTree.reaplceImplications(testFormula.syntaxTree.getRoot());
 		Boolean[] currentAssignation=new Boolean[variables.size()];

@@ -3,7 +3,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 import AbstractSyntaxTree.Explanation;
+import AbstractSyntaxTree.TreeNode;
+import Exceptions.InvalidPropositionalLogicFormula;
+import Exceptions.InvalidRuleName;
 import FormulaRemodelers.PostfixNotation;
+import NaturalDeduction.CreateImplication;
+import NaturalDeduction.DeductiveSystem;
+import NaturalDeduction.Extension;
+import NaturalDeduction.ExtractFromConjunction1;
+import NaturalDeduction.ExtractFromConjunction2;
+import NaturalDeduction.Hypothesis;
+import NaturalDeduction.ProofChecker;
+import NaturalDeduction.ProofReader;
+import NaturalDeduction.RemoveDoubleNegation;
+import NaturalDeduction.RuleExplanation;
+import NaturalDeduction.Sequence;
+import NormalForms.Complement;
+import NormalForms.FNC;
+import NormalForms.NormalForm;
 import Parsers.CheckSyntax;
 import Parsers.ParseException;
 import Parsers.PropositionalLogicParser;
@@ -16,19 +33,23 @@ public class MainClass {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		Formula f=new Formula("!p<->(q->p) /\\ (x /\\ !x) ");
-		Formula f2=new Formula("p -> !p");
-		/*List<String> variables=new ArrayList<String>();
-		f.syntaxTree.getAllVariables(f.syntaxTree.getRoot(), variables);
-		List<String>subFormulas=new ArrayList<String>();
-		f.syntaxTree.getAllSubformulas(f.syntaxTree.getRoot(), subFormulas);
-		Explanation exp=f.syntaxTree.getSubfExplanation();
-		for(String s:exp.messages)
-		{
-			System.out.println(s);
-		}*/
-		String formula="!(A(B))";
-		System.out.println(CheckSyntax.checkPropositionalLogicSyntax(formula));
+		Formula f=null;
+		NormalForm fnc=new FNC();
+		
+		 try {
+			f=new Formula("p /\\ !q \\/ !r /\\ p /\\ !r \\/ p /\\ r");
+		} catch (InvalidPropositionalLogicFormula e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 if(f!=null)
+		 {
+			 System.out.println(Complement.getFromulaComplement(f).syntaxTree.toString());
+		 }
+		
+		
+		
+		
 		
 		
 	}

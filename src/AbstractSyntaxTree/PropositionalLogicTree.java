@@ -1,7 +1,5 @@
 package AbstractSyntaxTree;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Stack;
 
 import Operators.CorrespondingConnector;
@@ -14,7 +12,7 @@ public class PropositionalLogicTree extends Tree {
 	}
 
 	public PropositionalLogicTree(TreeNode root) {
-		this.root = root;
+		this.root = new TreeNode(root);
 	}
 
 	@Override

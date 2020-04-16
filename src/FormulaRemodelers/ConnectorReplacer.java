@@ -6,11 +6,11 @@ public class ConnectorReplacer implements FormulaRemodeler {
 	public String remodel(String formula) {
 		
 		String newFormula=new String(formula);
-		newFormula=newFormula.replaceAll("/\\\\", "&");
-		newFormula=newFormula.replaceAll("\\\\/", "|");
-		newFormula=newFormula.replaceAll("<\\->", "-");
-		newFormula=newFormula.replaceAll("\\->", ">");
-		newFormula=newFormula.replaceAll("<\\-", "<");
+		newFormula=newFormula.replace("/\\", "&");
+		newFormula=newFormula.replace("\\/", "|");
+		newFormula=newFormula.replace("<->", "-");
+		newFormula=newFormula.replace("->", ">");
+		newFormula=newFormula.replace("<-", "<");
 		return newFormula;
 		
 	}
