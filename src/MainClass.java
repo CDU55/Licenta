@@ -4,6 +4,7 @@ import java.util.List;
 
 import AbstractSyntaxTree.Explanation;
 import AbstractSyntaxTree.TreeNode;
+import Exceptions.InvalidLiteral;
 import Exceptions.InvalidPropositionalLogicFormula;
 import Exceptions.InvalidRuleName;
 import FormulaRemodelers.PostfixNotation;
@@ -27,28 +28,32 @@ import Parsers.PropositionalLogicParser;
 import PropositionalLogicAnalysis.SatisfiabilityChecker;
 import PropositionalLogicAnalysis.TautologyChecker;
 import PropositionalLogicFormula.Formula;
+import Resolution.Clause;
+import Resolution.Resolution;
+import Resolution.ResolutionClause;
+import Resolution.ResolutionProof;
 
 public class MainClass {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		try {
+			Formula f=new Formula("p /\\ (!p\\/q) /\\ (p\\/!q\\/r) /\\(!q \\/ r) /\\ !r ");
+			Resolution r=new Resolution(f);
+			r.applyResolution(1,2,"p");
+			r.applyResolution(6, 4, "q");
+			r.applyResolution(7, 5, "r");
+			System.out.println(r.toString());
+			//Resolution r2=ResolutionProof.findProof(f);
+			//System.out.println(r2.toString());
 
-		Formula f=null;
-		NormalForm fnc=new FNC();
-		
-		 try {
-			f=new Formula("p /\\ !q \\/ !r /\\ p /\\ !r \\/ p /\\ r");
 		} catch (InvalidPropositionalLogicFormula e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (InvalidLiteral e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		 if(f!=null)
-		 {
-			 System.out.println(Complement.getFromulaComplement(f).syntaxTree.toString());
-		 }
-		
-		
-		
 		
 		
 		
