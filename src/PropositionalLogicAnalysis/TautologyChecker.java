@@ -19,7 +19,7 @@ public class TautologyChecker extends FormulaAnalyser {
 			while(k<maxIterations)
 			{
 				assignation=RandomAssignationGenerator.generate(variables.size());
-				result=evaluate(formula.syntaxTree.getRoot(),assignation,variables);
+				result=FormulaEvaluator.evaluate(formula.syntaxTree.getRoot(),assignation,variables);
 				if(result==false)
 				{
 					return false;
@@ -42,7 +42,7 @@ public class TautologyChecker extends FormulaAnalyser {
 			currentAssignation[currentIndex]=value;
 			if(currentIndex==variables.size()-1)
 			{
-				if(!evaluate(formula.syntaxTree.getRoot(),currentAssignation,variables))
+				if(!FormulaEvaluator.evaluate(formula.syntaxTree.getRoot(),currentAssignation,variables))
 				{
 					this.evaluationResult=false;
 					this.evaluationDone=true;

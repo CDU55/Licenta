@@ -11,25 +11,6 @@ public abstract class FormulaAnalyser {
 	protected boolean evaluationResult;
 	protected final List<Boolean> values=Arrays.asList(true,false);
 	
-	protected boolean evaluate(TreeNode currentNode,Boolean[]assignation,List<String> variables)
-	{
-		if(currentNode.getLabel().matches("[a-zA-Z]"))
-		{
-			return assignation[variables.indexOf(currentNode.getLabel())];
-		}
-		else if(currentNode.getLabel().equals("!"))
-		{
-			return ! evaluate(currentNode.getLeftChild(),assignation,variables);
-		}
-		else if(currentNode.getLabel().equals("/\\"))
-		{
-			return evaluate(currentNode.getLeftChild(),assignation,variables) && evaluate(currentNode.getRightChild(),assignation,variables);
-		}
-		else 
-		{
-			return evaluate(currentNode.getLeftChild(),assignation,variables) || evaluate(currentNode.getRightChild(),assignation,variables);
-		}
-	}
 	public boolean analyse(Formula formula)
 	{
 		evaluationDone=false;

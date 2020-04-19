@@ -6,6 +6,10 @@ import PropositionalLogicFormula.Formula;
 
 public class ContradictionChecker extends FormulaAnalyser {
 
+	public ContradictionChecker()
+	{
+		this.evaluationResult=true;
+	}
 	@Override
 	protected void analysisIteration(Formula formula, List<String> variables, int currentIndex,
 			Boolean[] currentAssignation) {
@@ -18,7 +22,7 @@ public class ContradictionChecker extends FormulaAnalyser {
 			currentAssignation[currentIndex]=value;
 			if(currentIndex==variables.size()-1)
 			{
-				if(evaluate(formula.syntaxTree.getRoot(),currentAssignation,variables))
+				if(FormulaEvaluator.evaluate(formula.syntaxTree.getRoot(),currentAssignation,variables))
 				{
 					this.evaluationResult=false;
 					this.evaluationDone=true;
@@ -34,6 +38,7 @@ public class ContradictionChecker extends FormulaAnalyser {
 
 	@Override
 	public boolean analyseRandom(Formula formula, int maxIterations) {
+		this.evaluationResult=true;
 		int k=0;
 		Boolean[] assignation;
 		List<String> variables=formula.syntaxTree.getVariables();
@@ -41,7 +46,7 @@ public class ContradictionChecker extends FormulaAnalyser {
 		while(k<maxIterations)
 		{
 			assignation=RandomAssignationGenerator.generate(variables.size());
-			result=evaluate(formula.syntaxTree.getRoot(),assignation,variables);
+			result=FormulaEvaluator.evaluate(formula.syntaxTree.getRoot(),assignation,variables);
 			if(result==true)
 			{
 				return false;

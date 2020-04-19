@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import AbstractSyntaxTree.TreeNode;
+import Exceptions.GoalReached;
+import Exceptions.InvalidInferenceRuleApplication;
 import Exceptions.InvalidLiteral;
 import Exceptions.InvalidPropositionalLogicFormula;
 import PropositionalLogicFormula.Formula;
@@ -12,8 +14,10 @@ public class Resolution {
 
 	private List<ResolutionClause> clauses;
 	private List<String> explanations;
+	private boolean goalReached;
 
 	public Resolution(Formula formula) throws InvalidPropositionalLogicFormula, InvalidLiteral {
+		this.goalReached=false;
 		this.clauses=new ArrayList<ResolutionClause>();
 		this.explanations=new ArrayList<String>();
 		List<Formula> clauses=Clause.getAllClauses(formula);
@@ -27,6 +31,7 @@ public class Resolution {
 	
 	public Resolution(Resolution resolution)
 	{
+		this.goalReached=false;
 		this.clauses=new ArrayList<ResolutionClause>();
 		this.explanations=new ArrayList<String>();
 		for(int i=0;i<resolution.getClausesNumber();i++)
@@ -36,8 +41,9 @@ public class Resolution {
 		}
 	}
 	
-	public ResolutionClause apply(ResolutionClause clause1,ResolutionClause clause2,Literal literal)
+	public ResolutionClause apply(ResolutionClause clause1,ResolutionClause clause2,Literal literal) 
 	{
+		
 		Literal negated=literal.getComplement();
 		List<Literal> clause1Part=new ArrayList<Literal>(clause1.literals);
 		List<Literal> clause2Part=new ArrayList<Literal>(clause2.literals);
@@ -70,8 +76,13 @@ public class Resolution {
 	}
 	
 	
-	public String applyResolution(Integer clause1Index,Integer clause2Index,String literalStr)
+	public String applyResolution(Integer clause1Index,Integer clause2Index,String literalStr) throws InvalidInferenceRuleApplication, GoalReached
 	{
+		if(this.goalReached)
+		{
+			throw new GoalReached("Null clause already achieved");
+
+		}
 		if(clause1Index<1 || clause1Index>this.clauses.size())
 		{
 			return clause1Index+" is not a valid index";
@@ -92,11 +103,15 @@ public class Resolution {
 			}
 			if(!canApply(clause1,clause2,literal))
 			{
-				return "Cannot apply resolution with the given parameters";
+				throw new InvalidInferenceRuleApplication("Cannot apply resolution with the given parameters");
 			}
 			else
 			{
 				ResolutionClause newClause=apply(clause1,clause2,literal);
+				if(newClause.literals.size()==0)
+				{
+					this.goalReached=true;
+				}
 				this.clauses.add(newClause);
 				String explanation="( "+clause1Index+" , "+clause2Index+" , "+literalStr+" )";
 				this.explanations.add(explanation);
@@ -107,6 +122,10 @@ public class Resolution {
 
 	public void add(ResolutionClause clause,String explanation)
 	{
+		if(clause.literals.size()==0)
+		{
+			this.goalReached=true;
+		}
 		this.clauses.add(clause);
 		this.explanations.add(explanation);
 	}

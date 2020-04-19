@@ -1,9 +1,12 @@
+import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
 import AbstractSyntaxTree.Explanation;
 import AbstractSyntaxTree.TreeNode;
+import Exceptions.GoalReached;
+import Exceptions.InvalidInferenceRuleApplication;
 import Exceptions.InvalidLiteral;
 import Exceptions.InvalidPropositionalLogicFormula;
 import Exceptions.InvalidRuleName;
@@ -25,7 +28,9 @@ import NormalForms.NormalForm;
 import Parsers.CheckSyntax;
 import Parsers.ParseException;
 import Parsers.PropositionalLogicParser;
+import PropositionalLogicAnalysis.ContradictionChecker;
 import PropositionalLogicAnalysis.SatisfiabilityChecker;
+import PropositionalLogicAnalysis.TableGenerator;
 import PropositionalLogicAnalysis.TautologyChecker;
 import PropositionalLogicFormula.Formula;
 import Resolution.Clause;
@@ -38,19 +43,23 @@ public class MainClass {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		try {
-			Formula f=new Formula("p /\\ (!p\\/q) /\\ (p\\/!q\\/r) /\\(!q \\/ r) /\\ !r ");
-			Resolution r=new Resolution(f);
-			r.applyResolution(1,2,"p");
-			r.applyResolution(6, 4, "q");
-			r.applyResolution(7, 5, "r");
+			Formula f=new Formula("p /\\ ( !p \\/ h ) /\\ (z \\/ !q \\/ r ) /\\ ( !q \\/ r ) /\\ !r /\\ r  ");
+			TableGenerator.generateTable(f, "C:\\Users\\Claudiu\\Desktop\\test.html");
+			System.out.println(f.analyse(new ContradictionChecker()));
+			Resolution r=ResolutionProof.findProof(f);
 			System.out.println(r.toString());
-			//Resolution r2=ResolutionProof.findProof(f);
-			//System.out.println(r2.toString());
-
+			r.applyResolution(1, 2, "p");
+			
 		} catch (InvalidPropositionalLogicFormula e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (InvalidLiteral e) {
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (GoalReached e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvalidInferenceRuleApplication e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

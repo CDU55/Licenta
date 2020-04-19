@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import Exceptions.InvalidInferenceRuleApplication;
 import PropositionalLogicFormula.Formula;
 
 public class DeductiveSystem {
@@ -39,7 +40,7 @@ public class DeductiveSystem {
 
 	}
 	
-	public void apply(Object...objects)
+	public void apply(Object...objects) throws InvalidInferenceRuleApplication
 	{
 		String ruleName=objects[0].toString();
 		Object[] args=Arrays.copyOfRange(objects, 1, objects.length);
@@ -75,6 +76,10 @@ public class DeductiveSystem {
 					this.explanations.add(explanation);
 					
 					break;
+				}
+				else
+				{
+					throw new InvalidInferenceRuleApplication("Rule "+rule.toString()+" cannot be applied vith the given parameters");
 				}
 			}
 		}

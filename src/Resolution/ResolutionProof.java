@@ -1,7 +1,10 @@
 package Resolution;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
+import Exceptions.GoalReached;
 import Exceptions.InvalidLiteral;
 import Exceptions.InvalidPropositionalLogicFormula;
 import PropositionalLogicFormula.Formula;
@@ -17,6 +20,8 @@ public class ResolutionProof {
 		{
 			return;
 		}
+		List<ResolutionClause> possibleResults=new ArrayList<ResolutionClause>();
+		List<String> possibleExplanations=new ArrayList<String>();
 		for(int indexClause1=0;indexClause1<currentProof.getClausesNumber()-1;indexClause1++)
 		{
 			for(int indexClause2=indexClause1+1;indexClause2<currentProof.getClausesNumber();indexClause2++)
@@ -35,7 +40,7 @@ public class ResolutionProof {
 					{
 						result=currentProof.apply(clause2, clause1, literal);
 					}
-					if(!currentProof.containsClause(result))
+					/*if(!currentProof.containsClause(result))
 					{
 						String explanation="( "+(indexClause1+1)+" , "+(indexClause2+1)+" , "+literal.toString()+" )";
 						currentProof.add(result, explanation);
@@ -48,13 +53,38 @@ public class ResolutionProof {
 						{
 							proofSearch(new Resolution(currentProof));
 						}
-					}
+					}*/
+					String explanation="( "+(indexClause1+1)+" , "+(indexClause2+1)+" , "+literal.toString()+" )";
+					possibleResults.add(result);
+					possibleExplanations.add(explanation);
 				}
 			}
 		}
+		Collections.sort(possibleResults, new ClauseSizeComparator());
+		for(int i=0;i<possibleResults.size();i++)
+		{
+			ResolutionClause currentResult=possibleResults.get(i);
+			String currentExplanation=possibleExplanations.get(i);
+			if(!currentProof.containsClause(currentResult))
+			{
+				Resolution possibleProof=new Resolution(currentProof);
+				possibleProof.add(currentResult, currentExplanation);
+				if(currentResult.literals.size()==0)
+				{
+					proof=possibleProof;
+					proofDone=true;
+				}
+				else
+				{
+					proofSearch(possibleProof);
+				}
+				
+			}
+			
+		}
 	}
 	
-	public static Resolution findProof(Formula formula)
+	public static Resolution findProof(Formula formula) throws GoalReached
 	{
 		proof=null;
 		proofDone=false;
