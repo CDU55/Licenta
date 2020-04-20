@@ -33,16 +33,23 @@ public class Extension implements InferenceRule {
 	}
 
 	@Override
-	public boolean appliedCorrectly(Object... objects) {
+	public String appliedCorrectly(Object... objects) {
 		if(objects.length!=2)
 		{
-			return false;
+			return "Invalid arguments number";
+		}
+		for(int i=0;i<objects.length;i++)
+		{
+			if(!(objects[i] instanceof Sequence))
+			{
+				return "Argument "+i+" type is not valid";
+			}
 		}
 		Sequence result=(Sequence)objects[0];
 		Sequence initial=(Sequence)objects[1];
 		if(result.hypothesis.size()-initial.hypothesis.size()!=1)
 		{
-			return false;
+			return "More than one formula was added";
 		}
 		int differentFormulas=0;
 		for(Formula formula:result.hypothesis)
@@ -54,9 +61,9 @@ public class Extension implements InferenceRule {
 		}
 		if(differentFormulas!=1)
 		{
-			return false;
+			return "More than one formula was added";
 		}
-		return true;
+		return "Ok";
 	}
 
 	@Override

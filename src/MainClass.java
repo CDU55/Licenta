@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import AbstractSyntaxTree.Explanation;
@@ -43,23 +44,26 @@ public class MainClass {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		try {
-			Formula f=new Formula("p /\\ ( !p \\/ h ) /\\ (z \\/ !q \\/ r ) /\\ ( !q \\/ r ) /\\ !r /\\ r  ");
-			TableGenerator.generateTable(f, "C:\\Users\\Claudiu\\Desktop\\test.html");
-			System.out.println(f.analyse(new ContradictionChecker()));
-			Resolution r=ResolutionProof.findProof(f);
-			System.out.println(r.toString());
-			r.applyResolution(1, 2, "p");
+			Formula f=new Formula("p->q");
+			Formula f2=new Formula("q->r");
+			Formula f3=new Formula("p");
+			List<Formula>formulas=Arrays.asList(f,f2,f3);
+			DeductiveSystem d=new DeductiveSystem(formulas,new Sequence("{(p->q),(q->r)}|-(p->r)"));
+			System.out.println(d.toString());
+			d.apply("->e",1,3);
+			d.apply("->e",2,4);
+			d.apply("->i",5,new Formula("p"));
+			System.out.println();
+			System.out.println(d.toString());
+			
 			
 		} catch (InvalidPropositionalLogicFormula e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (IOException e) {
+		} catch (InvalidInferenceRuleApplication e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (GoalReached e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvalidInferenceRuleApplication e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

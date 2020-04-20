@@ -30,34 +30,41 @@ public class CreateDisjunction2 implements InferenceRule {
 	}
 
 	@Override
-	public boolean appliedCorrectly(Object... objects) {
+	public String appliedCorrectly(Object... objects) {
 		if(objects.length!=2)
 		{
-			return false;
+			return "Invalid arguments number";
+		}
+		for(int i=0;i<objects.length;i++)
+		{
+			if(!(objects[i] instanceof Sequence))
+			{
+				return "Argument "+i+" type is not valid";
+			}
 		}
 		Sequence result=(Sequence)objects[0];
 		Sequence initial=(Sequence)objects[1];
 		if(!canApply(initial))
 		{
-			return false;
+			return this.toString()+" cannot be applied for "+initial.toString();
 		}
 		if(result.proven==null)
 		{
-			return false;
+			return "Result right side cannot be bottom";
 		}
 		if(!Sequence.hypothesisEqual(initial, result))
 		{
-			return false;
+			return "Result and argument do not have the same left side";
 		}
 		if(!result.proven.syntaxTree.getRoot().getLabel().equals("\\/"))
 		{
-			return false;
+			return "Result right side is not a disjunction";
 		}
 		if(!result.proven.syntaxTree.getRoot().getRightChild().equals(initial.proven.syntaxTree.getRoot()))
 		{
-			return false;
+			return "Result right side is not a disjunction that contains the initial sequence right side on the right";
 		}
-		return true;
+		return "Ok";
 
 	}
 

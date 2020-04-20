@@ -36,37 +36,44 @@ public class CreateImplication implements InferenceRule {
 	}
 
 	@Override
-	public boolean appliedCorrectly(Object... objects) {
+	public String appliedCorrectly(Object... objects) {
 		if(objects.length!=2)
 		{
-			return false;
+			return "Invalid arguments number";
+		}
+		for(int i=0;i<objects.length;i++)
+		{
+			if(!(objects[i] instanceof Sequence))
+			{
+				return "Argument "+i+" type is not valid";
+			}
 		}
 		Sequence result=(Sequence)objects[0];
 		Sequence initial=(Sequence)objects[1];
 		if(result.proven==null || initial.proven==null)
 		{
-			return false;
+			return "Result right side and initial right side cannot be bottmon";
 		}
 		if(!result.proven.syntaxTree.getRoot().getLabel().equals("->"))
 		{
-			return false;
+			return "Result right side is not an implication";
 		}
 		Formula removedFromHypothesis=new Formula(result.proven.syntaxTree.getRoot().getLeftChild());
 		if(result.hypothesis.contains(removedFromHypothesis) || !initial.hypothesis.contains(removedFromHypothesis))
 		{
-			return false;
+			return "Implication left side was not removed from initial sequence or did not exist in initial";
 		}
 		if(!initial.proven.syntaxTree.getRoot().equals(result.proven.syntaxTree.getRoot().getRightChild()))
 		{
-			return false;
+			return "Implicaiton right side is not equal to the initial sequence right side";
 		}
 		Sequence testHypothesis=new Sequence(initial.hypothesis,null);
 		testHypothesis.hypothesis.remove(removedFromHypothesis);
 		if(!Sequence.hypothesisEqual(result, testHypothesis))
 		{
-			return false;
+			return "Arguments do not have the same left side excluding the removed formula";
 		}
-		return true;
+		return "Ok";
 	}
 
 	@Override

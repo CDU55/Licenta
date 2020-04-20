@@ -36,33 +36,40 @@ public class CreateNegationFromBottom implements InferenceRule {
 	}
 
 	@Override
-	public boolean appliedCorrectly(Object... objects) {
+	public String appliedCorrectly(Object... objects) {
 		if(objects.length!=2)
 		{
-			return false;
+			return "Invalid arguments number";
+		}
+		for(int i=0;i<objects.length;i++)
+		{
+			if(!(objects[i] instanceof Sequence))
+			{
+				return "Argument "+i+" type is not valid";
+			}
 		}
 		Sequence result=(Sequence)objects[0];
 		Sequence initial=(Sequence)objects[1];
 		if(result.proven==null)
 		{
-			return false;
+			return "Resulting sequence right side cannot be bottom";
 		}
 		if(!result.proven.syntaxTree.getRoot().getLabel().equals("!"))
 		{
-			return false;
+			return "Resulting sequence right side is not a negation";
 		}
 		Formula toNegate=new Formula(result.proven.syntaxTree.getRoot().getLeftChild());
 		if(!canApply(initial,toNegate))
 		{
-			return false;
+			return this.toString()+" cannot be applied for "+initial.toString()+" and "+toNegate.toString();
 		}
 		Sequence testHypothesis=new Sequence(initial.hypothesis,null);
 		testHypothesis.hypothesis.remove(toNegate);
 		if(!Sequence.hypothesisEqual(result, testHypothesis))
 		{
-			return false;
+			return "Initial sequence and resulting sequence do not have the same left side excluding the negated formula";
 		}
-		return true;
+		return "Ok";
 	}
 
 	@Override

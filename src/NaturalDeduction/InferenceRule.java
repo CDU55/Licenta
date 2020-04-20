@@ -6,6 +6,6 @@ public interface InferenceRule {
 	
 	public Sequence Apply(Object...objects);
 	
-	public boolean appliedCorrectly(Object...objects);
+	public String appliedCorrectly(Object...objects);
 
 }

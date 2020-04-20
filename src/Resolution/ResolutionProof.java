@@ -20,8 +20,7 @@ public class ResolutionProof {
 		{
 			return;
 		}
-		List<ResolutionClause> possibleResults=new ArrayList<ResolutionClause>();
-		List<String> possibleExplanations=new ArrayList<String>();
+		List<ClauseAndExplanation> possibleResultsTemp=new ArrayList<ClauseAndExplanation>();
 		for(int indexClause1=0;indexClause1<currentProof.getClausesNumber()-1;indexClause1++)
 		{
 			for(int indexClause2=indexClause1+1;indexClause2<currentProof.getClausesNumber();indexClause2++)
@@ -55,16 +54,16 @@ public class ResolutionProof {
 						}
 					}*/
 					String explanation="( "+(indexClause1+1)+" , "+(indexClause2+1)+" , "+literal.toString()+" )";
-					possibleResults.add(result);
-					possibleExplanations.add(explanation);
+					possibleResultsTemp.add(new ClauseAndExplanation(result,explanation));
 				}
 			}
 		}
+		List<ClauseAndExplanation> possibleResults=new ArrayList<ClauseAndExplanation>(possibleResultsTemp);
 		Collections.sort(possibleResults, new ClauseSizeComparator());
 		for(int i=0;i<possibleResults.size();i++)
 		{
-			ResolutionClause currentResult=possibleResults.get(i);
-			String currentExplanation=possibleExplanations.get(i);
+			ResolutionClause currentResult=possibleResults.get(i).clause;
+			String currentExplanation=possibleResults.get(i).explanation;
 			if(!currentProof.containsClause(currentResult))
 			{
 				Resolution possibleProof=new Resolution(currentProof);

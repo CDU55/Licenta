@@ -32,23 +32,34 @@ public class ExtractFromConjunction2 implements InferenceRule {
 	}
 
 	@Override
-	public boolean appliedCorrectly(Object... objects) {
+	public String appliedCorrectly(Object... objects) {
+		if(objects.length!=2)
+		{
+			return "Invalid arguments number";
+		}
+		for(int i=0;i<objects.length;i++)
+		{
+			if(!(objects[i] instanceof Sequence))
+			{
+				return "Argument "+i+" type is not valid";
+			}
+		}
 		Sequence result=(Sequence)objects[0];
 		Sequence initial=(Sequence)objects[1];
 		if(!Sequence.hypothesisEqual(result, initial))
 		{
-			return false;
+			return this.toString()+" cannot be applied for "+initial.toString();
 		}
 		if(!initial.proven.syntaxTree.getRoot().getLabel().equals("/\\"))
 		{
-			return false;
+			return initial.toString() +"and" + result.toString()+" do not have the same hypothesis";
 		}
 		Formula expectedResult=new Formula(initial.proven.syntaxTree.getRoot().getRightChild());
 		if(!expectedResult.equals(result.proven))
 		{
-			return false;
+			return initial.proven.toString()+" does not contain "+expectedResult.toString();
 		}
-		return true;
+		return "Ok";
 		
 	}
 

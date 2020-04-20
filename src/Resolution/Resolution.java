@@ -12,19 +12,16 @@ import PropositionalLogicFormula.Formula;
 
 public class Resolution {
 
-	private List<ResolutionClause> clauses;
-	private List<String> explanations;
+	private List<ClauseAndExplanation> clausesAndExplanations;
 	private boolean goalReached;
 
 	public Resolution(Formula formula) throws InvalidPropositionalLogicFormula, InvalidLiteral {
 		this.goalReached=false;
-		this.clauses=new ArrayList<ResolutionClause>();
-		this.explanations=new ArrayList<String>();
+		this.clausesAndExplanations=new ArrayList<ClauseAndExplanation>();
 		List<Formula> clauses=Clause.getAllClauses(formula);
 		for(Formula clause:clauses)
 		{
-			this.clauses.add(new ResolutionClause(clause));
-			this.explanations.add("( premisa )");
+			this.clausesAndExplanations.add(new ClauseAndExplanation(new ResolutionClause(clause),"( premisa )"));
 		}
 		
 	}
@@ -32,12 +29,10 @@ public class Resolution {
 	public Resolution(Resolution resolution)
 	{
 		this.goalReached=false;
-		this.clauses=new ArrayList<ResolutionClause>();
-		this.explanations=new ArrayList<String>();
+		this.clausesAndExplanations=new ArrayList<ClauseAndExplanation>();
 		for(int i=0;i<resolution.getClausesNumber();i++)
 		{
-			this.clauses.add(new ResolutionClause(resolution.clauses.get(i)));
-			this.explanations.add(new String(resolution.explanations.get(i)));
+			this.clausesAndExplanations.add(new ClauseAndExplanation(resolution.clausesAndExplanations.get(i)));
 		}
 	}
 	
@@ -83,18 +78,18 @@ public class Resolution {
 			throw new GoalReached("Null clause already achieved");
 
 		}
-		if(clause1Index<1 || clause1Index>this.clauses.size())
+		if(clause1Index<1 || clause1Index>this.clausesAndExplanations.size())
 		{
 			return clause1Index+" is not a valid index";
 		}
-		else if(clause2Index<1 || clause2Index>this.clauses.size())
+		else if(clause2Index<1 || clause2Index>this.clausesAndExplanations.size())
 		{
 			return clause2Index+" is not a valid index";
 		}
 		else
 		{
-			ResolutionClause clause1=this.clauses.get(clause1Index-1);
-			ResolutionClause clause2=this.clauses.get(clause2Index-1);
+			ResolutionClause clause1=this.clausesAndExplanations.get(clause1Index-1).clause;
+			ResolutionClause clause2=this.clausesAndExplanations.get(clause2Index-1).clause;
 			Literal literal=null;
 			try {
 				 literal=new Literal(literalStr);
@@ -112,9 +107,8 @@ public class Resolution {
 				{
 					this.goalReached=true;
 				}
-				this.clauses.add(newClause);
 				String explanation="( "+clause1Index+" , "+clause2Index+" , "+literalStr+" )";
-				this.explanations.add(explanation);
+				this.clausesAndExplanations.add(new ClauseAndExplanation(newClause,explanation));
 				return "OK";
 			}
 		}
@@ -126,39 +120,45 @@ public class Resolution {
 		{
 			this.goalReached=true;
 		}
-		this.clauses.add(clause);
-		this.explanations.add(explanation);
+		this.clausesAndExplanations.add(new ClauseAndExplanation(clause,explanation));
 	}
 	
 	public ResolutionClause getClause(int index)
 	{
-		if(index<0 || index>=this.clauses.size())
+		if(index<0 || index>=this.clausesAndExplanations.size())
 		{
 			return null;
 		}
 		else
 		{
-			return this.clauses.get(index);
+			return this.clausesAndExplanations.get(index).clause;
 		}
 	}
 	
 	public boolean containsClause(ResolutionClause clause)
 	{
-		return this.clauses.contains(clause);
+		for(ClauseAndExplanation element:this.clausesAndExplanations)
+		{
+			if(element.clause.equals(clause))
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 	@Override
 	public String toString() {
 		String message=new String();
-		for(int index=0;index<this.clauses.size();index++)
+		for(ClauseAndExplanation line:this.clausesAndExplanations)
 		{
-			message+=this.clauses.get(index).toString()+"\t\t"+this.explanations.get(index)+"\n";
+			message+=line.clause.toString()+"\t\t"+line.explanation+"\n";
 		}
 		return message;
 	}
 	
 	public int getClausesNumber()
 	{
-		return this.clauses.size();
+		return this.clausesAndExplanations.size();
 	}
 	
 }

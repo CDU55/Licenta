@@ -52,10 +52,17 @@ public class RemoveDisjunction implements InferenceRule {
 	}
 
 	@Override
-	public boolean appliedCorrectly(Object... objects) {
+	public String appliedCorrectly(Object... objects) {
 		if(objects.length!=4)
 		{
-			return false;
+			return "Invalid arguments number";
+		}
+		for(int i=0;i<objects.length;i++)
+		{
+			if(!(objects[i] instanceof Sequence))
+			{
+				return "Argument "+i+" type is not valid";
+			}
 		}
 		Sequence result=(Sequence)objects[0];
 		Sequence initial1=(Sequence)objects[1];
@@ -63,21 +70,21 @@ public class RemoveDisjunction implements InferenceRule {
 		Sequence initial3=(Sequence)objects[3];
 		if(!canApply(initial1,initial2,initial3))
 		{
-			return false;
+			return this.toString() +" cannot be applied for the given arguments";
 		}
 		if(result.proven==null)
 		{
-			return false;
+			return "Resulting sequence right side cannot be bottom";
 		}
 		if(!Sequence.hypothesisEqual(result, initial1))
 		{
-			return false;
+			return result.toString() +" and "+initial1.toString()+" do not have the same hypothesis";
 		}
 		if(!result.proven.equals(initial2.proven))
 		{
-			return false;
+			return result.proven.toString() +" and " +initial2.proven.toString()+" are not equal";
 		}
-		return true;
+		return "Ok";
 	}
 
 	@Override

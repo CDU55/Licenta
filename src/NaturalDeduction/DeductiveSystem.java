@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import Exceptions.GoalReached;
 import Exceptions.InvalidInferenceRuleApplication;
 import PropositionalLogicFormula.Formula;
 
@@ -12,8 +13,10 @@ public class DeductiveSystem {
 	public List<InferenceRule> rules;
 	public List<Sequence> sequences;
 	public List<String> explanations;
+	public Sequence goal;
+	private boolean goalReached;
 	private int initialHypothesisSequenceNumber;
-	public DeductiveSystem(List<Formula> initialFormulas)
+	public DeductiveSystem(List<Formula> initialFormulas,Sequence goal)
 	{
 		this.rules=new ArrayList<InferenceRule>();
 		rules.add(new CreateConjunction());
@@ -37,11 +40,17 @@ public class DeductiveSystem {
 			this.sequences.add(new Sequence(initialFormulas,formula));
 			this.explanations.add("(IPOTEZA)");
 		}
+		this.goal=goal;
+		this.goalReached=false;
 
 	}
 	
-	public void apply(Object...objects) throws InvalidInferenceRuleApplication
+	public void apply(Object...objects) throws InvalidInferenceRuleApplication, GoalReached
 	{
+		if(this.goalReached)
+		{
+			throw new GoalReached("Goal sequence already reached");
+		}
 		String ruleName=objects[0].toString();
 		Object[] args=Arrays.copyOfRange(objects, 1, objects.length);
 		for(int i=0;i<args.length;i++)
@@ -74,7 +83,10 @@ public class DeductiveSystem {
 					}
 					explanation+=objects[objects.length-1].toString()+" )";
 					this.explanations.add(explanation);
-					
+					if(newSequence.equals(this.goal))
+					{
+						this.goalReached=true;
+					}
 					break;
 				}
 				else
@@ -89,6 +101,11 @@ public class DeductiveSystem {
 	{
 		if(this.sequences.size()>this.initialHypothesisSequenceNumber)
 		{
+			Sequence toRemove=this.sequences.get(this.sequences.size()-1);
+			if(toRemove.equals(this.goal))
+			{
+				this.goalReached=false;
+			}
 			this.sequences.remove(this.sequences.size()-1);
 			this.explanations.remove(this.explanations.size()-1);
 		}

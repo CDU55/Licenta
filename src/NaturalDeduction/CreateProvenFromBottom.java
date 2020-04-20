@@ -27,26 +27,33 @@ public class CreateProvenFromBottom implements InferenceRule {
 	}
 
 	@Override
-	public boolean appliedCorrectly(Object... objects) {
+	public String appliedCorrectly(Object... objects) {
 		if(objects.length!=2)
 		{
-			return false;
+			return "Invalid arguments number";
+		}
+		for(int i=0;i<objects.length;i++)
+		{
+			if(!(objects[i] instanceof Sequence))
+			{
+				return "Argument "+i+" type is not valid";
+			}
 		}
 		Sequence result=(Sequence)objects[0];
 		Sequence initial=(Sequence)objects[1];
 		if(initial.proven!=null)
 		{
-			return false;
+			return "Initial sequence right side must be bottom";
 		}
 		if(result.proven==null)
 		{
-			return false;
+			return "Resulting sequence right side cannot be bottom";
 		}
 		if(!Sequence.hypothesisEqual(result, initial))
 		{
-			return false;
+			return "Resulting sequence and initial sequence do not have the same hypothesis";
 		}
-		return true;
+		return "Ok";
 	}
 
 	@Override

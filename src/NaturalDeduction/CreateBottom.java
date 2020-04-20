@@ -37,27 +37,34 @@ public class CreateBottom implements InferenceRule {
 	}
 
 	@Override
-	public boolean appliedCorrectly(Object... objects) {
+	public String appliedCorrectly(Object... objects) {
 		if(objects.length!=3)
 		{
-			return false;
+			return "Invalid arguments number";
+		}
+		for(int i=0;i<objects.length;i++)
+		{
+			if(!(objects[i] instanceof Sequence))
+			{
+				return "Argument "+i+" type is not valid";
+			}
 		}
 		Sequence result=(Sequence)objects[0];
 		Sequence s1=(Sequence)objects[1];
 		Sequence s2=(Sequence)objects[2];
 		if(result.proven!=null)
 		{
-			return false;
+			return "The resulting sequence right side must be bottom";
 		}
 		if(!canApply(s1,s2))
 		{
-			return false;
+			return this.toString()+" cannot be aplied on "+s1.toString()+" and "+s2.toString();
 		}
 		if(!Sequence.hypothesisEqual(result, s1) || !Sequence.hypothesisEqual(result, s2))
 		{
-			return false;
+			return "The resulting sequence does not have the same right side as the arguments";
 		}
-		return true;
+		return "Ok";
 		
 	}
 

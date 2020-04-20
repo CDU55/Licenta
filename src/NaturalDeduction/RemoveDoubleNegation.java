@@ -38,26 +38,33 @@ public class RemoveDoubleNegation implements InferenceRule {
 	}
 
 	@Override
-	public boolean appliedCorrectly(Object... objects) {
+	public String appliedCorrectly(Object... objects) {
 		if(objects.length!=2)
 		{
-			return false;
+			return "Invalid arguments number";
+		}
+		for(int i=0;i<objects.length;i++)
+		{
+			if(!(objects[i] instanceof Sequence))
+			{
+				return "Argument "+i+" type is not valid";
+			}
 		}
 		Sequence result=(Sequence)objects[0];
 		Sequence doubleNegation=(Sequence)objects[1];
 		if(!doubleNegation.proven.syntaxTree.getRoot().getLabel().equals("!"))
 		{
-			return false;
+			return doubleNegation.proven.toString() +" is not a  negation";
 		}
 		if(!doubleNegation.proven.syntaxTree.getRoot().getLeftChild().getLabel().equals("!"))
 		{
-			return false;
+			return doubleNegation.proven.toString() +" is not a double  negation";
 		}
 		if(!doubleNegation.proven.syntaxTree.getRoot().getLeftChild().getLeftChild().equals(result.proven.syntaxTree.getRoot()))
 		{
-			return false;
+			return "Result sequence right side does not match initial sequence right side with the double negation removed";
 		}
-		return true;
+		return "Ok";
 	}
 
 	@Override

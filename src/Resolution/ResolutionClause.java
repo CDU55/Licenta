@@ -78,6 +78,10 @@ public class ResolutionClause {
 			ResolutionClause temp=new ResolutionClause(other);
 			for(Literal literal:this.literals)
 			{
+				if(!temp.literals.contains(literal))
+				{
+					return false;
+				}
 				while(temp.literals.contains(literal))
 				{
 					temp.literals.remove(literal);

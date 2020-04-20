@@ -28,21 +28,28 @@ public class Hypothesis implements InferenceRule {
 	}
 
 	@Override
-	public boolean appliedCorrectly(Object... objects) {
+	public String appliedCorrectly(Object... objects) {
 		 if(objects.length!=1)
 		 {
-			 return false;
+				return "Invalid arguments number";
 		 }
+		 for(int i=0;i<objects.length;i++)
+			{
+				if(!(objects[i] instanceof Sequence))
+				{
+					return "Argument "+i+" type is not valid";
+				}
+			}
 		 Sequence s=(Sequence)objects[0];
 		 if(s.proven==null)
 		 {
-			 return false;
+			 return "Resulting sequence right side cannot be bottom";
 		 }
 		 if(!s.hypothesis.contains(s.proven))
 		 {
-			 return false;
+			 return "Resulting sequence hypothesis does not contain "+s.proven.toString();
 		 }
-		 return true;
+		 return "Ok";
 	}
 
 	@Override

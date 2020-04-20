@@ -37,27 +37,34 @@ public class ExtractFromImplication implements InferenceRule {
 	}
 
 	@Override
-	public boolean appliedCorrectly(Object... objects) {
+	public String appliedCorrectly(Object... objects) {
 		if(objects.length!=3)
 		{
-			return false;
+			return "Invalid arguments number";
+		}
+		for(int i=0;i<objects.length;i++)
+		{
+			if(!(objects[i] instanceof Sequence))
+			{
+				return "Argument "+i+" type is not valid";
+			}
 		}
 		Sequence implicationRight = (Sequence) objects[0];
 		Sequence implication = (Sequence) objects[1];
 		Sequence implicationLeft = (Sequence) objects[2];
 		if (!Sequence.hypothesisEqual(implication, implicationLeft)
 				|| !Sequence.hypothesisEqual(implication, implicationRight)) {
-			return false;
+			return "Resulting sequence and arguments do not have the same hypothesis";
 		}
 		if (!implication.proven.syntaxTree.getRoot().getLabel().equals("->")) {
-			return false;
+			return implication.toString()+" rights side is not and implication";
 		}
 		if (!implication.proven.syntaxTree.getRoot().getLeftChild().equals(implicationLeft.proven.syntaxTree.getRoot())
 				|| !implication.proven.syntaxTree.getRoot().getRightChild()
 						.equals(implicationRight.proven.syntaxTree.getRoot())) {
-			return false;
+			return "The implication is not a composed of "+implicationLeft.proven.toString() + " and "+implicationRight.proven.toString();
 		}
-		return true;
+		return "Ok";
 	}
 
 	@Override

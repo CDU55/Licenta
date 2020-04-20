@@ -61,8 +61,9 @@ public class ProofChecker {
 							return "Error on the hypothesis rule on line " + String.valueOf(i + 1);
 						}
 					}*/
-					if (!rule.appliedCorrectly(args.toArray())) {
-						return "Error on line " + String.valueOf(i + 1);
+					String evaluationResult=rule.appliedCorrectly(args.toArray());
+					if (!evaluationResult.equals("Ok")) {
+						return "Error on line " + String.valueOf(i + 1)+"\n"+evaluationResult;
 					}
 				}
 			}

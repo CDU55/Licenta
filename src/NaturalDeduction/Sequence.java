@@ -37,10 +37,8 @@ public class Sequence {
 		}
 		if(!hypothesisAndProven[1].replace(" ", "").equals("_|_"))
 		{
-			if(CheckSyntax.checkPropositionalLogicSyntax(hypothesisAndProven[1]).equals("OK"))
-			{
+			
 				this.proven=new Formula(hypothesisAndProven[1]);
-			}
 		}
 	}
 	public static boolean hypothesisEqual(Sequence s1,Sequence s2)
@@ -56,6 +54,38 @@ public class Sequence {
 				return false;
 			}
 		}
+		return true;
+	}
+
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((hypothesis == null) ? 0 : hypothesis.hashCode());
+		result = prime * result + ((proven == null) ? 0 : proven.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Sequence other = (Sequence) obj;
+		if (hypothesis == null) {
+			if (other.hypothesis != null)
+				return false;
+		} else if (!Sequence.hypothesisEqual(this, other))
+			return false;
+		if (proven == null) {
+			if (other.proven != null)
+				return false;
+		} else if (!proven.equals(other.proven))
+			return false;
 		return true;
 	}
 
