@@ -121,6 +121,10 @@ public class PropositionalLogicTree extends Tree {
 		}
 	}
 
+	public void replaceSubTree(TreeNode toReplace,TreeNode newSubTree)
+	{
+		this.root.replace(toReplace, newSubTree);
+	}
 	@Override
 	public String toString() {
 		return this.root.toString();

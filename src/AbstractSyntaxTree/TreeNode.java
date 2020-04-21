@@ -12,8 +12,8 @@ public class TreeNode {
 
 	public TreeNode(String label, TreeNode leftChild, TreeNode rightChild) {
 		this.label = label;
-		this.leftChild = leftChild;
-		this.rightChild = rightChild;
+		this.leftChild = new TreeNode(leftChild);
+		this.rightChild = new TreeNode(rightChild);
 	}
 
 	public TreeNode(TreeNode toCopy) {
@@ -109,6 +109,81 @@ public class TreeNode {
 
 	}
 
+	public boolean isSubTree(TreeNode treeRoot)
+	{
+		if(treeRoot.equals(this))
+		{
+			return true;
+		}
+		else if(treeRoot.getLabel().matches("[a-zA-Z]"))
+		{
+			return false;
+		}
+		else if(treeRoot.getLabel().equals("!"))
+		{
+			return isSubTree(treeRoot.getLeftChild());
+		}
+		else
+		{
+			return isSubTree(treeRoot.getLeftChild()) || isSubTree(treeRoot.getRightChild());
+		}
+	}
+	
+	public void replace(TreeNode toReplace,TreeNode newNode)
+	{
+		if(this.equals(toReplace))
+		{
+			this.setLabel(newNode.getLabel());
+			this.leftChild=newNode.getLeftChild();
+			this.rightChild=newNode.getRightChild();
+		}
+		else
+		{
+			replaceRecursive(this,toReplace,newNode);
+		}
+	}
+	
+	private void replaceRecursive(TreeNode currentNode,TreeNode toReplace,TreeNode newNode)
+	{
+		if(currentNode.getLabel().matches("[a-zA-Z]"))
+		{
+			if(currentNode.equals(toReplace))
+			{
+				currentNode.setLabel(newNode.getLabel());
+			}
+		}
+		else if(currentNode.getLabel().equals("!"))
+		{
+			if(currentNode.getLeftChild().equals(toReplace))
+			{
+				currentNode.setLeftChild(newNode);
+			}
+			else
+			{
+				replaceRecursive(currentNode.getLeftChild(),toReplace,newNode);
+			}
+		}
+		else
+		{
+			if(currentNode.getLeftChild().equals(toReplace))
+			{
+				currentNode.setLeftChild(newNode);
+			}
+			else
+			{
+				replaceRecursive(currentNode.getLeftChild(),toReplace,newNode);
+			}
+			
+			if(currentNode.getRightChild().equals(toReplace))
+			{
+				currentNode.setRightChild(newNode);
+			}
+			else
+			{
+				replaceRecursive(currentNode.getRightChild(),toReplace,newNode);
+			}
+		}
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;

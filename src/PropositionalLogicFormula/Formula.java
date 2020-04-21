@@ -78,7 +78,18 @@ public class Formula {
 		return this.syntaxTree.getRoot().equals(other.syntaxTree.getRoot());
 		
 	}
+	
+	public boolean isSubFormula(Formula formula)
+	{
+		return this.syntaxTree.getRoot().isSubTree(formula.syntaxTree.getRoot());
+	}
 
+	public void replaceSubformula(Formula toReplace,Formula newFormula)
+	{
+		this.syntaxTree.replaceSubTree(toReplace.syntaxTree.getRoot(), newFormula.syntaxTree.getRoot());
+		this.formula=this.syntaxTree.toString();
+		this.remodelFormula(new ConnectorReplacer());
+	}
 	@Override
 	public String toString() {
 		return this.getRemodeledFormula(new ConnectorReverter());
