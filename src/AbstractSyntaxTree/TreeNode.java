@@ -12,8 +12,14 @@ public class TreeNode {
 
 	public TreeNode(String label, TreeNode leftChild, TreeNode rightChild) {
 		this.label = label;
-		this.leftChild = new TreeNode(leftChild);
-		this.rightChild = new TreeNode(rightChild);
+		if(leftChild!=null)
+		{
+			this.leftChild = new TreeNode(leftChild);
+		}
+		if(rightChild!=null)
+		{
+			this.rightChild = new TreeNode(rightChild);
+		}
 	}
 
 	public TreeNode(TreeNode toCopy) {
@@ -73,7 +79,7 @@ public class TreeNode {
 			char remodeledOperator = CorrespondingConnector.getRemodeledConnector(label);
 			boolean parathesisLeft = precedence.getPrecedence(remodeledOperator) < precedence
 					.getPrecedence(CorrespondingConnector.getRemodeledConnector(currentNode.getLeftChild().getLabel()));
-			boolean paranthesisRight = precedence.getPrecedence(remodeledOperator) < precedence.getPrecedence(
+			boolean paranthesisRight = precedence.getPrecedence(remodeledOperator) <= precedence.getPrecedence(
 					CorrespondingConnector.getRemodeledConnector(currentNode.getRightChild().getLabel()));
 			;
 			if (addParanthesis) {

@@ -40,6 +40,7 @@ public class DeductiveSystem {
 			this.sequences.add(new Sequence(initialFormulas,formula));
 			this.explanations.add("(IPOTEZA)");
 		}
+		this.initialHypothesisSequenceNumber=this.sequences.size();
 		this.goal=goal;
 		this.goalReached=false;
 
@@ -114,9 +115,24 @@ public class DeductiveSystem {
 	@Override
 	public String toString() {
 		String message=new String();
+		int maxLen=0;
+		for(Sequence s:this.sequences)
+		{
+			int len=s.toString().length();
+			if(len>maxLen)
+			{
+				maxLen=len;
+			}
+		}
 		for(int i=0;i<sequences.size();i++)
 		{
-			message+=this.sequences.get(i).toString()+"\t\t\t"+this.explanations.get(i)+"\n";
+			message+=(i+1)+"."+this.sequences.get(i).toString();
+			int diff=maxLen-this.sequences.get(i).toString().length();
+			for(int space=0;space<diff+10;space++)
+			{
+				message+=" ";
+			}
+			message+=this.explanations.get(i)+"\n";
 		}
 		return message;
 	}

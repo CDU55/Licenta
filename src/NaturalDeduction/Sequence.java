@@ -26,19 +26,30 @@ public class Sequence {
 	
 	public Sequence(String sequence) throws InvalidPropositionalLogicFormula
 	{
+		if(!ProofReader.isSequenceString(sequence))
+		{
+			throw new InvalidPropositionalLogicFormula("Invalid Sequence");
+		}
 		this.hypothesis=new ArrayList<Formula>();
 
 		String[] hypothesisAndProven=sequence.split("\\|\\-");
+		if(!hypothesisAndProven[0].trim().matches("\\{\\s*\\}")) 
+		{
 		String hypothesis=hypothesisAndProven[0].replace("{", "").replace("}", "");
 		String[] formulas=hypothesis.split(",");
 		for(String formula:formulas)
 		{
 				this.hypothesis.add(new Formula(formula));
 		}
-		if(!hypothesisAndProven[1].replace(" ", "").equals("_|_"))
+		}
+		if(hypothesisAndProven[1].trim().equals("|"))
 		{
 			
-				this.proven=new Formula(hypothesisAndProven[1]);
+				this.proven=null;
+		}
+		else
+		{
+			this.proven=new Formula(hypothesisAndProven[1]);
 		}
 	}
 	public static boolean hypothesisEqual(Sequence s1,Sequence s2)

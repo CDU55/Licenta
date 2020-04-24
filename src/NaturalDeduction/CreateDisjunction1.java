@@ -7,7 +7,7 @@ public class CreateDisjunction1 implements InferenceRule {
 
 	@Override
 	public boolean canApply(Object... objects) {
-		if(objects.length!=1)
+		if(objects.length!=2)
 		{
 			return false;
 		}

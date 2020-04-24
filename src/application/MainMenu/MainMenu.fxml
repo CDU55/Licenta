@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="492.0" minWidth="705.0" prefHeight="492.0" prefWidth="705.0" stylesheets="@../Resources/theme.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainMenu.MainMenuController">
+   <children>
+      <ImageView fitHeight="112.0" fitWidth="112.0" layoutX="39.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="330.0" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="50.0">
+         <image>
+            <Image url="@../Resources/Logo-UAIC.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="112.0" fitWidth="108.0" layoutX="449.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="330.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+         <image>
+            <Image url="@../Resources/Logo-FII.png" />
+         </image>
+      </ImageView>
+      <VBox layoutY="221.0" prefHeight="208.0" prefWidth="329.0" spacing="25.0" AnchorPane.bottomAnchor="63.0" AnchorPane.leftAnchor="192.0" AnchorPane.rightAnchor="184.0" AnchorPane.topAnchor="221.0">
+         <children>
+            <AnchorPane>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <children>
+                  <Button id="PropositionalLogicBtn" fx:id="PropositionalLogicBtn" mnemonicParsing="false" onAction="#PropositionalLogicBtnPushed" prefHeight="77.0" prefWidth="321.0" text="Propositional Logic" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="0.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <children>
+                  <Button id="FirstOrderLogicBtn" fx:id="FirstOrderLogicBtn" mnemonicParsing="false" prefHeight="77.0" prefWidth="321.0" text="First Order Logic" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="0.0" />
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

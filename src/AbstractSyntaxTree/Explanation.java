@@ -26,5 +26,16 @@ public class Explanation {
 	{
 		return "{ "+formula+" }";
 	}
+	@Override
+	public String toString() {
+		String message=new String();
+		for(String line : messages)
+		{
+			message+=line+"\n";
+		}
+		return message;
+	}
+	
+	
 
 }

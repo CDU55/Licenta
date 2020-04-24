@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="705.0" stylesheets="@../Resources/theme.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.PropositionalLogicMainMenu.PropositionalLogicMainMenuController">
+   <children>
+      <VBox layoutX="191.0" layoutY="162.0" prefHeight="327.0" prefWidth="323.0" spacing="25.0" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="191.0" AnchorPane.rightAnchor="191.0">
+         <children>
+            <AnchorPane>
+               <children>
+                  <Button mnemonicParsing="false" onAction="#analysisBtnPushed" prefHeight="77.0" prefWidth="234.0" text="Formula Analysis" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane>
+               <children>
+                  <Button mnemonicParsing="false" onAction="#deductionBtnPushed" prefHeight="78.0" prefWidth="231.0" text="Natural Deduction" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane>
+               <children>
+                  <Button mnemonicParsing="false" onAction="#normalFormsBtnPushed" prefHeight="78.0" prefWidth="231.0" text="Normal Forms" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="10.0" layoutY="10.0">
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="234.0" text="Resolution" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="10.0" layoutY="249.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#backBtnPushed" prefHeight="77.0" prefWidth="234.0" text="Back" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+      <ImageView fitHeight="112.0" fitWidth="112.0" layoutX="49.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="342.0" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="50.0">
+         <image>
+            <Image url="@../Resources/Logo-UAIC.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="112.0" fitWidth="108.0" layoutX="459.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="336.9805221557617" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+         <image>
+            <Image url="@../Resources/Logo-FII.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

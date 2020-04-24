@@ -44,11 +44,10 @@ public class MainClass {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		try {
-			Formula f2=new Formula("p/\\q");
+			Formula f2=new Formula("p->(q -> r)");
 			Formula f=new Formula("p");
 			Formula f3=new Formula("r");
-			f2.replaceSubformula(f, f3);
-			System.out.println(f2.toString());
+			System.out.println(f2.syntaxTree.toString());
 			
 			
 			

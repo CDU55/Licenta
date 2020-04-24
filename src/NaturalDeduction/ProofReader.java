@@ -15,11 +15,15 @@ public class ProofReader {
 	private static String formula = "([a-zA-Z]|[(]|[)]|(!)|(/\\\\)|(\\\\/)|(->)|(<->)|(<-)|\\s)+";
 	private static String rule = "((/\\\\i)|(/\\\\e1)|(/\\\\e2)|(->e)|(->i)|(\\\\/i1)"
 			+ "|(\\\\/i2)|(\\\\/e)|(!e)|(!i)|(\\|e)|(IPOTEZA)|(EXTINDERE)|(!!e))";
-	private static String sequenceForm = "\\s*\\{\\s*" + formula + "(\\s*,\\s*" + formula + "\\s*)*\\s*\\}\\s*\\|-\\s*("
+	private static String sequenceForm = "\\s*\\{\\s*(" + formula + ")?(\\s*,\\s*" + formula + "\\s*)*\\s*\\}\\s*\\|-\\s*("
 			+ formula + "|(\\|))";
 	private static String explanationForm = "\\(\\s*" + rule + "\\s*(\\s*,\\s*[1-9]+\\s*)*\\s*\\)\\s*";
 	private static String proofLineForm = sequenceForm + "[\\s\\t]*" + explanationForm;
 
+	public static boolean isSequenceString(String sequence)
+	{
+		return sequence.matches(sequenceForm);
+	}
 	public static String parseLine(String line, ProofChecker p) throws InvalidRuleName {
 		{
 			if (!line.trim().matches(proofLineForm)) {
