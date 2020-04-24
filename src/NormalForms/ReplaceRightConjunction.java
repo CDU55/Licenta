@@ -3,7 +3,7 @@ package NormalForms;
 import AbstractSyntaxTree.TreeNode;
 import PropositionalLogicFormula.Formula;
 
-public class ConjunctionAssociativity implements NormalFormTransformationRule {
+public class ReplaceRightConjunction implements NormalFormTransformationRule {
 
 	@Override
 	public boolean canApply(Formula formula) {
@@ -12,7 +12,7 @@ public class ConjunctionAssociativity implements NormalFormTransformationRule {
 		{
 			return false;
 		}
-		else if(!root.getRightChild().getLabel().equals("/\\"))
+		else if(!root.getLeftChild().getLabel().equals("\\/"))
 		{
 			return false;
 		}
@@ -25,11 +25,12 @@ public class ConjunctionAssociativity implements NormalFormTransformationRule {
 	@Override
 	public Formula apply(Formula formula) {
 		TreeNode root=formula.syntaxTree.getRoot();
-		TreeNode node1=new TreeNode(root.getLeftChild());
-		TreeNode node2=new TreeNode(root.getRightChild().getLeftChild());
-		TreeNode node3=new TreeNode(root.getRightChild().getRightChild());
-		TreeNode leftConjunction=new TreeNode("/\\",node1,node2);
-		TreeNode conjunction=new TreeNode("/\\",leftConjunction,node3);
+		TreeNode node1=root.getRightChild();
+		TreeNode node2=root.getLeftChild().getLeftChild();
+		TreeNode node3=root.getLeftChild().getRightChild();
+		TreeNode disjunction1=new TreeNode("/\\",node2,node1);
+		TreeNode disjunction2=new TreeNode("/\\",node3,node1);
+		TreeNode conjunction=new TreeNode("\\/",disjunction1,disjunction2);
 		Formula result=new Formula(conjunction);
 		return result;
 

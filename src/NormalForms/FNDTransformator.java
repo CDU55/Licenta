@@ -7,16 +7,16 @@ import Exceptions.InvalidPropositionalLogicFormula;
 import Exceptions.InvalidRuleName;
 import PropositionalLogicFormula.Formula;
 
-public class FNCTransformator {
-	
+public class FNDTransformator {
+
 	private final List<NormalFormTransformationRule> rules;
-	public FNCTransformator()
+	public FNDTransformator()
 	{
 		this.rules=new ArrayList<NormalFormTransformationRule>();
 		this.rules.add(new RemoveDoubleImplication());
 		this.rules.add(new RemoveImplication());
-		this.rules.add(new ReplaceLeftDisjunction());
-		this.rules.add(new ReplaceRightDisjunction());
+		this.rules.add(new ReplaceLeftConjunction());
+		this.rules.add(new ReplaceRightConjunction());
 		this.rules.add(new DisjunctionAssociativity());
 		this.rules.add(new ConjunctionAssociativity());
 		this.rules.add(new DeMorganDisjunction());
@@ -45,5 +45,4 @@ public class FNCTransformator {
 			}
 		}
 	}
-
 }

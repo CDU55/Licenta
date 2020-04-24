@@ -3,7 +3,7 @@ package NormalForms;
 import AbstractSyntaxTree.TreeNode;
 import PropositionalLogicFormula.Formula;
 
-public class DisjunctionAssociativity implements FNCTransformationRule {
+public class DisjunctionAssociativity implements NormalFormTransformationRule {
 
 	@Override
 	public boolean canApply(Formula formula) {

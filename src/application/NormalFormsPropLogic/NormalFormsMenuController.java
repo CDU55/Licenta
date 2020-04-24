@@ -33,6 +33,15 @@ public class NormalFormsMenuController {
     	window.show();
     }
     
+    public void fnd(ActionEvent event) throws IOException
+    {
+    	Parent fncParent=FXMLLoader.load(getClass().getResource("FND.fxml"));
+    	Scene fncScene=new Scene(fncParent);
+    	Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+    	window.setScene(fncScene);
+    	window.show();
+    }
+    
     public void back(ActionEvent event) throws IOException
     {
     	Parent propLogicParent=FXMLLoader.load(getClass().getResource("../PropositionalLogicMainMenu/PropositionalLogicMainMenu.fxml"));

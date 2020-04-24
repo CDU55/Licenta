@@ -4,7 +4,7 @@ package NormalForms;
 import AbstractSyntaxTree.TreeNode;
 import PropositionalLogicFormula.Formula;
 
-public class RemoveDoubleImplication implements FNCTransformationRule {
+public class RemoveDoubleImplication implements NormalFormTransformationRule {
 
 	@Override
 	public boolean canApply(Formula formula) {

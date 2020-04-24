@@ -3,7 +3,7 @@ package NormalForms;
 import AbstractSyntaxTree.TreeNode;
 import PropositionalLogicFormula.Formula;
 
-public class RemoveDoubleNegation implements FNCTransformationRule {
+public class RemoveDoubleNegation implements NormalFormTransformationRule {
 
 	@Override
 	public boolean canApply(Formula formula) {
