@@ -41,6 +41,13 @@ public class Clause {
 				}
 			}
 		}
+		else if(node.getLabel().matches("[a-zA-Z]") || node.getLabel().equals("\\/"))
+		{
+			Formula clause = new Formula(node);
+			if (!clauses.contains(clause)) {
+				clauses.add(new Formula(node));
+			}
+		}
 	}
 	
 	public static List<Formula> getAllLiterals(Formula formula) throws InvalidPropositionalLogicFormula

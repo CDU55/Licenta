@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="492.0" minWidth="705.0" prefHeight="731.0" prefWidth="885.0" stylesheets="@../Resources/theme.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.NormalFormsPropLogic.FNDController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="492.0" minWidth="705.0" prefHeight="794.0" prefWidth="885.0" stylesheets="@../Resources/theme.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.NormalFormsPropLogic.FNDController">
    <children>
       <ImageView fitHeight="112.0" fitWidth="112.0" layoutX="39.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="330.0" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="50.0">
          <image>
@@ -106,6 +106,15 @@
                         <Button mnemonicParsing="false" onAction="#setFormula" text="Set current formula" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
+                  <AnchorPane layoutX="10.0" layoutY="10.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#removeParathesis" text="Remove redundant paranthesis" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="528.0" prefHeight="54.0" prefWidth="513.0" spacing="25.0">
+               <children>
                   <AnchorPane layoutX="10.0" layoutY="10.0" HBox.hgrow="ALWAYS">
                      <children>
                         <Button mnemonicParsing="false" onAction="#ruleInfo" text="Rules" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />

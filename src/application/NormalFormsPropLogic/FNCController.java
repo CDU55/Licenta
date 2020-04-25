@@ -125,5 +125,18 @@ public class FNCController {
     	infoStage.setScene(infoScene);
     	infoStage.show();
     }
+    
+    public void removeParathesis()
+    {
+    	if(currentFormula==null)
+    	{
+    		AlertBox.display("Please set a formula");
+    	}
+    	else
+    	{
+    		this.currentFormula.removeRedundantParathesis();
+    		this.message.setText(currentFormula.toString());
+    	}
+    }
 }
 

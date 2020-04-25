@@ -13,6 +13,7 @@ import PropositionalLogicFormula.Formula;
 public class Resolution {
 
 	private List<ClauseAndExplanation> clausesAndExplanations;
+	private int initialClausesNumber;
 	private boolean goalReached;
 
 	public Resolution(Formula formula) throws InvalidPropositionalLogicFormula, InvalidLiteral {
@@ -23,17 +24,19 @@ public class Resolution {
 		{
 			this.clausesAndExplanations.add(new ClauseAndExplanation(new ResolutionClause(clause),"( premisa )"));
 		}
+		this.initialClausesNumber=this.clausesAndExplanations.size();
 		
 	}
 	
 	public Resolution(Resolution resolution)
 	{
-		this.goalReached=false;
+		this.goalReached=resolution.goalReached;
 		this.clausesAndExplanations=new ArrayList<ClauseAndExplanation>();
 		for(int i=0;i<resolution.getClausesNumber();i++)
 		{
 			this.clausesAndExplanations.add(new ClauseAndExplanation(resolution.clausesAndExplanations.get(i)));
 		}
+		this.initialClausesNumber=this.clausesAndExplanations.size();
 	}
 	
 	public ResolutionClause apply(ResolutionClause clause1,ResolutionClause clause2,Literal literal) 
@@ -159,6 +162,15 @@ public class Resolution {
 	public int getClausesNumber()
 	{
 		return this.clausesAndExplanations.size();
+	}
+	
+	public void remove()
+	{
+		if(this.clausesAndExplanations.size()>this.initialClausesNumber)
+		{
+			this.clausesAndExplanations.remove(this.clausesAndExplanations.size()-1);
+		}
+		this.goalReached=false;
 	}
 	
 }

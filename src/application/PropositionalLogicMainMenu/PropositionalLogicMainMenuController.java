@@ -52,6 +52,15 @@ public class PropositionalLogicMainMenuController {
     	window.setScene(normalFormsParentScene);
     	window.show();
     }
+    
+    public void resolutionBtnPushed(ActionEvent event) throws IOException
+    {
+    	Parent resolutionParent=FXMLLoader.load(getClass().getResource("../ResolutionPropLogic/ResolutionMenu.fxml"));
+    	Scene resolutionParentScene=new Scene(resolutionParent);
+    	Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+    	window.setScene(resolutionParentScene);
+    	window.show();
+    }
     @FXML
     void initialize() {
 

@@ -90,6 +90,12 @@ public class Formula {
 		this.formula=this.syntaxTree.toString();
 		this.remodelFormula(new ConnectorReplacer());
 	}
+	
+	public void removeRedundantParathesis()
+	{
+		this.formula=this.syntaxTree.toString();
+		this.remodelFormula(new ConnectorReplacer());
+	}
 	@Override
 	public String toString() {
 		return this.getRemodeledFormula(new ConnectorReverter());
