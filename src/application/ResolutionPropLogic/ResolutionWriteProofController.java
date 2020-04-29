@@ -131,6 +131,7 @@ public class ResolutionWriteProofController {
 			{
 				resolution.applyResolution(index1, index2, l.variable);
 				this.console.setText(resolution.toString());
+				initializeSpinners();
 			}
 		} catch (InvalidLiteral | InvalidInferenceRuleApplication | GoalReached e) {
 			AlertBox.display(e.getMessage());

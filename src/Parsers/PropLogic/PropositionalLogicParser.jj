@@ -4,7 +4,7 @@ options
 }
 
 PARSER_BEGIN(PropositionalLogicParser)
-package Parsers;
+package Parsers.PropLogic;
 
 import java.io.StringReader;
 

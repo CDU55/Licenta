@@ -28,6 +28,18 @@ public class Resolution {
 		
 	}
 	
+	public Resolution(List<ResolutionClause> clauses)
+	{
+		this.goalReached=false;
+		this.clausesAndExplanations=new ArrayList<ClauseAndExplanation>();
+		for(ResolutionClause clause:clauses)
+		{
+			this.clausesAndExplanations.add(new ClauseAndExplanation(new ResolutionClause(clause),"( premisa )"));
+
+		}
+	}
+	
+	
 	public Resolution(Resolution resolution)
 	{
 		this.goalReached=resolution.goalReached;
@@ -171,6 +183,11 @@ public class Resolution {
 			this.clausesAndExplanations.remove(this.clausesAndExplanations.size()-1);
 		}
 		this.goalReached=false;
+	}
+	
+	public boolean getNullClauseAchieved()
+	{
+		return this.goalReached;
 	}
 	
 }

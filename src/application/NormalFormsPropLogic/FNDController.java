@@ -1,7 +1,9 @@
 package application.NormalFormsPropLogic;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import Exceptions.InvalidPropositionalLogicFormula;
@@ -9,7 +11,9 @@ import Exceptions.InvalidRuleName;
 import NormalForms.FND;
 import NormalForms.FNDTransformator;
 import NormalForms.NormalForm;
+import NormalForms.NormalFormTransformationProof;
 import PropositionalLogicFormula.Formula;
+import Util.WriteFile;
 import application.AlertBox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,7 +24,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.FileChooser.ExtensionFilter;
 
 public class FNDController {
 	 @FXML
@@ -38,11 +44,13 @@ public class FNDController {
 	    private FNDTransformator transformator;
 	    
 	    private Formula currentFormula;
+	    private NormalForm fnd;
 	    @FXML
 	    void initialize() {
 	        assert textField != null : "fx:id=\"textField\" was not injected: check your FXML file 'FNC.fxml'.";
 	        assert message != null : "fx:id=\"message\" was not injected: check your FXML file 'FNC.fxml'.";
 	        transformator=new FNDTransformator();
+	        fnd=new FND();
 
 	    }
 	    
@@ -96,7 +104,6 @@ public class FNDController {
 	    	}
 	    	else
 	    	{
-	    		NormalForm fnd=new FND();
 	    		if(fnd.checkFormula(currentFormula))
 	    		{
 	    			AlertBox.display("The selected formula is in FND");
@@ -125,6 +132,35 @@ public class FNDController {
 	    	infoStage.show();
 	    }
 	    
+	    public void writeTransformation()
+	    {
+	    	if(currentFormula==null)
+	    	{
+	    		AlertBox.display("Please set a formula");
+	    	}
+	    	else if(fnd.checkFormula(currentFormula))
+	    	{
+	    		AlertBox.display("Formula is already in FND");
+	    	}
+	    	else
+	    	{
+	    		FileChooser chooser=new FileChooser();
+				chooser.getExtensionFilters().add(new ExtensionFilter("Text Files","*.txt"));
+				File f=chooser.showOpenDialog(null);
+				if(f!=null)
+				{
+					try {
+						List<String> transformation=NormalFormTransformationProof.transform(currentFormula, false);
+						WriteFile.writeLines(transformation, f.getAbsolutePath());
+						AlertBox.display("Succes!\nThe transformation can be found in\n"+f.getAbsolutePath());
+					} catch (InvalidPropositionalLogicFormula | IOException e) {
+						// TODO Auto-generated catch block
+						AlertBox.display(e.getMessage());
+					}
+					
+				}
+	    	}
+	    }
 	    public void removeParathesis()
 	    {
 	    	if(currentFormula==null)

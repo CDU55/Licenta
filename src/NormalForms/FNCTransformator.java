@@ -7,9 +7,8 @@ import Exceptions.InvalidPropositionalLogicFormula;
 import Exceptions.InvalidRuleName;
 import PropositionalLogicFormula.Formula;
 
-public class FNCTransformator {
+public class FNCTransformator extends NormalFormTransformator {
 	
-	private final List<NormalFormTransformationRule> rules;
 	public FNCTransformator()
 	{
 		this.rules=new ArrayList<NormalFormTransformationRule>();

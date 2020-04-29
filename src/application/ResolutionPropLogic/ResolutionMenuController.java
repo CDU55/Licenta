@@ -45,5 +45,14 @@ public class ResolutionMenuController {
     	window.show();
     }
     
+    public void checkProof(ActionEvent event) throws IOException
+    {
+    	Parent checkProofParent=FXMLLoader.load(getClass().getResource("CheckProofResolutionPropLogic.fxml"));
+    	Scene checkProofScene=new Scene(checkProofParent);
+    	Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+    	window.setScene(checkProofScene);
+    	window.show();
+    }
+    
     
 }

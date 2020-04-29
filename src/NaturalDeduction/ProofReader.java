@@ -59,25 +59,25 @@ public class ProofReader {
 	public static String checkProofString(String proof) throws InvalidRuleName {
 		ProofChecker checker = new ProofChecker();
 		String[] lines = proof.split("\n");
-		for (String line : lines) {
-			if (!parseLine(line, checker).equals("OK")) {
-				return "Error parsing the proof";
+		for (int  lineIndex=0;lineIndex<lines.length;lineIndex++) {
+			if (!parseLine(lines[lineIndex], checker).equals("OK")) {
+				return "Error parsing the proof\nLine : "+lineIndex;
 			}
 		}
 		String checkResult = checker.checkProof();
 		return checkResult;
 	}
 
-	public static String checkProofFromFile(String filePath) throws InvalidRuleName {
+	public static String checkProofFromFile(String filePath) throws InvalidRuleName, IOException {
 		ProofChecker checker = new ProofChecker();
 		BufferedReader reader = null;
 		String checkResult;
-		try {
 			 reader = new BufferedReader(new FileReader(filePath));
 			String proofLine = reader.readLine();
 			int lineIndex = 1;
 			while (proofLine != null) {
-				if (!parseLine(proofLine, checker).equals("OK")) {
+				if (!parseLine(proofLine, checker).equals("OK")) 
+				{
 					return "Error parsing the proof\nLine : " + lineIndex;
 				}
 				proofLine = reader.readLine();
@@ -85,28 +85,6 @@ public class ProofReader {
 			}
 			 checkResult = checker.checkProof();
 			reader.close();
-		} catch (FileNotFoundException e) {
-			if(reader!=null)
-			{
-				try {
-					reader.close();
-				} catch (IOException e1) {
-					return "Could not close the file";
-				}
-			}
-			return "File cannot be found";
-		} catch (IOException e) {
-			if(reader!=null)
-			{
-				try {
-					reader.close();
-				} catch (IOException e1) {
-					return "Could not close the file";
-				}
-			}
-			return "Could not read from file";
-		}
 		return checkResult;
-
 	}
 }

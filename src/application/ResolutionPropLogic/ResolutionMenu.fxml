@@ -27,7 +27,7 @@
             </AnchorPane>
             <AnchorPane layoutX="10.0" layoutY="10.0" VBox.vgrow="ALWAYS">
                <children>
-                  <Button mnemonicParsing="false" text="Check Proof" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Button mnemonicParsing="false" onAction="#checkProof" text="Check Proof" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
             <AnchorPane layoutX="10.0" layoutY="136.0" VBox.vgrow="ALWAYS">

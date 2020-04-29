@@ -1,3 +1,7 @@
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
@@ -9,6 +13,7 @@ import AbstractSyntaxTree.TreeNode;
 import Exceptions.GoalReached;
 import Exceptions.InvalidInferenceRuleApplication;
 import Exceptions.InvalidLiteral;
+import Exceptions.InvalidProof;
 import Exceptions.InvalidPropositionalLogicFormula;
 import Exceptions.InvalidRuleName;
 import FormulaRemodelers.PostfixNotation;
@@ -26,9 +31,8 @@ import NaturalDeduction.Sequence;
 import NormalForms.Complement;
 import NormalForms.FNC;
 import NormalForms.NormalForm;
+import NormalForms.NormalFormTransformationProof;
 import Parsers.CheckSyntax;
-import Parsers.ParseException;
-import Parsers.PropositionalLogicParser;
 import PropositionalLogicAnalysis.ContradictionChecker;
 import PropositionalLogicAnalysis.SatisfiabilityChecker;
 import PropositionalLogicAnalysis.TableGenerator;
@@ -38,26 +42,25 @@ import Resolution.Clause;
 import Resolution.Resolution;
 import Resolution.ResolutionClause;
 import Resolution.ResolutionProof;
+import Resolution.ResolutionProofCheck;
 
 public class MainClass {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	public static void main(String[] args) {		
 		try {
-			Formula f2=new Formula("p->(q -> r)");
-			Formula f=new Formula("p");
-			Formula f3=new Formula("r");
-			System.out.println(f2.syntaxTree.toString());
-			
-			
-			
+			Formula f=new Formula("((!p->!q)<->(q->p))");
+			List<String> demo=NormalFormTransformationProof.transform(f, false);
+			for(String s:demo)
+			{
+				System.out.println(s);
+			}
 		} catch (InvalidPropositionalLogicFormula e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		
-		
 	}
 
 }
+
+//(!p /\ q /\ q /\ !p) \/ (!q /\ q /\ !p) \/ (p /\ q /\ !p) \/ ( !p /\ q /\ p) \/ (!q /\ p) \/ (p /\ p) \/ ( !p /\ q /\ !q) \/ (!q /\ !q) \/ (p /\ !q )

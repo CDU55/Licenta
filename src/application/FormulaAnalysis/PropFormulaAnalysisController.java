@@ -44,7 +44,7 @@ public class PropFormulaAnalysisController {
 
     }
     
-    public void CheckSyntax(ActionEvent e)
+    public void CheckSyntax()
     {
     	try {
 			Formula formula=new Formula(formulaField.getText());
@@ -55,7 +55,7 @@ public class PropFormulaAnalysisController {
 		}
     }
     
-    public void subformulas(ActionEvent e)
+    public void subformulas()
     {
     	try {
 			Formula formula=new Formula(formulaField.getText());
@@ -66,7 +66,7 @@ public class PropFormulaAnalysisController {
 		}
     }
     
-    public void vars(ActionEvent e)
+    public void vars( )
     {
     	try {
 			Formula formula=new Formula(formulaField.getText());
@@ -77,7 +77,7 @@ public class PropFormulaAnalysisController {
 		}
     }
     
-    public void removeImplications(ActionEvent e)
+    public void removeImplications( )
     {
     	try {
 			Formula formula=new Formula(formulaField.getText());
@@ -89,7 +89,7 @@ public class PropFormulaAnalysisController {
 		}
     }
     
-    public void treeSize(ActionEvent e)
+    public void treeSize( )
     {
     	try {
 			Formula formula=new Formula(formulaField.getText());
@@ -101,7 +101,7 @@ public class PropFormulaAnalysisController {
 		}
     }
     
-    public void treeHeight(ActionEvent e)
+    public void treeHeight( )
     {
     	try {
 			Formula formula=new Formula(formulaField.getText());
@@ -113,7 +113,7 @@ public class PropFormulaAnalysisController {
 		}
     }
     
-    public void checkSat(ActionEvent e)
+    public void checkSat( )
     {
     	try {
 			Formula formula=new Formula(formulaField.getText());
@@ -133,7 +133,17 @@ public class PropFormulaAnalysisController {
 		}
     }
     
-    public void checkTautology(ActionEvent e)
+    public void draw()
+    {
+    	try {
+			Formula formula=new Formula(formulaField.getText());
+			TreeDraw.draw(formula);
+		} catch (InvalidPropositionalLogicFormula e1) {
+			// TODO Auto-generated catch block
+			console.setText(e1.getMessage());
+		}
+    }
+    public void checkTautology()
     {
     	try {
 			Formula formula=new Formula(formulaField.getText());
@@ -153,7 +163,7 @@ public class PropFormulaAnalysisController {
 		}
     }
     
-    public void checkContradiction(ActionEvent e)
+    public void checkContradiction( )
     {
     	try {
 			Formula formula=new Formula(formulaField.getText());

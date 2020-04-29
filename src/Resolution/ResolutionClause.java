@@ -3,6 +3,7 @@ package Resolution;
 import java.util.ArrayList;
 import java.util.List;
 
+import Exceptions.InvalidClause;
 import Exceptions.InvalidLiteral;
 import Exceptions.InvalidPropositionalLogicFormula;
 import PropositionalLogicFormula.Formula;
@@ -31,6 +32,26 @@ public class ResolutionClause {
 		for(Literal literal:clause.literals)
 		{
 			this.literals.add(new Literal(literal));
+		}
+	}
+	
+	public ResolutionClause(String clause) throws InvalidLiteral, InvalidClause
+	{
+		if(!ResolutionProofCheck.isClauseProof(clause))
+		{
+			throw new InvalidClause(clause+" is not a valid clause");
+		}
+		else
+		{
+			this.literals=new ArrayList<Literal>();
+			if(!clause.matches("\\{\\s*\\}"))
+			{
+				String[] literals=clause.trim().replaceAll(" ", "").replaceAll("\\{", "").replaceAll("\\}", "").split(",");
+			for(String literal:literals)
+			{
+				this.literals.add(new Literal(literal));
+			}
+			}
 		}
 	}
 

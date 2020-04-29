@@ -1,15 +1,14 @@
-package application.NaturalDeductionPropLogic;
+package application.ResolutionPropLogic;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import Exceptions.InvalidPropositionalLogicFormula;
+import Exceptions.InvalidProof;
 import Exceptions.InvalidRuleName;
 import NaturalDeduction.ProofReader;
-import PropositionalLogicAnalysis.TableGenerator;
-import PropositionalLogicFormula.Formula;
+import Resolution.ResolutionProofCheck;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,7 +20,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.FileChooser.ExtensionFilter;
 
-public class CheckProofPropLogicController {
+public class CheckProofResolutionPropLogicController {
 
     @FXML
     private ResourceBundle resources;
@@ -39,13 +38,13 @@ public class CheckProofPropLogicController {
     	try {
 			if(lastResult==null)
 			{
-				String checkResult=ProofReader.checkProofString(console.getText());
+				String checkResult = ResolutionProofCheck.checkProof(console.getText(),false);
 				console.setText(console.getText()+"\n\n"+checkResult);
 				lastResult=checkResult;
 			}
 			else
 			{	
-				String checkResult=ProofReader.checkProofString(console.getText().replace(lastResult, ""));
+				String checkResult=ResolutionProofCheck.checkProof(console.getText().replace(lastResult, ""),false);
 				if(console.getText().contains(lastResult))
 				{
 					console.setText(console.getText().replace(lastResult, checkResult));
@@ -56,7 +55,8 @@ public class CheckProofPropLogicController {
 				}
 				lastResult=checkResult;
 			}
-		} catch (InvalidRuleName e) {
+		} 
+    	catch (IOException | InvalidProof e) {
 			// TODO Auto-generated catch block
 			console.setText(console.getText()+"\n\n"+e.getMessage());
 		}
@@ -65,31 +65,31 @@ public class CheckProofPropLogicController {
     
     public void checkFromFile()
     {
-    	try {
-			FileChooser chooser=new FileChooser();
-			chooser.getExtensionFilters().add(new ExtensionFilter("Text Files","*.txt"));
-			File f=chooser.showOpenDialog(null);
-			if(f!=null)
-			{
-					String checkResult=ProofReader.checkProofFromFile(f.getAbsolutePath());
+    	FileChooser chooser=new FileChooser();
+		chooser.getExtensionFilters().add(new ExtensionFilter("Text Files","*.txt"));
+		File f=chooser.showOpenDialog(null);
+		if(f!=null)
+		{
+				String checkResult;
+				try {
+					checkResult = ResolutionProofCheck.checkProof(f.getAbsolutePath(),true);
 					console.setText(checkResult);
-				
-			}
-    	}
-    	catch (InvalidRuleName | IOException e) {
-			// TODO Auto-generated catch block
-			console.setText(e.getMessage());
+				} catch (IOException | InvalidProof e) {
+					// TODO Auto-generated catch block
+					console.setText(e.getMessage());
+				}
+			
 		}
     }
     
-    public void back(ActionEvent event) throws IOException
-    {
-    	Parent deductionParent=FXMLLoader.load(getClass().getResource("NaturalDeductionPropLogicMenu.fxml"));
-    	Scene deductionScene=new Scene(deductionParent);
-    	Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
-    	window.setScene(deductionScene);
-    	window.show();
-    }
+    public void back(ActionEvent event) throws IOException {
+		Parent resolutionParent = FXMLLoader.load(getClass().getResource("ResolutionMenu.fxml"));
+		Scene resolutionParentScene = new Scene(resolutionParent);
+		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		window.setScene(resolutionParentScene);
+		window.show();
+	}
+    
     @FXML
     void initialize() {
         assert console != null : "fx:id=\"console\" was not injected: check your FXML file 'CheckProofPropLogic.fxml'.";
