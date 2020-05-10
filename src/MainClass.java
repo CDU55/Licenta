@@ -4,12 +4,17 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.StringReader;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import AbstractSyntaxTree.Explanation;
 import AbstractSyntaxTree.TreeNode;
+import DbManagement.CurrentQuizLevel;
+import DbManagement.DbConnection;
+import DbManagement.NormalFormsChapter;
 import Exceptions.GoalReached;
 import Exceptions.InvalidInferenceRuleApplication;
 import Exceptions.InvalidLiteral;
@@ -48,13 +53,12 @@ public class MainClass {
 
 	public static void main(String[] args) {		
 		try {
-			Formula f=new Formula("((!p->!q)<->(q->p))");
-			List<String> demo=NormalFormTransformationProof.transform(f, false);
-			for(String s:demo)
-			{
-				System.out.println(s);
-			}
-		} catch (InvalidPropositionalLogicFormula e) {
+			
+			NormalFormsChapter.addEntry("( p \\/ q) /\\ r", false, true);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

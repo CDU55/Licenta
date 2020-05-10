@@ -61,6 +61,15 @@ public class PropositionalLogicMainMenuController {
     	window.setScene(resolutionParentScene);
     	window.show();
     }
+    
+    public void quizBtnPushed(ActionEvent event) throws IOException
+    {
+    	Parent quizParent=FXMLLoader.load(getClass().getResource("../PropLogicQuiz/PropLogicQuizMenu.fxml"));
+    	Scene quizParentScene=new Scene(quizParent);
+    	Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+    	window.setScene(quizParentScene);
+    	window.show();
+    }
     @FXML
     void initialize() {
 
