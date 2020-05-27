@@ -1,5 +1,6 @@
 package application.NaturalDeductionPropLogic;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -9,8 +10,10 @@ import Exceptions.GoalReached;
 import Exceptions.InvalidInferenceRuleApplication;
 import Exceptions.InvalidPropositionalLogicFormula;
 import NaturalDeduction.DeductiveSystem;
+import NaturalDeduction.ProofReader;
 import NaturalDeduction.Sequence;
 import PropositionalLogicFormula.Formula;
+import Util.WriteFile;
 import application.AlertBox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,7 +26,9 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.FileChooser.ExtensionFilter;
 
 public class WriteProofPropLogicController {
 
@@ -349,6 +354,24 @@ public class WriteProofPropLogicController {
     	Scene infoScene=new Scene(infoParent);
     	infoStage.setScene(infoScene);
     	infoStage.show();
+    }
+    
+    public void export()
+    {
+    	FileChooser chooser=new FileChooser();
+		chooser.getExtensionFilters().add(new ExtensionFilter("Text Files","*.txt"));
+		File f=chooser.showOpenDialog(null);
+		if(f!=null)
+		{
+				try {
+					WriteFile.writeNaturalDeductionProof(this.deductiveSystem, f.getAbsolutePath());
+					AlertBox.display("Succes!\nThe proof can be found in\n"+f.getAbsolutePath());
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					AlertBox.display("An error occured");
+				}
+			
+		}
     }
     public void remove()
     {

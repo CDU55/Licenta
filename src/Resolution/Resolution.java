@@ -3,7 +3,6 @@ package Resolution;
 import java.util.ArrayList;
 import java.util.List;
 
-import AbstractSyntaxTree.TreeNode;
 import Exceptions.GoalReached;
 import Exceptions.InvalidInferenceRuleApplication;
 import Exceptions.InvalidLiteral;
@@ -150,6 +149,18 @@ public class Resolution {
 		}
 	}
 	
+	public String getClauseAndExplanation(int index)
+	{
+		if(index<0 || index>=this.clausesAndExplanations.size())
+		{
+			return null;
+		}
+		else
+		{
+			return (index+1)+"."+this.clausesAndExplanations.get(index).clause.toString()+"\t\t"+
+		this.clausesAndExplanations.get(index).explanation;
+		}
+	}
 	public boolean containsClause(ResolutionClause clause)
 	{
 		for(ClauseAndExplanation element:this.clausesAndExplanations)
@@ -164,9 +175,9 @@ public class Resolution {
 	@Override
 	public String toString() {
 		String message=new String();
-		for(ClauseAndExplanation line:this.clausesAndExplanations)
+		for(int i=0;i<this.clausesAndExplanations.size();i++)
 		{
-			message+=line.clause.toString()+"\t\t"+line.explanation+"\n";
+			message+=(i+1)+"."+this.clausesAndExplanations.get(i).clause.toString()+"\t\t"+this.clausesAndExplanations.get(i).explanation+"\n";
 		}
 		return message;
 	}

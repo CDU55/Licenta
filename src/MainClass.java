@@ -54,7 +54,7 @@ public class MainClass {
 	public static void main(String[] args) {		
 		try {
 			
-			NormalFormsChapter.addEntry("( p \\/ q) /\\ r", false, true);
+			NormalFormsChapter.addEntry("( p /\\ q) \\/ !!q", false, true);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

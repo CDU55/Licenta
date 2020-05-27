@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Exceptions.InvalidPropositionalLogicFormula;
+import FormulaStringConverters.FNCStringConverter;
+import FormulaStringConverters.FNDStringConverter;
 import PropositionalLogicFormula.Formula;
 
 public class NormalFormTransformationProof {
@@ -83,7 +85,14 @@ public class NormalFormTransformationProof {
 			
 			}
 		}
-		transformation.add("Transformed formula : "+transformed.toString());
+		if(transformIntoFNC)
+		{
+			transformation.add("Transformed formula : "+transformed.convertToStringForm(new FNCStringConverter()));
+		}
+		else
+		{
+		transformation.add("Transformed formula : "+transformed.convertToStringForm(new FNDStringConverter()));
+		}
 		return transformation;
 
 	}

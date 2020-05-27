@@ -111,7 +111,17 @@ public class DeductiveSystem {
 			this.explanations.remove(this.explanations.size()-1);
 		}
 	}
-
+	public String getSequenceAndExplanation(int index)
+	{
+		if(index<0||index>this.sequences.size())
+		{
+			return null;
+		}
+		else
+		{
+			return (index+1)+"."+this.sequences.get(index).toString()+"\t\t"+this.explanations.get(index);
+		}
+	}
 	@Override
 	public String toString() {
 		String message=new String();

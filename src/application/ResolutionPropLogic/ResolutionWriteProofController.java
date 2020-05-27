@@ -1,5 +1,6 @@
 package application.ResolutionPropLogic;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -12,6 +13,7 @@ import PropositionalLogicFormula.Formula;
 import Resolution.Literal;
 import Resolution.Resolution;
 import Resolution.ResolutionProof;
+import Util.WriteFile;
 import application.AlertBox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,7 +25,9 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.FileChooser.ExtensionFilter;
 
 public class ResolutionWriteProofController {
 
@@ -152,4 +156,21 @@ public class ResolutionWriteProofController {
 			this.console.setText(resolution.toString());
 		}
 	}
+	  public void export()
+	    {
+	    	FileChooser chooser=new FileChooser();
+			chooser.getExtensionFilters().add(new ExtensionFilter("Text Files","*.txt"));
+			File f=chooser.showOpenDialog(null);
+			if(f!=null)
+			{
+					try {
+						WriteFile.writeResolutionProof(this.resolution, f.getAbsolutePath());
+						AlertBox.display("Succes!\nThe proof can be found in\n"+f.getAbsolutePath());
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						AlertBox.display("An error occured");
+					}
+				
+			}
+	    }
 }

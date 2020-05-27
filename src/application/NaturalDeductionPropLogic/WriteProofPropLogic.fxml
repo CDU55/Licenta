@@ -140,7 +140,7 @@
                      </font></TextArea>
                </children>
             </AnchorPane>
-            <HBox layoutX="10.0" layoutY="622.0" prefHeight="38.0" prefWidth="809.0" spacing="250.0" VBox.vgrow="ALWAYS">
+            <HBox layoutX="10.0" layoutY="622.0" prefHeight="38.0" prefWidth="809.0" spacing="100.0" VBox.vgrow="ALWAYS">
                <children>
                   <AnchorPane layoutX="10.0" layoutY="10.0" HBox.hgrow="ALWAYS">
                      <children>
@@ -150,6 +150,11 @@
                   <AnchorPane HBox.hgrow="ALWAYS">
                      <children>
                         <Button mnemonicParsing="false" onAction="#remove" text="Remove" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="384.0" layoutY="10.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#export" text="Export" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane HBox.hgrow="ALWAYS">

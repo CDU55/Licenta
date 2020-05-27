@@ -7,6 +7,7 @@ import FormulaRemodelers.ConnectorReplacer;
 import FormulaRemodelers.ConnectorReverter;
 import FormulaRemodelers.FormulaRemodeler;
 import FormulaRemodelers.PostfixNotation;
+import FormulaStringConverters.FormulaStringConverter;
 import Parsers.CheckSyntax;
 import PropositionalLogicAnalysis.FormulaAnalyser;
 
@@ -58,6 +59,10 @@ public class Formula {
 		return analyser.analyseRandom(this, maxIterations);
 	}
 	
+	public String convertToStringForm(FormulaStringConverter converter)
+	{
+		return converter.convertToString(this);
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
