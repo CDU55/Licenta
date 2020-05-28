@@ -14,6 +14,7 @@ import AbstractSyntaxTree.Explanation;
 import AbstractSyntaxTree.TreeNode;
 import DbManagement.CurrentQuizLevel;
 import DbManagement.DbConnection;
+import DbManagement.NaturalDeductionChapter;
 import DbManagement.NormalFormsChapter;
 import Exceptions.GoalReached;
 import Exceptions.InvalidInferenceRuleApplication;
@@ -54,11 +55,23 @@ public class MainClass {
 	public static void main(String[] args) {		
 		try {
 			
-			NormalFormsChapter.addEntry("( p /\\ q) \\/ !!q", false, true);
+			List<String> hypo=NaturalDeductionChapter.getEntryHypothesis(true, 1);
+			String goal=NaturalDeductionChapter.getEntryGoal(true, 1);
+			List<Formula> formulas=new ArrayList<Formula>();
+			for(String s:hypo)
+			{
+				formulas.add(new Formula(s));
+			}
+			Sequence s=new Sequence(goal);
+			DeductiveSystem d=new DeductiveSystem(formulas,s);
+			System.out.println(d.toString());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvalidPropositionalLogicFormula e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

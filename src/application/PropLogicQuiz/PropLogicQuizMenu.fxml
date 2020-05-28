@@ -26,7 +26,7 @@
                   <Insets />
                </VBox.margin>
                <children>
-                  <Button id="PropositionalLogicBtn" mnemonicParsing="false" prefHeight="77.0" prefWidth="321.0" text="Natural Deduction" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="0.0" />
+                  <Button id="PropositionalLogicBtn" mnemonicParsing="false" onAction="#NaturalDeduciton" prefHeight="77.0" prefWidth="321.0" text="Natural Deduction" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
             <AnchorPane>
@@ -44,7 +44,7 @@
             </AnchorPane>
             <AnchorPane layoutX="10.0" layoutY="166.0">
                <children>
-                  <Button id="FirstOrderLogicBtn" mnemonicParsing="false" prefHeight="77.0" prefWidth="321.0" text="Resolution" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="0.0" />
+                  <Button id="FirstOrderLogicBtn" mnemonicParsing="false" onAction="#Resolution" prefHeight="77.0" prefWidth="321.0" text="Resolution" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
             <AnchorPane layoutX="10.0" layoutY="283.0">

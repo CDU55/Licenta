@@ -122,6 +122,11 @@ public class DeductiveSystem {
 			return (index+1)+"."+this.sequences.get(index).toString()+"\t\t"+this.explanations.get(index);
 		}
 	}
+	
+	public boolean getGoalReached()
+	{
+		return this.goalReached;
+	}
 	@Override
 	public String toString() {
 		String message=new String();

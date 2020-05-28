@@ -8,7 +8,7 @@ import java.sql.SQLException;
 public class ResolutionChapter {
 	private static String currentMaxLevel="SELECT MAX(LEVEL) FROM RESOLUTION WHERE PropLogic=?;";
 	private static String insertEntry="INSERT INTO RESOLUTION VALUES(?,?,?);";
-	private static String getEntry="SELECT FORMULA FROM 'RESOLUTION' WHERE ToFNC=? AND Level=?;";
+	private static String getEntry="SELECT FORMULA FROM 'RESOLUTION' WHERE PropLogic=? AND Level=?;";
 	public static int currentMaxLevel(boolean propLogic) throws ClassNotFoundException, SQLException
 	{
 		int propLogicFilter=propLogic==true?1:0;
