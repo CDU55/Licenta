@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import DbManagement.CurrentQuizLevel;
-import DbManagement.NormalFormsChapter;
 import DbManagement.ResolutionChapter;
 import Exceptions.GoalReached;
 import Exceptions.InvalidInferenceRuleApplication;

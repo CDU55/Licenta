@@ -1,12 +1,6 @@
 
-import AbstractSyntaxTree.FOLTreeNode;
 import Exceptions.InvalidPropositionalLogicFormula;
-import Exceptions.InvalidSubstitution;
-import FirstOrderLogicSubstitutions.Substitution;
-import FormulaRemodelers.PostfixNotationFOL;
-import Formulas.FOLFormula;
-import NaturalDeduction.FOLSequence;
-import Parsers.CheckSyntax;
+import NaturalDeduction.NaturalDeductionFOL.SequenceFOL;
 
 
 public class MainClass {
@@ -14,7 +8,7 @@ public class MainClass {
 	public static void main(String[] args) {		
 		
 			try {
-				FOLSequence s=new FOLSequence("{Vx.Ey.!!P(x,y,z),Q(asfsa)}|-H(z)");
+				SequenceFOL s=new SequenceFOL("{Vx.Ey.!!P(x,y,z),Q(asfsa)}|-H(z)");
 				System.out.println(s.toString());
 			} catch (InvalidPropositionalLogicFormula  e) {
 				// TODO Auto-generated catch block

@@ -5,11 +5,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import Exceptions.InvalidPropositionalLogicFormula;
 import Exceptions.InvalidRuleName;
-import Formulas.Formula;
 import NaturalDeduction.ProofReader;
-import PropositionalLogicAnalysis.TableGenerator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

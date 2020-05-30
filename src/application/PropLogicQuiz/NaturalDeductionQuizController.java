@@ -10,7 +10,6 @@ import java.util.ResourceBundle;
 
 import DbManagement.CurrentQuizLevel;
 import DbManagement.NaturalDeductionChapter;
-import DbManagement.ResolutionChapter;
 import Exceptions.GoalReached;
 import Exceptions.InvalidInferenceRuleApplication;
 import Exceptions.InvalidPropositionalLogicFormula;

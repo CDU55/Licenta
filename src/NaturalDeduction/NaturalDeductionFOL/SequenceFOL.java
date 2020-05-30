@@ -1,4 +1,4 @@
-package NaturalDeduction;
+package NaturalDeduction.NaturalDeductionFOL;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,11 +7,11 @@ import Exceptions.InvalidPropositionalLogicFormula;
 import Formulas.FOLFormula;
 import Formulas.Formula;
 
-public class FOLSequence {
+public class SequenceFOL {
 	
 	public List<FOLFormula> hypothesis;
 	public FOLFormula proven;
-	public FOLSequence(List<FOLFormula> hypothesis,FOLFormula proven)
+	public SequenceFOL(List<FOLFormula> hypothesis,FOLFormula proven)
 	{
 		this.hypothesis=new ArrayList<FOLFormula>();
 		for(FOLFormula f:hypothesis)
@@ -24,7 +24,7 @@ public class FOLSequence {
 		}
 	}
 	
-	public FOLSequence(String sequence) throws InvalidPropositionalLogicFormula
+	public SequenceFOL(String sequence) throws InvalidPropositionalLogicFormula
 	{
 		/*if(!ProofReader.isSequenceString(sequence))
 		{
@@ -68,7 +68,7 @@ public class FOLSequence {
 			this.proven=new FOLFormula(hypothesisAndProven[1]);
 		}
 	}
-	public static boolean hypothesisEqual(FOLSequence s1,FOLSequence s2)
+	public static boolean hypothesisEqual(SequenceFOL s1,SequenceFOL s2)
 	{
 		if(s1.hypothesis.size()!=s2.hypothesis.size())
 		{
