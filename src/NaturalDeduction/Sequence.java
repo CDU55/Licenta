@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Exceptions.InvalidPropositionalLogicFormula;
+import Formulas.Formula;
 import Parsers.CheckSyntax;
-import PropositionalLogicFormula.Formula;
 
 public class Sequence {
 	

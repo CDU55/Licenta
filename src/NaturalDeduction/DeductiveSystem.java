@@ -6,7 +6,7 @@ import java.util.List;
 
 import Exceptions.GoalReached;
 import Exceptions.InvalidInferenceRuleApplication;
-import PropositionalLogicFormula.Formula;
+import Formulas.Formula;
 
 public class DeductiveSystem {
 	

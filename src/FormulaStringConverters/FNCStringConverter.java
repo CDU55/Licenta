@@ -1,8 +1,8 @@
 package FormulaStringConverters;
 
 import AbstractSyntaxTree.TreeNode;
+import Formulas.Formula;
 import NormalForms.FNC;
-import PropositionalLogicFormula.Formula;
 
 public class FNCStringConverter implements FormulaStringConverter {
 

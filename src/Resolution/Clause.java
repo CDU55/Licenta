@@ -5,9 +5,9 @@ import java.util.List;
 
 import AbstractSyntaxTree.TreeNode;
 import Exceptions.InvalidPropositionalLogicFormula;
+import Formulas.Formula;
 import NormalForms.FNC;
 import NormalForms.NormalForm;
-import PropositionalLogicFormula.Formula;
 
 public class Clause {
 

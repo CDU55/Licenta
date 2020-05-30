@@ -1,6 +1,6 @@
 package NaturalDeduction;
 
-import PropositionalLogicFormula.Formula;
+import Formulas.Formula;
 
 public class ExtractFromConjunction1 implements InferenceRule {
 

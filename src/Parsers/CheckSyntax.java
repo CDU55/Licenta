@@ -4,6 +4,7 @@ import java.io.StringReader;
 
 import Parsers.FirstOrderLogic.FirstOrderLogicParser;
 import Parsers.PropLogic.PropositionalLogicParser;
+import Util.FunctionParsing;
 
 public class CheckSyntax {
 	
@@ -15,6 +16,10 @@ public class CheckSyntax {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
+		 if(FunctionParsing.parathesisDifference(formula)!=0)
+		 {
+			 return "Invalid parenthesis placement";
+		 }
 		 return parsingResult;
 	}
 	
@@ -29,6 +34,17 @@ public class CheckSyntax {
 		 return parsingResult;
 	}
 	
+	public static boolean checkFunctionSyntaxBoolean(String function)
+	{
+		if(checkFunctionSyntax(function).toUpperCase().equals("OK"))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 	public static String checkFirstOrderLogicSyntax(String formula)
 	{
 		String parsingResult="Default";
@@ -37,6 +53,10 @@ public class CheckSyntax {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
+		 if(FunctionParsing.parathesisDifference(formula)!=0)
+		 {
+			 return "Invalid parenthesis placement";
+		 }
 		 return parsingResult;
 	}
 

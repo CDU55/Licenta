@@ -3,7 +3,7 @@ package application.FormulaAnalysis;
 
 
 import AbstractSyntaxTree.TreeNode;
-import PropositionalLogicFormula.Formula;
+import Formulas.Formula;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;

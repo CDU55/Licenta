@@ -93,9 +93,9 @@ TOKEN : /* OPERATORS */
 
 TOKEN :
 {
-  < NAME : ["a"-"z"](["a"-"z","A"-"Z"])* >
+  < NAME : ["a"-"z"](["a"-"z","A"-"D","F"-"U","W"-"Z"])* >
 |
-< FUNCTIONNAME:["A"-"Z"](["a"-"z","A"-"Z"])* >
+< FUNCTIONNAME:["A"-"D","F"-"U","W"-"Z"](["a"-"z","A"-"D","F"-"U","W"-"Z"])* >
 }
 
 int one_line() :
@@ -160,5 +160,5 @@ void parameters():
 void param():
 {}
 {
-  < NAME > |function()
+  ( function()|< NAME >)
 }

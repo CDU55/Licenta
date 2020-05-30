@@ -1,7 +1,7 @@
 package Resolution;
 
 import Exceptions.InvalidLiteral;
-import PropositionalLogicFormula.Formula;
+import Formulas.Formula;
 
 public class Literal {
 	

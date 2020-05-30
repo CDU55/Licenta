@@ -3,7 +3,7 @@ package PropositionalLogicAnalysis;
 import java.util.Arrays;
 import java.util.List;
 import AbstractSyntaxTree.TreeNode;
-import PropositionalLogicFormula.Formula;
+import Formulas.Formula;
 
 public abstract class FormulaAnalyser {
 	

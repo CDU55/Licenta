@@ -6,7 +6,7 @@ import java.util.List;
 import Exceptions.InvalidPropositionalLogicFormula;
 import FormulaStringConverters.FNCStringConverter;
 import FormulaStringConverters.FNDStringConverter;
-import PropositionalLogicFormula.Formula;
+import Formulas.Formula;
 
 public class NormalFormTransformationProof {
 	

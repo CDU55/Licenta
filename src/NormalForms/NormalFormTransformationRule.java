@@ -1,6 +1,6 @@
 package NormalForms;
 
-import PropositionalLogicFormula.Formula;
+import Formulas.Formula;
 
 public interface NormalFormTransformationRule {
 	

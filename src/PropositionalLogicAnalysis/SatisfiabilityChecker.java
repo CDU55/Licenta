@@ -2,7 +2,7 @@ package PropositionalLogicAnalysis;
 
 import java.util.List;
 
-import PropositionalLogicFormula.Formula;
+import Formulas.Formula;
 
 public class SatisfiabilityChecker extends FormulaAnalyser {
 

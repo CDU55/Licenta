@@ -7,9 +7,9 @@ import java.util.ResourceBundle;
 
 import Exceptions.InvalidPropositionalLogicFormula;
 import Exceptions.InvalidRuleName;
+import Formulas.Formula;
 import NaturalDeduction.ProofReader;
 import PropositionalLogicAnalysis.TableGenerator;
-import PropositionalLogicFormula.Formula;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

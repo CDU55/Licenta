@@ -1,7 +1,7 @@
 package NormalForms;
 
 import AbstractSyntaxTree.TreeNode;
-import PropositionalLogicFormula.Formula;
+import Formulas.Formula;
 
 public class DeMorganConjunction implements NormalFormTransformationRule {
 

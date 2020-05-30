@@ -1,6 +1,6 @@
 package NaturalDeduction;
 
-import PropositionalLogicFormula.Formula;
+import Formulas.Formula;
 
 public class RemoveDoubleNegation implements InferenceRule {
 

@@ -8,11 +8,11 @@ import java.util.ResourceBundle;
 
 import Exceptions.InvalidPropositionalLogicFormula;
 import Exceptions.InvalidRuleName;
+import Formulas.Formula;
 import NormalForms.FND;
 import NormalForms.FNDTransformator;
 import NormalForms.NormalForm;
 import NormalForms.NormalFormTransformationProof;
-import PropositionalLogicFormula.Formula;
 import Util.WriteFile;
 import application.AlertBox;
 import javafx.event.ActionEvent;

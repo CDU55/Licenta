@@ -5,8 +5,8 @@ import java.util.List;
 
 public class CorrespondingConnector {
 	
-	private static List<String> originalConnectors=Arrays.asList("/\\","\\/","->","<-","<->");;
-	private static String remodeledConnectors="&|><-";
+	private static List<String> originalConnectors=Arrays.asList("!","/\\","\\/","->","<-","<->");;
+	private static String remodeledConnectors="!&|><-";
 	
 	public static String getOriginalConnector(char connector)
 	{
@@ -22,7 +22,15 @@ public class CorrespondingConnector {
 	
 	public static char getRemodeledConnector(String connector)
 	{
-		if(!originalConnectors.contains(connector))
+		if(connector.matches("V[a-z][A-za-z]*\\."))
+		{
+			return 'V';
+		}
+		else if(connector.matches("E[a-z][A-za-z]*\\."))
+		{
+			return 'E';
+		}
+		else if(!originalConnectors.contains(connector))
 		{
 			return '\0'; 
 		}

@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import Exceptions.InvalidPropositionalLogicFormula;
+import Formulas.Formula;
 import NaturalDeduction.Sequence;
-import PropositionalLogicFormula.Formula;
 import application.AlertBox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

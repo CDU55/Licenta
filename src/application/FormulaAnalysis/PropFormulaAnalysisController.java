@@ -6,11 +6,11 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import Exceptions.InvalidPropositionalLogicFormula;
+import Formulas.Formula;
 import PropositionalLogicAnalysis.ContradictionChecker;
 import PropositionalLogicAnalysis.SatisfiabilityChecker;
 import PropositionalLogicAnalysis.TableGenerator;
 import PropositionalLogicAnalysis.TautologyChecker;
-import PropositionalLogicFormula.Formula;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

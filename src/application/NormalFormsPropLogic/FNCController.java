@@ -8,12 +8,12 @@ import java.util.ResourceBundle;
 
 import Exceptions.InvalidPropositionalLogicFormula;
 import Exceptions.InvalidRuleName;
+import Formulas.Formula;
 import NormalForms.FNC;
 import NormalForms.FNCTransformator;
 import NormalForms.NormalForm;
 import NormalForms.NormalFormTransformationProof;
 import PropositionalLogicAnalysis.TableGenerator;
-import PropositionalLogicFormula.Formula;
 import Util.WriteFile;
 import application.AlertBox;
 import javafx.event.ActionEvent;

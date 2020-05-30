@@ -1,6 +1,6 @@
 package FormulaStringConverters;
 
-import PropositionalLogicFormula.Formula;
+import Formulas.Formula;
 
 public interface FormulaStringConverter {
 	

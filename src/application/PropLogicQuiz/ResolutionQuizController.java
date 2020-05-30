@@ -12,7 +12,7 @@ import Exceptions.GoalReached;
 import Exceptions.InvalidInferenceRuleApplication;
 import Exceptions.InvalidLiteral;
 import Exceptions.InvalidPropositionalLogicFormula;
-import PropositionalLogicFormula.Formula;
+import Formulas.Formula;
 import Resolution.Literal;
 import Resolution.Resolution;
 import application.AlertBox;

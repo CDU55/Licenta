@@ -2,7 +2,7 @@ package NormalForms;
 
 
 import AbstractSyntaxTree.TreeNode;
-import PropositionalLogicFormula.Formula;
+import Formulas.Formula;
 
 public class RemoveDoubleImplication implements NormalFormTransformationRule {
 

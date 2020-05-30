@@ -1,4 +1,4 @@
-package PropositionalLogicFormula;
+package Formulas;
 
 import AbstractSyntaxTree.PropositionalLogicTree;
 import AbstractSyntaxTree.TreeNode;

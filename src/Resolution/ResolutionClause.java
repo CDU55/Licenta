@@ -6,7 +6,7 @@ import java.util.List;
 import Exceptions.InvalidClause;
 import Exceptions.InvalidLiteral;
 import Exceptions.InvalidPropositionalLogicFormula;
-import PropositionalLogicFormula.Formula;
+import Formulas.Formula;
 
 public class ResolutionClause {
 	

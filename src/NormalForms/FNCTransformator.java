@@ -5,7 +5,7 @@ import java.util.List;
 
 import Exceptions.InvalidPropositionalLogicFormula;
 import Exceptions.InvalidRuleName;
-import PropositionalLogicFormula.Formula;
+import Formulas.Formula;
 
 public class FNCTransformator extends NormalFormTransformator {
 	
