@@ -296,7 +296,7 @@ public class WriteProofPropLogicController {
     {
     	try {
         	Sequence sequence=new Sequence(formula1.getText());
-			deductiveSystem.apply("IPOTEZA",sequence,sequence.proven);
+			deductiveSystem.apply("IPOTEZA",sequence);
 			this.console.setText(deductiveSystem.toString());
 			initializeSpinners();
 		} catch (InvalidInferenceRuleApplication e) {

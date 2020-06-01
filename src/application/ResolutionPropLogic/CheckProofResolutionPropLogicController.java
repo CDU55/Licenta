@@ -9,6 +9,7 @@ import Exceptions.InvalidProof;
 import Exceptions.InvalidRuleName;
 import NaturalDeduction.ProofReader;
 import Resolution.ResolutionProofCheck;
+import application.AlertBox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -31,33 +32,15 @@ public class CheckProofResolutionPropLogicController {
     @FXML
     private TextArea console;
     
-    private String lastResult;
 
     public void check()
     {
     	try {
-			if(lastResult==null)
-			{
-				String checkResult = ResolutionProofCheck.checkProof(console.getText(),false);
-				console.setText(console.getText()+"\n\n"+checkResult);
-				lastResult=checkResult;
-			}
-			else
-			{	
-				String checkResult=ResolutionProofCheck.checkProof(console.getText().replace(lastResult, ""),false);
-				if(console.getText().contains(lastResult))
-				{
-					console.setText(console.getText().replace(lastResult, checkResult));
-				}
-				else
-				{
-					console.setText(console.getText()+"\n\n"+checkResult);
-				}
-				lastResult=checkResult;
-			}
+				
+				String checkResult=ResolutionProofCheck.checkProof(console.getText().trim(),false);
+				AlertBox.display(checkResult);
 		} 
     	catch (IOException | InvalidProof e) {
-			// TODO Auto-generated catch block
 			console.setText(console.getText()+"\n\n"+e.getMessage());
 		}
     	
@@ -73,7 +56,7 @@ public class CheckProofResolutionPropLogicController {
 				String checkResult;
 				try {
 					checkResult = ResolutionProofCheck.checkProof(f.getAbsolutePath(),true);
-					console.setText(checkResult);
+					AlertBox.display(checkResult);
 				} catch (IOException | InvalidProof e) {
 					// TODO Auto-generated catch block
 					console.setText(e.getMessage());

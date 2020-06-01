@@ -46,7 +46,7 @@ public class CreateBottomFOL implements InferenceRuleFOL {
 		}
 		for(int i=0;i<objects.length;i++)
 		{
-			if(!(objects[i] instanceof Sequence))
+			if(!(objects[i] instanceof SequenceFOL))
 			{
 				return "Argument "+i+" type is not valid";
 			}

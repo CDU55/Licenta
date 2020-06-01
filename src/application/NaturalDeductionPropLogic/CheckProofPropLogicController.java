@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 
 import Exceptions.InvalidRuleName;
 import NaturalDeduction.ProofReader;
+import application.AlertBox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,36 +30,19 @@ public class CheckProofPropLogicController {
     @FXML
     private TextArea console;
     
-    private String lastResult;
 
     public void check()
     {
-    	try {
-			if(lastResult==null)
-			{
-				String checkResult=ProofReader.checkProofString(console.getText());
-				console.setText(console.getText()+"\n\n"+checkResult);
-				lastResult=checkResult;
-			}
-			else
-			{	
-				String checkResult=ProofReader.checkProofString(console.getText().replace(lastResult, ""));
-				if(console.getText().contains(lastResult))
-				{
-					console.setText(console.getText().replace(lastResult, checkResult));
+				String checkResult;
+				try {
+					checkResult = ProofReader.checkProofString(console.getText().trim());
+					AlertBox.display(checkResult);
+				} catch (InvalidRuleName e) {
+					AlertBox.display(e.getMessage());
 				}
-				else
-				{
-					console.setText(console.getText()+"\n\n"+checkResult);
-				}
-				lastResult=checkResult;
-			}
-		} catch (InvalidRuleName e) {
-			// TODO Auto-generated catch block
-			console.setText(console.getText()+"\n\n"+e.getMessage());
-		}
+	}
     	
-    }
+		
     
     public void checkFromFile()
     {
@@ -69,12 +53,11 @@ public class CheckProofPropLogicController {
 			if(f!=null)
 			{
 					String checkResult=ProofReader.checkProofFromFile(f.getAbsolutePath());
-					console.setText(checkResult);
+					AlertBox.display(checkResult);
 				
 			}
     	}
     	catch (InvalidRuleName | IOException e) {
-			// TODO Auto-generated catch block
 			console.setText(e.getMessage());
 		}
     }

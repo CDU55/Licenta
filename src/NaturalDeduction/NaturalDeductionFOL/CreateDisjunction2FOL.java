@@ -2,6 +2,7 @@ package NaturalDeduction.NaturalDeductionFOL;
 
 import AbstractSyntaxTree.FOLTreeNode;
 import Formulas.FOLFormula;
+import Formulas.Formula;
 
 public class CreateDisjunction2FOL implements InferenceRuleFOL {
 
@@ -44,7 +45,8 @@ public class CreateDisjunction2FOL implements InferenceRuleFOL {
 		}
 		SequenceFOL result=(SequenceFOL)objects[0];
 		SequenceFOL initial=(SequenceFOL)objects[1];
-		if(!canApply(initial))
+		FOLFormula addedFormula=new FOLFormula(result.proven.syntaxTree.getRoot().getLeftChild());
+		if(!canApply(initial,addedFormula))
 		{
 			return this.toString()+" cannot be applied for "+initial.toString();
 		}

@@ -1,20 +1,20 @@
-package NaturalDeduction;
+package NaturalDeduction.NaturalDeductionFOL;
 
 import java.util.Arrays;
 
 import Exceptions.InvalidPropositionalLogicFormula;
 import Exceptions.InvalidRuleName;
+import NaturalDeduction.CheckRuleName;
 import Parsers.CheckSyntax;
 
-public class RuleExplanation {
-	
+public class RuleExplanationFOL {
 	public String ruleName;
 	public Object[] args;
-	public RuleExplanation(String explanation) throws InvalidPropositionalLogicFormula, InvalidRuleName
+	public RuleExplanationFOL(String explanation) throws InvalidPropositionalLogicFormula, InvalidRuleName
 	{
 		explanation=explanation.replace("(", "").replace(")","").replace(" ","").trim();
 		String nameAndArgs[]=explanation.split(",");
-		if(CheckRuleName.checkFOL(nameAndArgs[0]))
+		if(CheckRuleName.check(nameAndArgs[0]))
 		{
 			this.ruleName=nameAndArgs[0];
 		}
@@ -31,7 +31,7 @@ public class RuleExplanation {
 			}
 			else
 			{
-				if(CheckSyntax.checkPropositionalLogicSyntax(nameAndArgs[i]).equals("OK"))
+				if(CheckSyntax.checkFirstOrderLogicSyntax(nameAndArgs[i]).equals("OK"))
 				{
 					args[i-1]=nameAndArgs[i];
 				}
@@ -46,6 +46,4 @@ public class RuleExplanation {
 	public String toString() {
 		return "RuleExplanation [ruleName=" + ruleName + ", args=" + Arrays.toString(args) + "]";
 	}
-	
-
 }

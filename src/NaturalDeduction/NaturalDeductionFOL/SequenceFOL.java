@@ -20,7 +20,7 @@ public class SequenceFOL {
 		}
 		if(proven!=null)
 		{
-			this.proven=new FOLFormula(proven.syntaxTree.getRoot());
+			this.proven=new FOLFormula(proven);
 		}
 	}
 	
@@ -84,6 +84,37 @@ public class SequenceFOL {
 		return true;
 	}
 	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((hypothesis == null) ? 0 : hypothesis.hashCode());
+		result = prime * result + ((proven == null) ? 0 : proven.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		SequenceFOL other = (SequenceFOL) obj;
+		if (hypothesis == null) {
+			if (other.hypothesis != null)
+				return false;
+		} else if (!hypothesis.equals(other.hypothesis))
+			return false;
+		if (proven == null) {
+			if (other.proven != null)
+				return false;
+		} else if (!proven.equals(other.proven))
+			return false;
+		return true;
+	}
+
 	@Override
 	public String toString() {
 		String message="{ ";

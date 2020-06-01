@@ -1,18 +1,15 @@
 package NaturalDeduction;
 
-import Formulas.Formula;
-
 public class Hypothesis implements InferenceRule {
 
 	@Override
 	public boolean canApply(Object... objects) {
-		if(objects.length!=2)
+		if(objects.length!=1)
 		{
 			return false;
 		}
 		Sequence s =(Sequence)objects[0];
-		Formula proven=(Formula)objects[1];
-		if(!s.hypothesis.contains(proven))
+		if(!s.hypothesis.contains(s.proven))
 		{
 			return false;
 		}
@@ -22,9 +19,7 @@ public class Hypothesis implements InferenceRule {
 	@Override
 	public Sequence Apply(Object... objects) {
 		Sequence s =(Sequence)objects[0];
-		Formula proven=(Formula)objects[1];
-		Sequence result=new Sequence(s.hypothesis,proven);
-		return result;
+		return s;
 	}
 
 	@Override

@@ -44,7 +44,8 @@ public class CreateDisjunction1 implements InferenceRule {
 		}
 		Sequence result=(Sequence)objects[0];
 		Sequence initial=(Sequence)objects[1];
-		if(!canApply(initial))
+		Formula addedFormula=new Formula(result.proven.syntaxTree.getRoot().getRightChild());
+		if(!canApply(initial,addedFormula))
 		{
 			return this.toString()+" cannot be applied for "+initial.toString();
 		}

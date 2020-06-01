@@ -44,7 +44,8 @@ public class CreateDisjunction1FOL implements InferenceRuleFOL {
 		}
 		SequenceFOL result=(SequenceFOL)objects[0];
 		SequenceFOL initial=(SequenceFOL)objects[1];
-		if(!canApply(initial))
+		FOLFormula addedFormula=new FOLFormula(result.proven.syntaxTree.getRoot().getRightChild());
+		if(!canApply(initial,addedFormula))
 		{
 			return this.toString()+" cannot be applied for "+initial.toString();
 		}

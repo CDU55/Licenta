@@ -16,13 +16,13 @@ public class Substitution {
 		{
 			throw new InvalidSubstitution(initial +" is a not a variable");
 		}
-		if(!CheckSyntax.checkFunctionSyntaxBoolean(Final))
+		if(!CheckSyntax.checkFunctionSyntaxBoolean(Final) && !Final.trim().matches("[a-z][a-zA-DF-UW-Z]*"))
 		{
-			throw new InvalidSubstitution(Final +" is a not a function");
+			throw new InvalidSubstitution(Final +" is a not a term");
 
 		}
-		this.Initial=new FOLTreeNode(initial);
-		this.Final=new FOLTreeNode(Final);
+		this.Initial=new FOLTreeNode(initial.trim());
+		this.Final=new FOLTreeNode(Final.trim());
 	}
 
 	@Override

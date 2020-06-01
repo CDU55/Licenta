@@ -13,7 +13,6 @@ public class FOLFormula {
 	
 	private String formula;
 	public FOLTree syntaxTree;
-	private List<Substitution> substitutions;
 	
 	public FOLFormula(String formula) throws InvalidPropositionalLogicFormula
 	{
@@ -24,43 +23,34 @@ public class FOLFormula {
 		}
 		this.formula=formula;
 		this.syntaxTree=new FOLTree(formula);
-		this.substitutions=new ArrayList<Substitution>();
 	}
 	
 	public FOLFormula(FOLFormula formula)
 	{
 		this.syntaxTree=new FOLTree(formula.formula);
 		this.formula=formula.toString();
-		this.substitutions=new ArrayList<Substitution>(formula.substitutions);
 	}
 	
+
 	public FOLFormula(FOLTreeNode node)
 	{
 		this.syntaxTree=new FOLTree(node);
 		this.formula=this.syntaxTree.toString();
-		this.substitutions=new ArrayList<Substitution>();
 
 	}
 
-	public void addSubstitution(Substitution substitution)
+
+
+	public void executeSubstitution(Substitution s)
 	{
-		this.substitutions.add(substitution);
+		this.syntaxTree.executeSubstitution(s);
+		this.formula=this.syntaxTree.toString();
 	}
 	public void removeRedundantParathesis()
 	{
 		this.formula=this.syntaxTree.toString();
 	}
 	
-	public static String getSubstituted(FOLFormula formula)
-	{
-		FOLFormula substituted=new FOLFormula(formula);
-		for(Substitution s:substituted.substitutions)
-		{
-			substituted.syntaxTree.executeSubstitution(s);
-		}
-		formula.syntaxTree=new FOLTree(formula.toString());
-		return substituted.syntaxTree.toString();
-	}
 	
 	@Override
 	public String toString() {

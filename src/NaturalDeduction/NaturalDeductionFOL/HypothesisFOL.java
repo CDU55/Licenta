@@ -5,13 +5,12 @@ import Formulas.FOLFormula;
 public class HypothesisFOL implements InferenceRuleFOL {
 	@Override
 	public boolean canApply(Object... objects) {
-		if(objects.length!=2)
+		if(objects.length!=1)
 		{
 			return false;
 		}
 		SequenceFOL s =(SequenceFOL)objects[0];
-		FOLFormula proven=(FOLFormula)objects[1];
-		if(!s.hypothesis.contains(proven))
+		if(!s.hypothesis.contains(s.proven))
 		{
 			return false;
 		}
@@ -21,9 +20,7 @@ public class HypothesisFOL implements InferenceRuleFOL {
 	@Override
 	public SequenceFOL Apply(Object... objects) {
 		SequenceFOL s =(SequenceFOL)objects[0];
-		FOLFormula proven=(FOLFormula)objects[1];
-		SequenceFOL result=new SequenceFOL(s.hypothesis,proven);
-		return result;
+		return s;
 	}
 
 	@Override
