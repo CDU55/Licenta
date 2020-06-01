@@ -34,7 +34,7 @@
                   <Insets />
                </VBox.margin>
                <children>
-                  <Button id="FirstOrderLogicBtn" fx:id="FirstOrderLogicBtn" mnemonicParsing="false" prefHeight="77.0" prefWidth="321.0" text="First Order Logic" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="0.0" />
+                  <Button id="FirstOrderLogicBtn" fx:id="FirstOrderLogicBtn" mnemonicParsing="false" onAction="#FirstOrderLogicBtnPushed" prefHeight="77.0" prefWidth="321.0" text="First Order Logic" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
          </children>

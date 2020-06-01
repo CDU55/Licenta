@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.List;
 
 import NaturalDeduction.DeductiveSystem;
+import NaturalDeduction.NaturalDeductionFOL.DeductiveSystemFOL;
 import Resolution.Resolution;
 
 public class WriteFile {
@@ -49,5 +50,18 @@ public class WriteFile {
 		}
 		writer.close();
 	}
+	
+	public static void writeNaturalDeductionProofFOL(DeductiveSystemFOL deduction,String filePath) throws IOException
+	{
+		FileWriter writer=new FileWriter(filePath);
+		for(int index=0;index<deduction.sequences.size();index++)
+		{
+			writer.write(deduction.getSequenceAndExplanation(index));
+			writer.write("\r\n");
+		}
+		writer.close();
+	}
+	
+	
 
 }

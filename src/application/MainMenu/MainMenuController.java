@@ -35,6 +35,15 @@ public class MainMenuController {
     	window.setScene(propLogicScene);
     	window.show();
     }
+    
+    public void FirstOrderLogicBtnPushed(ActionEvent event) throws IOException
+    {
+    	Parent FOLParent=FXMLLoader.load(getClass().getResource("../FOLMainMenu/FOLMainMenu.fxml"));
+    	Scene FOLScene=new Scene(FOLParent);
+    	Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+    	window.setScene(FOLScene);
+    	window.show();
+    }
     @FXML
     void initialize() {
         assert PropositionalLogicBtn != null : "fx:id=\"PropositionalLogicBtn\" was not injected: check your FXML file 'MainMenu.fxml'.";
