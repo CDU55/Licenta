@@ -279,8 +279,31 @@ public class FOLTree {
 			currentNode.setVariable(substitution.Final.isVariable());
 		}
 	}
+	public FOLTreeNode existentialClosure()
+	{
+		FOLTreeNode initial=new FOLTreeNode(this.root);
+		List<String> free=this.getFree();
+		for(String variable:free)
+		{
+			String cuantifier="E"+variable+".";
+			FOLTreeNode newCuantifier=new FOLTreeNode(cuantifier,initial,null);
+			initial=newCuantifier;
+		}
+		return initial;
+	}
 	
-	public void executeSubstitution(Substitution substitution)
+	public FOLTreeNode UniversalClosure()
+	{
+		FOLTreeNode initial=new FOLTreeNode(this.root);
+		List<String> free=this.getFree();
+		for(String variable:free)
+		{
+			String cuantifier="V"+variable+".";
+			FOLTreeNode newCuantifier=new FOLTreeNode(cuantifier,initial,null);
+			initial=newCuantifier;
+		}
+		return initial;
+	}	public void executeSubstitution(Substitution substitution)
 	{
 		replaceVariable(this.root,substitution);
 	}

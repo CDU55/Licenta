@@ -12,7 +12,6 @@ import Exceptions.InvalidPropositionalLogicFormula;
 import Exceptions.InvalidSubstitution;
 import Formulas.FOLFormula;
 import Formulas.Formula;
-import NaturalDeduction.Sequence;
 import NaturalDeduction.NaturalDeductionFOL.DeductiveSystemFOL;
 import NaturalDeduction.NaturalDeductionFOL.SequenceFOL;
 import Util.WriteFile;

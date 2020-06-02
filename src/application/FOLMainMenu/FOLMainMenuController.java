@@ -29,7 +29,7 @@ public class FOLMainMenuController {
 	    }
 	    public void analysisBtnPushed(ActionEvent event) throws IOException
 	    {
-	    	Parent analysisParent=FXMLLoader.load(getClass().getResource("../FormulaAnalysis/FormulaAnalysis.fxml"));
+	    	Parent analysisParent=FXMLLoader.load(getClass().getResource("../FormulaAnalysisFOL/FormulaAnalysisMenu.fxml"));
 	    	Scene analysisScene=new Scene(analysisParent);
 	    	Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
 	    	window.setScene(analysisScene);
