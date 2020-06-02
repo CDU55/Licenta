@@ -40,10 +40,11 @@ public class MainClass {
 				System.out.println(PrenexNormalForm.testPrenexNormalForm(f));
 				String pythonPath=new File("src/application/Resources/sat.py").getAbsolutePath();
 				System.out.println(pythonPath);*/
-				FOLFormula test=new FOLFormula("Ex.Ey.P(x,y)");
+				FOLFormula test=new FOLFormula("Ex.Ey.P(F(x),y) /\\ H(G(a,b),L(U(a)))");
 				System.out.println(PythonFunctionEvaluation.execPy(new JSONFormula(test.syntaxTree.getRoot()), 
 						"C:\\Users\\Claudiu\\Desktop\\PyEval\\implementations.txt", "C:\\Users\\Claudiu\\Desktop\\PyEval\\assignation.txt"
 						, "C:\\Users\\Claudiu\\Desktop\\PyEval\\domains.txt"));
+				System.out.println(test.syntaxTree.getVarsExplanation().toString());
 			} catch (IOException | InvalidPropositionalLogicFormula  e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

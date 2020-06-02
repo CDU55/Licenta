@@ -35,7 +35,7 @@ public class FomulaAnalysisMenuController {
 	    
 	    public void TreeAnalysis(ActionEvent event) throws IOException
 	    {
-	    	Parent FOLParent=FXMLLoader.load(getClass().getResource("WriteProofFOLArguments.fxml"));
+	    	Parent FOLParent=FXMLLoader.load(getClass().getResource("TreeAnalysisFOL.fxml"));
 	    	Scene FOLScene=new Scene(FOLParent);
 	    	Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
 	    	window.setScene(FOLScene);

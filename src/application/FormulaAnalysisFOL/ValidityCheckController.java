@@ -17,6 +17,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -38,7 +39,8 @@ public class ValidityCheckController {
 
     @FXML
     private Label assignation;
-
+    @FXML
+    private TextArea message;
     @FXML
     private Label domains;
     private String implementationsPath;
@@ -101,16 +103,16 @@ public class ValidityCheckController {
 			FOLFormula formula=new FOLFormula(currentFormula.getText());
 			if(implementationsPath==null)
 			{
-				AlertBox.display("Please select an implementations file");
+				message.setText("Please select an implementations file");
 
 			}
 			else if(assignationPath==null)
 			{
-				AlertBox.display("Please select an assignation file");
+				message.setText("Please select an assignation file");
 			}
 			else if(domainPath==null)
 			{
-				AlertBox.display("Please select a domains file");
+				message.setText("Please select a domains file");
 			}
 			else
 			{
@@ -132,7 +134,7 @@ public class ValidityCheckController {
 				String result=PythonFunctionEvaluation.execPy(toConvert, implementationsPath, assignationPath, domainPath);
 				if(evaluationType==1)
 				{
-					AlertBox.display(result);
+					message.setText(result);
 				}
 				else if(evaluationType==2)
 				{
@@ -156,10 +158,10 @@ public class ValidityCheckController {
 						result=formula.toString()+" is NOT a tautology(it is a Contradiction)";
 					}
 				}
-				AlertBox.display(result);
+				message.setText(result);
 			}
 		} catch (InvalidPropositionalLogicFormula | IOException e) {
-			AlertBox.display(e.getMessage());
+			message.setText(e.getMessage());
 		}
     }
     

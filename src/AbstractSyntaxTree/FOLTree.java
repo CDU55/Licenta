@@ -279,6 +279,109 @@ public class FOLTree {
 			currentNode.setVariable(substitution.Final.isVariable());
 		}
 	}
+	
+
+	public Explanation getSubfExplanation() {
+		Explanation exp = new Explanation();
+		String initialMessage = "= " + Explanation.addSuform(this.root.toString());
+		exp.messages.add(initialMessage);
+		exp.previousMessage = initialMessage;
+		generateSubfExplanation(this.root, exp);
+		return exp;
+
+	}
+
+
+	private void generateSubfExplanation(FOLTreeNode currentNode, Explanation explanation) {
+		if ((!currentNode.isConnector() && !currentNode.isVariable())
+				&& explanation.previousMessage.contains(Explanation.addSuform(currentNode.toString()))) {
+			String newMessage = explanation.previousMessage.replace(Explanation.addSuform(currentNode.toString()),
+					Explanation.addBraces(currentNode.toString()));
+			explanation.messages.add(new String(newMessage));
+			explanation.previousMessage = newMessage;
+		} else if ((currentNode.getLabel().equals("!") || TypeTesterFirstOrderLogic.isCuantifierWithTerm(currentNode.getLabel()))
+				&& explanation.previousMessage.contains(Explanation.addSuform(currentNode.toString()))) {
+			String newMessage = explanation.previousMessage.replace(Explanation.addSuform(currentNode.toString()),
+					Explanation.addBraces(currentNode.toString()) + " U "
+							+ Explanation.addSuform((currentNode.getLeftChild().toString())));
+			explanation.messages.add(new String(newMessage));
+			explanation.previousMessage = newMessage;
+			generateSubfExplanation(currentNode.getLeftChild(), explanation);
+
+		} else if (explanation.previousMessage.contains(Explanation.addSuform(currentNode.toString()))) {
+			String newMessage = explanation.previousMessage.replace(Explanation.addSuform(currentNode.toString()),
+					Explanation.addBraces(currentNode.toString()) + " U "
+							+ Explanation.addSuform(currentNode.getLeftChild().toString()) + " U "
+							+ Explanation.addSuform((currentNode.getRightChild().toString())));
+			explanation.messages.add(new String(newMessage));
+			explanation.previousMessage = newMessage;
+			generateSubfExplanation(currentNode.getLeftChild(), explanation);
+			generateSubfExplanation(currentNode.getRightChild(), explanation);
+
+		}
+	}
+	public Explanation getVarsExplanation() {
+		Explanation exp = new Explanation();
+		String initialMessage = "= " + Explanation.addVars(this.root.toString());
+		exp.messages.add(initialMessage);
+		exp.previousMessage = initialMessage;
+		generateVarsExplanation(this.root, exp);
+		return exp;
+
+	}
+	private void generateVarsExplanation(FOLTreeNode currentNode, Explanation explanation) {
+		if (currentNode.isVariable()
+				&& explanation.previousMessage.contains(Explanation.addVars(currentNode.toString()))) {
+			String newMessage = explanation.previousMessage.replace(Explanation.addVars(currentNode.toString()),
+					Explanation.addBraces(currentNode.getLabel()));
+			explanation.messages.add(new String(newMessage));
+			explanation.previousMessage = newMessage;
+		} 
+		else if((!currentNode.isConnector() && !currentNode.isVariable())
+				&& explanation.previousMessage.contains(Explanation.addVars(currentNode.toString())))
+		{
+			if(currentNode.getArguments().size()==0)
+			{
+				String newMessage = explanation.previousMessage.replace(Explanation.addVars(currentNode.toString()),"");
+				explanation.messages.add(new String(newMessage));
+				explanation.previousMessage = newMessage;
+			}
+			else
+			{
+				String replace=Explanation.addVars(currentNode.getArguments().get(0).toString());
+				for(int i=1;i<currentNode.getArguments().size();i++)
+				{
+					replace+=" U "+Explanation.addVars(currentNode.getArguments().get(i).toString());
+				}
+				String newMessage = explanation.previousMessage.replace(Explanation.addVars(currentNode.toString()),replace);
+				explanation.messages.add(new String(newMessage));
+				explanation.previousMessage = newMessage;
+				for(FOLTreeNode arg:currentNode.getArguments())
+				{
+					generateVarsExplanation(arg, explanation);
+				}
+
+			}
+		}
+		else if ((currentNode.getLabel().equals("!") || TypeTesterFirstOrderLogic.isCuantifierWithTerm(currentNode.getLabel()))
+				&& explanation.previousMessage.contains(Explanation.addVars(currentNode.toString()))) {
+			String newMessage = explanation.previousMessage.replace(Explanation.addVars(currentNode.toString()),
+					Explanation.addVars((currentNode.getLeftChild().toString())));
+			explanation.messages.add(new String(newMessage));
+			explanation.previousMessage = newMessage;
+			generateVarsExplanation(currentNode.getLeftChild(), explanation);
+
+		} else if (explanation.previousMessage.contains(Explanation.addVars(currentNode.toString()))) {
+			String newMessage = explanation.previousMessage.replace(Explanation.addVars(currentNode.toString()),
+					Explanation.addVars(currentNode.getLeftChild().toString()) + " U "
+							+ Explanation.addVars((currentNode.getRightChild().toString())));
+			explanation.messages.add(new String(newMessage));
+			explanation.previousMessage = newMessage;
+			generateVarsExplanation(currentNode.getLeftChild(), explanation);
+			generateVarsExplanation(currentNode.getRightChild(), explanation);
+
+		}
+	}
 	public FOLTreeNode existentialClosure()
 	{
 		FOLTreeNode initial=new FOLTreeNode(this.root);

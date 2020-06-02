@@ -53,7 +53,7 @@ public class FindSubstitutionController {
 			this.result.setText(s.toString());
 		} catch (InvalidPropositionalLogicFormula e) {
 			// TODO Auto-generated catch block
-			AlertBox.display(e.getMessage());
+			this.result.setText(e.getMessage());
 		}
     }
     

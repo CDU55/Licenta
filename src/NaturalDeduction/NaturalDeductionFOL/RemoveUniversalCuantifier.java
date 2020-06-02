@@ -19,6 +19,11 @@ public class RemoveUniversalCuantifier implements InferenceRuleFOL {
 		{
 			return false;
 		}
+		String substituteTo=(String)objects[1];
+		if(sequence.proven.syntaxTree.getVariables().contains(substituteTo))
+		{
+			return false;
+		}
 		return true;
 	}
 
@@ -58,10 +63,10 @@ public class RemoveUniversalCuantifier implements InferenceRuleFOL {
 		{
 			return "The initial sequence is not universally cuantified";
 		}
-		/*if(!initial.proven.syntaxTree.equals(result.proven.syntaxTree))
+		if(!initial.proven.syntaxTree.equals(result.proven.syntaxTree))
 		{
 			return "The resulting sequence is not valid";
-		}*/
+		}
 		String cuantifier=initial.proven.syntaxTree.getRoot().getLabel();
 		String cuantifiedTerm=cuantifier.substring(1, cuantifier.length()-1);
 		FOLFormula initialCuantifiedFormula=new FOLFormula(initial.proven.syntaxTree.getRoot().getLeftChild());
