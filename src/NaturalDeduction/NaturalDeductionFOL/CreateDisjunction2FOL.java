@@ -2,7 +2,6 @@ package NaturalDeduction.NaturalDeductionFOL;
 
 import AbstractSyntaxTree.FOLTreeNode;
 import Formulas.FOLFormula;
-import Formulas.Formula;
 
 public class CreateDisjunction2FOL implements InferenceRuleFOL {
 

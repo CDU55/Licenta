@@ -1,12 +1,10 @@
 package Formulas;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import AbstractSyntaxTree.FOLTree;
 import AbstractSyntaxTree.FOLTreeNode;
 import Exceptions.InvalidPropositionalLogicFormula;
 import FirstOrderLogicSubstitutions.Substitution;
+import FormulaRemodelers.ConnectorReplacer;
 import Parsers.CheckSyntax;
 
 public class FOLFormula {
@@ -50,7 +48,27 @@ public class FOLFormula {
 	{
 		this.formula=this.syntaxTree.toString();
 	}
+	public void replaceImplications()
+	{
+		this.syntaxTree.reaplceImplications(this.syntaxTree.getRoot());
+		this.formula=syntaxTree.toString();
+	}
+	public void replaceSubFormula(FOLFormula toReplace,FOLFormula newFormula)
+	{
+		this.syntaxTree.replaceSubTree(toReplace.syntaxTree.getRoot(), newFormula.syntaxTree.getRoot());
+		this.formula=this.syntaxTree.toString();
+	}
 	
+	public void removeCuantifier(String cuantifierText)
+	{
+		this.syntaxTree.removeCuantifierFromTree(cuantifierText);
+		this.formula=this.syntaxTree.toString();
+	}
+	
+	public boolean isSubFormula(FOLFormula formula)
+	{
+		return this.syntaxTree.isSubTree(formula.syntaxTree);
+	}
 	
 	@Override
 	public String toString() {

@@ -20,22 +20,17 @@ public class CreateUniversalCuantifier implements InferenceRuleFOL {
 		}
 		SequenceFOL sequence=(SequenceFOL)objects[0];
 		String toReplace=(String)objects[1];
-		boolean found=false;
-		Substitution sub=null;
 		if(!sequence.proven.syntaxTree.getVariables().contains(toReplace.trim()))
 		{
 			return false;
 		}
-		if(!found)
-		{
-			return false;
-		}
+
 		List<String> hypothesisVariables=new ArrayList<String>();
 		for(FOLFormula formula:sequence.hypothesis)
 		{
 			hypothesisVariables.addAll(formula.syntaxTree.getVariables());
 		}
-		if(hypothesisVariables.contains(sub.Final.toString()))
+		if(hypothesisVariables.contains(toReplace))
 		{
 			return false;
 		}

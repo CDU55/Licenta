@@ -56,13 +56,27 @@ public class TreeDrawFOL {
 		{
 			context.setFill(Color.RED);
 			label=node.toString();
+			context.fillText(label, x +20, y +40);
+			if(node.getArguments()!=null && !node.getArguments().isEmpty())
+			{
+				int distance=45/(node.getArguments().size()-1);
+				int angle=90;
+				for(FOLTreeNode arg:node.getArguments())
+			{
+					
+					int newX=(int)(x+length*Math.cos(angle));
+					int newY=(int)(y+length*Math.sin(angle));
+					drawNode(canvas,arg,newX,newY,length/2);
+					angle-=distance;
+			}
+			}
 		}
 		else
 		{
 			context.setFill(Color.BLUE);
 			label=node.getLabel();
+			context.fillText(label, x +20, y +40);
 		}
-		context.fillText(label, x +20, y +40);
 		if(node.getLeftChild()!=null)
 		{
 			int newX;

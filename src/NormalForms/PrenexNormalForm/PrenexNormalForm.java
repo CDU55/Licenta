@@ -1,4 +1,4 @@
-package NormalForms;
+package NormalForms.PrenexNormalForm;
 
 import AbstractSyntaxTree.FOLTreeNode;
 import Formulas.FOLFormula;

@@ -199,7 +199,7 @@ public class FOLTree {
 		
 		return new ArrayList<String>(new HashSet<>(free));
 	}
-	public void getAllVariables(FOLTreeNode currentNode,List<String> variables)
+	public static void getAllVariables(FOLTreeNode currentNode,List<String> variables)
 	{
 		String label=currentNode.getLabel();
 		if( currentNode.isVariable() && !variables.contains(label))
@@ -247,7 +247,7 @@ public class FOLTree {
 		return getFreeVariables(this.root);
 	}
 	
-	private void replaceVariable(FOLTreeNode currentNode,Substitution substitution)
+	public static void replaceVariable(FOLTreeNode currentNode,Substitution substitution)
 	{
 		if(currentNode.isConnector())
 		{
@@ -406,9 +406,108 @@ public class FOLTree {
 			initial=newCuantifier;
 		}
 		return initial;
-	}	public void executeSubstitution(Substitution substitution)
+	}	
+	public void executeSubstitution(Substitution substitution)
 	{
 		replaceVariable(this.root,substitution);
+	}
+	public void replaceSubTree(FOLTreeNode toReplace,FOLTreeNode newSubTree)
+	{
+		this.root.replace(toReplace, newSubTree);
+	}
+	
+	public void getAllSubformulas(FOLTreeNode currentNode,List<String> subformulas)
+	{
+		String formula=currentNode.toString();
+		if(!subformulas.contains(formula))
+		{
+			subformulas.add(formula);
+		}
+		if(currentNode.getLeftChild()!=null)
+		{
+			getAllSubformulas(currentNode.getLeftChild(),subformulas);
+		}
+		if(currentNode.getRightChild()!=null)
+		{
+			getAllSubformulas(currentNode.getRightChild(),subformulas);
+		}
+		
+	}
+	
+	public List<String> getSubformulas()
+	{
+		List<String> subformulas=new ArrayList<String>();
+		getAllSubformulas(this.root,subformulas);
+		return subformulas;
+	}
+	
+	public void getAllSubfFunctionsAndPredicates(FOLTreeNode currentNode,List<String> functions)
+	{
+		String function=currentNode.getLabel();
+		if(!currentNode.isVariable() && !currentNode.isConnector())
+		{
+			if(!functions.contains(function))
+		{
+				functions.add(function);
+		}
+		}
+		if(currentNode.getLeftChild()!=null)
+		{
+			getAllSubfFunctionsAndPredicates(currentNode.getLeftChild(),functions);
+		}
+		if(currentNode.getRightChild()!=null)
+		{
+			getAllSubfFunctionsAndPredicates(currentNode.getRightChild(),functions);
+		}
+		if(currentNode.getArguments()!=null)
+		{
+			for(FOLTreeNode arg:currentNode.getArguments())
+			{
+				getAllSubfFunctionsAndPredicates(arg,functions);
+
+			}
+		}
+		
+	}
+	public void removeCuantifierFromTree(String cuantifierText)
+	{
+		if(TypeTesterFirstOrderLogic.isCuantifierWithTerm(cuantifierText))
+		{	removeCuantifier(this.root,cuantifierText);
+		if(this.root.getLabel().equals(cuantifierText))
+		{
+			this.root=this.root.getLeftChild();
+		}
+		}
+	}
+	private  void removeCuantifier(FOLTreeNode currentNode,String cuantifierText)
+	{
+		if(currentNode.getLeftChild()!=null)
+		{
+			if(currentNode.getLeftChild().getLabel().equals(cuantifierText))
+			{
+				currentNode.setLeftChild(currentNode.getLeftChild().getLeftChild());
+			}
+			removeCuantifier(currentNode.getLeftChild(),cuantifierText);
+		}
+		if(currentNode.getRightChild()!=null)
+		{
+			if(currentNode.getRightChild().getLabel().equals(cuantifierText))
+			{
+				currentNode.setRightChild(currentNode.getRightChild().getLeftChild());
+			}
+			removeCuantifier(currentNode.getRightChild(),cuantifierText);
+		}	
+	}
+	public List<String> getFunctionsAndPredicates()
+	{
+		List<String> functions=new ArrayList<String>();
+		getAllSubfFunctionsAndPredicates(this.root,functions);
+		return functions;
+	}
+	
+	public boolean isSubTree(FOLTree tree)
+	{
+		return this.getRoot().isSubTree(tree.getRoot());
 	}
 	@Override
 	public String toString() {

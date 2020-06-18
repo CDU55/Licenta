@@ -31,7 +31,9 @@ public class Complement {
 	
 	public static Formula getFromulaComplement(Formula f) 
 	{
-		Formula result=new Formula(getComplement(f.syntaxTree.getRoot()));
+		Formula result=new Formula(f.syntaxTree.getRoot());
+		result.replaceImplications();
+		result=new Formula(getComplement(result.syntaxTree.getRoot()));
 		return result;
 	}
 

@@ -145,7 +145,14 @@ public class FOLTreeNode {
 				return "( " + label + convertToFormulaString(currentNode.leftChild, operatorType, precedence, true)
 						+ " )";
 
-			} else if (precedence.getPrecedence(
+			}
+			else if(addParanthesis)
+			{
+				return "( " + label + convertToFormulaString(currentNode.leftChild, operatorType, precedence, false)
+				+ " )";
+			}
+			
+			else if (precedence.getPrecedence(
 					CorrespondingConnector.getRemodeledConnector(currentNode.leftChild.label)) > precedence
 							.getPrecedence(CorrespondingConnector.getRemodeledConnector(label))) {
 				return label + convertToFormulaString(currentNode.leftChild, operatorType, precedence, true);
@@ -226,6 +233,88 @@ public class FOLTreeNode {
 		return true;
 	}
 	
+	
+	public void replace(FOLTreeNode toReplace,FOLTreeNode newNode)
+	{
+		if(this.equals(toReplace))
+		{
+			this.label = new String(newNode.label);
+			this.isConnector = newNode.isConnector;
+			this.isVariable = newNode.isVariable;
+			if (newNode.leftChild != null) {
+				this.leftChild = new FOLTreeNode(newNode.leftChild);
+			}
+			if (newNode.rightChild != null) {
+				this.rightChild = new FOLTreeNode(newNode.rightChild);
+			}
+			if (newNode.arguments != null) {
+				this.arguments = new ArrayList<FOLTreeNode>();
+				for (FOLTreeNode arg : newNode.arguments) {
+					this.arguments.add(new FOLTreeNode(arg));
+				}
+			}
+		}
+		else
+		{
+			replaceRecursive(this,toReplace,newNode);
+		}
+	}
+	
+	private void replaceRecursive(FOLTreeNode currentNode,FOLTreeNode toReplace,FOLTreeNode newNode)
+	{
+		if(!currentNode.isVariable && !currentNode.isConnector)
+		{
+			if(currentNode.equals(toReplace))
+			{
+				currentNode.label = new String(newNode.label);
+				currentNode.isConnector = newNode.isConnector;
+				currentNode.isVariable = newNode.isVariable;
+				if (newNode.leftChild != null) {
+					currentNode.leftChild = new FOLTreeNode(newNode.leftChild);
+				}
+				if (newNode.rightChild != null) {
+					currentNode.rightChild = new FOLTreeNode(newNode.rightChild);
+				}
+				if (newNode.arguments != null) {
+					currentNode.arguments = new ArrayList<FOLTreeNode>();
+					for (FOLTreeNode arg : newNode.arguments) {
+						currentNode.arguments.add(new FOLTreeNode(arg));
+					}
+				}			
+				}
+		}
+		else if(currentNode.getLabel().equals("!") || TypeTesterFirstOrderLogic.isCuantifierWithTerm(currentNode.getLabel()))
+		{
+			if(currentNode.getLeftChild().equals(toReplace))
+			{
+				currentNode.setLeftChild(newNode);
+			}
+			else
+			{
+				replaceRecursive(currentNode.getLeftChild(),toReplace,newNode);
+			}
+		}
+		else
+		{
+			if(currentNode.getLeftChild().equals(toReplace))
+			{
+				currentNode.setLeftChild(newNode);
+			}
+			else
+			{
+				replaceRecursive(currentNode.getLeftChild(),toReplace,newNode);
+			}
+			
+			if(currentNode.getRightChild().equals(toReplace))
+			{
+				currentNode.setRightChild(newNode);
+			}
+			else
+			{
+				replaceRecursive(currentNode.getRightChild(),toReplace,newNode);
+			}
+		}
+	}
 	
 
 	@Override

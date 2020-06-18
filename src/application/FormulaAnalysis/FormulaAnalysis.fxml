@@ -22,9 +22,9 @@
             <Image url="@../Resources/Logo-FII.png" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="181.0" layoutY="80.0" prefHeight="614.0" prefWidth="831.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="181.0" AnchorPane.rightAnchor="190.0" AnchorPane.topAnchor="80.0">
+      <AnchorPane layoutX="162.0" layoutY="80.0" prefHeight="606.0" prefWidth="864.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="176.0" AnchorPane.rightAnchor="176.0" AnchorPane.topAnchor="80.0">
          <children>
-            <VBox layoutX="-25.0" prefHeight="550.0" prefWidth="593.0" spacing="35.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <VBox layoutX="-10.0" prefHeight="606.0" prefWidth="841.0" spacing="35.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <AnchorPane VBox.vgrow="ALWAYS">
                      <children>
@@ -33,16 +33,16 @@
                   </AnchorPane>
                   <AnchorPane maxHeight="100.0" prefHeight="0.0" prefWidth="831.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <HBox prefHeight="61.0" prefWidth="831.0" spacing="25.0" AnchorPane.bottomAnchor="-3.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <HBox prefHeight="61.0" prefWidth="831.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane HBox.hgrow="ALWAYS">
                                  <children>
-                                    <Button mnemonicParsing="false" onAction="#CheckSyntax" prefHeight="39.0" prefWidth="132.0" text="Check Syntax" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                    <Button mnemonicParsing="false" onAction="#CheckSyntax" prefHeight="39.0" prefWidth="132.0" text="Check Syntax" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                  </children>
                               </AnchorPane>
-                              <AnchorPane HBox.hgrow="ALWAYS">
+                              <AnchorPane prefHeight="70.0" prefWidth="131.0" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <Button mnemonicParsing="false" onAction="#subformulas" text="Subformulas" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                    <Button mnemonicParsing="false" onAction="#subformulas" text="Subformulas" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                  </children>
                               </AnchorPane>
                               <AnchorPane HBox.hgrow="ALWAYS">
@@ -60,13 +60,18 @@
                                     <Button mnemonicParsing="false" onAction="#draw" text="Draw Tree" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                  </children>
                               </AnchorPane>
+                              <AnchorPane layoutX="351.0" layoutY="10.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Button mnemonicParsing="false" onAction="#complement" prefHeight="39.0" prefWidth="103.0" text="Complement" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                 </children>
+                              </AnchorPane>
                            </children>
                         </HBox>
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="35.0" prefWidth="831.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <HBox layoutX="2.0" prefHeight="56.0" prefWidth="821.0" spacing="25.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="0.0">
+                        <HBox layoutX="2.0" prefHeight="56.0" prefWidth="821.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane HBox.hgrow="ALWAYS">
                                  <children>

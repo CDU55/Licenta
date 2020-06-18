@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 
 import Exceptions.InvalidPropositionalLogicFormula;
 import Formulas.Formula;
+import NormalForms.Complement;
 import PropositionalLogicAnalysis.ContradictionChecker;
 import PropositionalLogicAnalysis.SatisfiabilityChecker;
 import PropositionalLogicAnalysis.TableGenerator;
@@ -196,6 +197,17 @@ public class PropFormulaAnalysisController {
 			}
 			console.setText("Table generated");
 		} catch (InvalidPropositionalLogicFormula | IOException e1) {
+			// TODO Auto-generated catch block
+			console.setText(e1.getMessage());
+		}
+    }
+    
+    public void complement()
+    {
+    	try {
+			Formula formula=new Formula(formulaField.getText());
+			console.setText(Complement.getFromulaComplement(formula).toString());
+		} catch (InvalidPropositionalLogicFormula e1) {
 			// TODO Auto-generated catch block
 			console.setText(e1.getMessage());
 		}

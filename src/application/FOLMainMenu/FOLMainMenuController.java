@@ -46,7 +46,7 @@ public class FOLMainMenuController {
 	    
 	    public void normalFormsBtnPushed(ActionEvent event) throws IOException
 	    {
-	    	Parent normalFormsParent=FXMLLoader.load(getClass().getResource("../NormalFormsPropLogic/NormalFormsMenu.fxml"));
+	    	Parent normalFormsParent=FXMLLoader.load(getClass().getResource("../NormalFormsFOL/NormalFormsFOLMenu.fxml"));
 	    	Scene normalFormsParentScene=new Scene(normalFormsParent);
 	    	Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
 	    	window.setScene(normalFormsParentScene);

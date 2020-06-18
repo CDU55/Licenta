@@ -1,7 +1,5 @@
 package NaturalDeduction.NaturalDeductionFOL;
 
-import Formulas.FOLFormula;
-
 public class HypothesisFOL implements InferenceRuleFOL {
 	@Override
 	public boolean canApply(Object... objects) {

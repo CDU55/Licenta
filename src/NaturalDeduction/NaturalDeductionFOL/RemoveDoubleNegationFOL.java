@@ -1,8 +1,6 @@
 package NaturalDeduction.NaturalDeductionFOL;
 
 import Formulas.FOLFormula;
-import Formulas.Formula;
-import NaturalDeduction.Sequence;
 
 public class RemoveDoubleNegationFOL implements InferenceRuleFOL {
 

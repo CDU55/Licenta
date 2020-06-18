@@ -1,7 +1,5 @@
 package NaturalDeduction.NaturalDeductionFOL;
 
-import NaturalDeduction.Sequence;
-
 public class CreateBottomFOL implements InferenceRuleFOL {
 
 	@Override
