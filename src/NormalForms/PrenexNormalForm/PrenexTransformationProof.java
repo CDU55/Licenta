@@ -19,7 +19,7 @@ public class PrenexTransformationProof {
 		if(PrenexNormalForm.testPrenexNormalForm(formula))
 		{
 				transformation.add(formula.toString()+" is already in Prenex Normal Form");
-
+				lastTransformation=formula;
 			return transformation;
 		}
 		

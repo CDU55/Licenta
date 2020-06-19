@@ -223,6 +223,10 @@ public class FOLTreeNode {
 			if (node1.arguments.size() != node2.arguments.size()) {
 				return false;
 			} else {
+				if(node1.arguments.size()==0)
+				{
+					return true;
+				}
 				for (int i = 0; i < node1.arguments.size(); i++) {
 					if (!areEqual(node1.arguments.get(i), node2.arguments.get(i))) {
 						return false;

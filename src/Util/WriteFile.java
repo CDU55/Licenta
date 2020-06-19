@@ -7,6 +7,7 @@ import java.util.List;
 import NaturalDeduction.DeductiveSystem;
 import NaturalDeduction.NaturalDeductionFOL.DeductiveSystemFOL;
 import Resolution.Resolution;
+import Resolution.ResolutionFirstOrderLogic.ResolutionFOL;
 
 public class WriteFile {
 	
@@ -29,6 +30,18 @@ public class WriteFile {
 	}
 	
 	public static void writeResolutionProof(Resolution resolution,String filePath) throws IOException
+	{
+		FileWriter writer=new FileWriter(filePath);
+		for(int index=0;index<resolution.getClausesNumber();index++)
+		{
+			writer.write(resolution.getClauseAndExplanation(index));
+			writer.write("\r\n");
+		}
+		writer.close();
+
+	}
+	
+	public static void writeResolutionProofFOL(ResolutionFOL resolution,String filePath) throws IOException
 	{
 		FileWriter writer=new FileWriter(filePath);
 		for(int index=0;index<resolution.getClausesNumber();index++)

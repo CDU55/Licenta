@@ -55,7 +55,7 @@ public class FOLMainMenuController {
 	    
 	    public void resolutionBtnPushed(ActionEvent event) throws IOException
 	    {
-	    	Parent resolutionParent=FXMLLoader.load(getClass().getResource("../ResolutionPropLogic/ResolutionMenu.fxml"));
+	    	Parent resolutionParent=FXMLLoader.load(getClass().getResource("../ResolutionFOL/ResolutionFOLMenu.fxml"));
 	    	Scene resolutionParentScene=new Scene(resolutionParent);
 	    	Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
 	    	window.setScene(resolutionParentScene);

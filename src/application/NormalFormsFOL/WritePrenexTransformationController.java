@@ -20,6 +20,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class WritePrenexTransformationController {
@@ -121,7 +122,9 @@ public class WritePrenexTransformationController {
     public void ruleInfo() throws IOException
     {
     	Stage infoStage=new Stage();
+    	infoStage.getIcons().add(new Image("./application/Resources/Logo-FII.png"));
     	Parent infoParent=FXMLLoader.load(getClass().getResource("FNCRuleInformation.fxml"));
+    	infoStage.setTitle("Rule info");
     	Scene infoScene=new Scene(infoParent);
     	infoStage.setScene(infoScene);
     	infoStage.show();

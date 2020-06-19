@@ -26,6 +26,7 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.FileChooser.ExtensionFilter;
@@ -350,6 +351,8 @@ public class WriteProofPropLogicController {
     public void info() throws IOException
     {
     	Stage infoStage=new Stage();
+    	infoStage.getIcons().add(new Image("./application/Resources/Logo-FII.png"));
+    	infoStage.setTitle("Rule info");
     	Parent infoParent=FXMLLoader.load(getClass().getResource("InferenceRulesInfo.fxml"));
     	Scene infoScene=new Scene(infoParent);
     	infoStage.setScene(infoScene);

@@ -76,7 +76,7 @@ public class ProofReaderFOL {
 			int lineIndex = 1;
 			while (proofLine != null) {
 				String result=parseLine(proofLine, checker);
-				if (!result.equals("OK")) 
+				if (!result.toUpperCase().equals("OK")) 
 				{
 					return "Error parsing the proof\nLine : " + lineIndex;
 				}

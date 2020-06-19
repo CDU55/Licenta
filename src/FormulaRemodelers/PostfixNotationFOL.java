@@ -51,7 +51,8 @@ public class PostfixNotationFOL {
 			else if (operatorType.isOperator(formula.charAt(i))) {
 				Character operator=new Character(formula.charAt(i));
 				while (!operators.empty() && precedence.getPrecedence(CorrespondingConnector.getRemodeledConnector(operators.peek())) 
-						< precedence.getPrecedence(operator) && !operators.peek().equals("(")) {
+						< precedence.getPrecedence(operator) && !operators.peek().equals("(") || (!operators.empty() && precedence.getPrecedence(CorrespondingConnector.getRemodeledConnector(operators.peek())) 
+								== precedence.getPrecedence(operator) && operator!='!')) {
 					output.add(operators.pop());
 				}
 				operators.push(CorrespondingConnector.getOriginalConnector(operator));

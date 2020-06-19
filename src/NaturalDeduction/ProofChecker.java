@@ -62,7 +62,7 @@ public class ProofChecker {
 						}
 					}*/
 					String evaluationResult=rule.appliedCorrectly(args.toArray());
-					if (!evaluationResult.equals("Ok")) {
+					if (!evaluationResult.toUpperCase().equals("OK")) {
 						return "Error on line " + String.valueOf(i + 1)+"\n"+evaluationResult;
 					}
 				}

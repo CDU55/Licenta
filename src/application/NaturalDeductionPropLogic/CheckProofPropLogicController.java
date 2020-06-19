@@ -58,7 +58,7 @@ public class CheckProofPropLogicController {
 			}
     	}
     	catch (InvalidRuleName | IOException e) {
-			console.setText(e.getMessage());
+			AlertBox.display(e.getMessage());
 		}
     }
     

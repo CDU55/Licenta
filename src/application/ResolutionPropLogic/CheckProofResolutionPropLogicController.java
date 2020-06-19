@@ -41,7 +41,7 @@ public class CheckProofResolutionPropLogicController {
 				AlertBox.display(checkResult);
 		} 
     	catch (IOException | InvalidProof e) {
-			console.setText(console.getText()+"\n\n"+e.getMessage());
+			AlertBox.display(e.getMessage());
 		}
     	
     }
@@ -59,7 +59,7 @@ public class CheckProofResolutionPropLogicController {
 					AlertBox.display(checkResult);
 				} catch (IOException | InvalidProof e) {
 					// TODO Auto-generated catch block
-					console.setText(e.getMessage());
+					AlertBox.display(e.getMessage());
 				}
 			
 		}

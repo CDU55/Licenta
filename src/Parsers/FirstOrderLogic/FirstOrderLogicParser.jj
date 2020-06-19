@@ -111,7 +111,7 @@ int one_line() :
 int func() :
 {}
 {
-  (function()) 
+  (    functionCheck()) 
   {
     return 0;
   }
@@ -138,6 +138,12 @@ void unary() :
 {}
 {
     ((      (< NEGATION >|< UNIVERSAL_CUANTIFIER >|< EXISTENTIAL_CUANTIFIER >)+ formula())  | formula())
+}
+
+void functionCheck() :
+{}
+{
+  (function())
 }
 
 void formula() :

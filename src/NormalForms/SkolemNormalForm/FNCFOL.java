@@ -41,7 +41,7 @@ public class FNCFOL {
 	
 	
 	public boolean OperatorHierarchy(FOLTreeNode node) {
-		if(node.isConnector())
+		if(!node.isConnector() && !node.isVariable() )
 		{
 			return true;
 		}

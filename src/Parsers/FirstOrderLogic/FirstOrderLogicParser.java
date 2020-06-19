@@ -68,7 +68,7 @@ public class FirstOrderLogicParser implements FirstOrderLogicParserConstants {
   }
 
   static final public int func() throws ParseException {
-    function();
+    functionCheck();
     {if (true) return 0;}
     throw new Error("Missing return statement in function");
   }
@@ -158,6 +158,10 @@ public class FirstOrderLogicParser implements FirstOrderLogicParserConstants {
       jj_consume_token(-1);
       throw new ParseException();
     }
+  }
+
+  static final public void functionCheck() throws ParseException {
+    function();
   }
 
   static final public void formula() throws ParseException {

@@ -57,7 +57,7 @@ public class CheckProofFOLController {
 				}
 	    	}
 	    	catch (InvalidRuleName | IOException e) {
-				console.setText(e.getMessage());
+				AlertBox.display(e.getMessage());
 			}
 	    }
 	    

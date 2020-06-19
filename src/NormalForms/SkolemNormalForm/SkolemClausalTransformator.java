@@ -28,6 +28,11 @@ public class SkolemClausalTransformator {
 		transformation.addAll(transformationFNC);
 		FOLTreeNode fncTransformed=lastFNCTransformation.syntaxTree.getRoot();
 		FOLTreeNode node=skolemForm.syntaxTree.getRoot();
+		if(!TypeTesterFirstOrderLogic.isCuantifierWithTerm(node.getLabel()))
+		{
+					node=fncTransformed;
+		}
+		else {
 		while(TypeTesterFirstOrderLogic.isCuantifierWithTerm(node.getLabel()))
 		{
 			if(!TypeTesterFirstOrderLogic.isCuantifierWithTerm(node.getLeftChild().getLabel()))
@@ -36,6 +41,7 @@ public class SkolemClausalTransformator {
 				break;
 			}
 			node=node.getLeftChild();
+		}
 		}
 		transformation.add("Transformed Formula : "+node.toString());
 		lastTransformations=new FOLFormula(node);
@@ -83,6 +89,7 @@ public class SkolemClausalTransformator {
 			}
 			for(int ruleIndex=1;ruleIndex<transformator.rules.size();ruleIndex++)
 			{
+				boolean trans=false;
 				NormalFormTransformationRuleFOL rule=transformator.rules.get(ruleIndex);
 				for(FOLFormula subf:subformulas)
 				{
@@ -94,8 +101,13 @@ public class SkolemClausalTransformator {
 						transformation.add("Resulting formula : "+transformed.toString());
 						subformulas.remove(subf);
 						subformulas.add(transf);
+						trans=true;
 						break;
 					}
+				}
+				if(trans)
+				{
+					break;
 				}
 			
 			}

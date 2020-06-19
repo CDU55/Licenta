@@ -25,6 +25,10 @@ public class CheckSyntax {
 	
 	public static String checkFunctionSyntax(String function)
 	{
+		if(!function.matches("[A-DF-UW-Z][a-zA-DF-UW-Z]*\\(([a-zA-Z,\\\\s\\(\\)]*?)\\)"))
+		{
+			return "Invalid function form";
+		}
 		String parsingResult="Default";
 		 try {
 			parsingResult=FirstOrderLogicParser.parseFunction(new StringReader(function));
@@ -36,6 +40,7 @@ public class CheckSyntax {
 	
 	public static boolean checkFunctionSyntaxBoolean(String function)
 	{
+		
 		if(checkFunctionSyntax(function).toUpperCase().equals("OK"))
 		{
 			return true;

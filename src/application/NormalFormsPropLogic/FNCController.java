@@ -25,6 +25,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.FileChooser.ExtensionFilter;
@@ -128,6 +129,8 @@ public class FNCController {
     public void ruleInfo() throws IOException
     {
     	Stage infoStage=new Stage();
+    	infoStage.getIcons().add(new Image("./application/Resources/Logo-FII.png"));
+    	infoStage.setTitle("Rule info");
     	Parent infoParent=FXMLLoader.load(getClass().getResource("FNCRuleInformation.fxml"));
     	Scene infoScene=new Scene(infoParent);
     	infoStage.setScene(infoScene);

@@ -1,4 +1,4 @@
-package Resolution;
+package Resolution.ResolutionFirstOrderLogic;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -13,16 +13,16 @@ import Exceptions.InvalidClause;
 import Exceptions.InvalidInferenceRuleApplication;
 import Exceptions.InvalidLiteral;
 import Exceptions.InvalidProof;
+import Exceptions.InvalidSubstitution;
 
-public class ResolutionProofCheck {
-	
-	private static Resolution resolution;
-	private static String literalForm="((!)?[a-zA-Z])";
-	private static String clauseForm="\\s*\\{\\s*"+literalForm+"?"+"(\\s*,\\s*"+literalForm+"\\s*)*\\}";
+public class ResolutionProofCheckFOL {
+	private static ResolutionFOL resolution;
+	private static String literalForm="((!)?([A-DF-UW-Z][a-zA-DF-UW-Z]*\\(([a-zA-Z,\\s\\(\\)]*?)\\)))";
+	private static String clauseForm="\\s*\\{\\s*"+literalForm+"?"+"(\\s*,\\s*"+literalForm+"\\s*)*\\s*\\}";
 	private static String numberForm="[1-9][0-9]*";
 	private static String indexForm="(\\s*"+numberForm+"\\.\\s*)?";
-	private static String explanationForm="((\\s*\\(\\s*"+numberForm+"\\s*,\\s*"+numberForm+"\\s*,\\s*[a-zA-Z]\\s*\\))|(\\(\\s*premisa\\s*\\)))";
-	private static String proofLineForm="\\s*"+clauseForm+"\\s*"+explanationForm;
+	private static String explanationForm="((\\s*\\(\\s*"+numberForm+"\\s*,\\s*"+numberForm+"\\s*,\\s*[A-DF-UW-Z][a-zA-DF-UW-Z]*\\s*\\))|(\\(\\s*premisa\\s*\\)))";
+	private static String proofLineForm=indexForm+"\\s*"+clauseForm+"\\s*"+explanationForm;
 	private static boolean foundPremises;
 	public static boolean isClauseProof(String clause)
 	{
@@ -48,7 +48,7 @@ public class ResolutionProofCheck {
 		}
 	}
 	
-	private static ClauseAndExplanation parseLine(String line) throws InvalidLiteral, InvalidProof, InvalidClause
+	private static ClauseAndExplanationFOL parseLine(String line) throws InvalidLiteral, InvalidProof, InvalidClause
 	{
 		//if(!line.trim().matches(proofLineForm))
 		//{
@@ -60,11 +60,11 @@ public class ResolutionProofCheck {
 			if (explanationMatcher.find()) 
 			{
 				String explanation = explanationMatcher.group().trim();
-				Matcher clauseMatcher = Pattern.compile(clauseForm).matcher(line.replace(explanation, "").trim());
+				Matcher clauseMatcher = Pattern.compile(clauseForm).matcher(line.replace(explanation, ""));
 				if (clauseMatcher.find()) 
 				{
 					String clause = clauseMatcher.group().trim();
-					ClauseAndExplanation result=new ClauseAndExplanation(new ResolutionClause(clause),explanation);
+					ClauseAndExplanationFOL result=new ClauseAndExplanationFOL(new ResolutionClauseFOL(clause),explanation);
 					return result;
 				}
 				else
@@ -79,7 +79,7 @@ public class ResolutionProofCheck {
 		//}
 	}
 	
-	public static String checkLine(ClauseAndExplanation line) throws InvalidProof, InvalidLiteral, InvalidInferenceRuleApplication, GoalReached
+	public static String checkLine(ClauseAndExplanationFOL line) throws InvalidProof, InvalidLiteral, InvalidInferenceRuleApplication, GoalReached, InvalidSubstitution
 	{
 		String explanation=line.explanation;
 		String[] indexesAndLiteral=explanation.trim().replace(" ", "").replace("(", "").replace(")", "").split(",");
@@ -87,7 +87,7 @@ public class ResolutionProofCheck {
 		{
 			throw new InvalidProof("Invalid arguments number on "+explanation);
 		}
-		else if(!indexesAndLiteral[0].matches(numberForm) || !indexesAndLiteral[1].matches(numberForm) || !indexesAndLiteral[2].matches("[a-zA-Z]"))
+		else if(!indexesAndLiteral[0].matches(numberForm) || !indexesAndLiteral[1].matches(numberForm) || !indexesAndLiteral[2].matches("[A-DF-UW-Z][a-zA-DF-UW-Z]*"))
 		{
 			throw new InvalidProof("Invalid arguments on "+explanation);
 		}
@@ -95,15 +95,14 @@ public class ResolutionProofCheck {
 		{
 			int index1=Integer.parseInt(indexesAndLiteral[0]);
 			int index2=Integer.parseInt(indexesAndLiteral[1]);
-			Literal literal=new Literal(indexesAndLiteral[2]);
 			if(index1<1 || index2<1 || index1>resolution.getClausesNumber()||index2>resolution.getClausesNumber())
 			{
 				throw new InvalidProof("Invalid clause index on "+explanation);
 			}
 			else
 			{
-				resolution.applyResolution(index1, index2, literal.toString());
-				ResolutionClause result=resolution.getClause(resolution.getClausesNumber()-1);
+				resolution.applyResolution(index1, index2, indexesAndLiteral[2]);
+				ResolutionClauseFOL result=resolution.getClause(resolution.getClausesNumber()-1);
 				if(!result.equals(line.clause))
 				{
 					throw new InvalidProof("The resulting clause is not correct "+line.clause.toString());
@@ -121,11 +120,11 @@ public class ResolutionProofCheck {
 	{
 		foundPremises=false;
 		resolution=null;
-		List<ResolutionClause> premises=new ArrayList<ResolutionClause>();
+		List<ResolutionClauseFOL> premises=new ArrayList<ResolutionClauseFOL>();
 		String[] lines=proof.split("\n");
 		for(int lineIndex=0;lineIndex<lines.length;lineIndex++)
 		{
-			ClauseAndExplanation current=null;
+			ClauseAndExplanationFOL current=null;
 			try {
 				current = parseLine(lines[lineIndex]);
 			} catch (InvalidLiteral | InvalidClause | InvalidProof e1) {
@@ -149,7 +148,7 @@ public class ResolutionProofCheck {
 				{
 					if(premises.size()!=0)
 					{
-						resolution=new Resolution(premises);
+						resolution=new ResolutionFOL(premises);
 					}
 					else
 					{

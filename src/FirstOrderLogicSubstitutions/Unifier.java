@@ -12,6 +12,10 @@ public class Unifier {
 	
 	public static SubstitutionsResult findUnifier(FOLTreeNode formula1,FOLTreeNode formula2) throws InvalidSubstitution
 	{
+		if(formula1.getLabel().equals(formula2.getLabel()) && formula1.getArguments().size() == formula2.getArguments().size() && formula1.getArguments().size()==0)
+		{
+			return new SubstitutionsResult();
+		}
 		SubstitutionsResult result=new SubstitutionsResult();
 		findUnifierRecursive(formula1,formula2,result);
 		result.checkValid();
@@ -71,6 +75,7 @@ public class Unifier {
 		if(formula1.getArguments().size()!=formula2.getArguments().size())
 		{
 			result.validSubstitution=false;
+			return null;
 
 		}
 		for(int i=0;i<formula1.getArguments().size();i++)
