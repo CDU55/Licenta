@@ -64,7 +64,7 @@ public class FOLMainMenuController {
 	    
 	    public void quizBtnPushed(ActionEvent event) throws IOException
 	    {
-	    	Parent quizParent=FXMLLoader.load(getClass().getResource("../PropLogicQuiz/PropLogicQuizMenu.fxml"));
+	    	Parent quizParent=FXMLLoader.load(getClass().getResource("../FOLQuiz/FOLQuizMenu.fxml"));
 	    	Scene quizParentScene=new Scene(quizParent);
 	    	Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
 	    	window.setScene(quizParentScene);

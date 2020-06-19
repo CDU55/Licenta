@@ -1,11 +1,14 @@
-package application.NaturalDeductionFOL;
+package application.FOLQuiz;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import DbManagement.CurrentQuizLevel;
+import DbManagement.NaturalDeductionChapter;
 import Exceptions.GoalReached;
 import Exceptions.InvalidInferenceRuleApplication;
 import Exceptions.InvalidPropositionalLogicFormula;
@@ -14,8 +17,8 @@ import Formulas.FOLFormula;
 import Formulas.Formula;
 import NaturalDeduction.NaturalDeductionFOL.DeductiveSystemFOL;
 import NaturalDeduction.NaturalDeductionFOL.SequenceFOL;
-import Util.WriteFile;
 import application.AlertBox;
+import application.PropLogicQuiz.FNCQuizController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,11 +31,9 @@ import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.stage.FileChooser.ExtensionFilter;
 
-public class WriteProofFOLController {
+public class NaturalDeductionQuizFOLController {
 	 @FXML
 	    private ResourceBundle resources;
 
@@ -61,6 +62,8 @@ public class WriteProofFOLController {
 	    private Label goal;
 	    
 	    private DeductiveSystemFOL deductiveSystem;
+	    
+	    private int currentLevel;
 
 	    @FXML
 	    void initialize() {
@@ -72,13 +75,28 @@ public class WriteProofFOLController {
 	        assert goal != null : "fx:id=\"goal\" was not injected: check your FXML file 'WriteProofPropLogic.fxml'.";
 
 	    }
-	    
-	    public void initiData(List<FOLFormula> hypothesis,SequenceFOL goalSequence)
+	    public void initializeData(int currentLevel)
 	    {
-	    	this.deductiveSystem=new DeductiveSystemFOL(hypothesis,goalSequence);
+	    	try {
+	    	this.currentLevel=currentLevel;
+	    	List<String> hypothesis=NaturalDeductionChapter.getEntryHypothesis(false, currentLevel);
+	    	String goalSequence=NaturalDeductionChapter.getEntryGoal(false, currentLevel);
+	    	List<FOLFormula> formulas=new ArrayList<FOLFormula>();
+	    	for(String hypo:hypothesis)
+	    	{
+	    		formulas.add(new FOLFormula(hypo));
+	    	}
+	    	SequenceFOL sequence=new SequenceFOL(goalSequence);
+	    	this.deductiveSystem=new DeductiveSystemFOL(formulas,sequence);
 	    	this.console.setText(deductiveSystem.toString());
 	    	this.goal.setText("Goal : "+goalSequence.toString());
 	    	initializeSpinners();
+	    	}
+	    	catch(Exception e)
+	    	{
+				AlertBox.display("An error occured,please go back to the quiz menu");
+
+	    	}
 	    }
 	    private void initializeSpinners()
 	    {
@@ -91,10 +109,10 @@ public class WriteProofFOLController {
 	    }
 	    public void back(ActionEvent event) throws IOException
 	    {
-	    	Parent deductionParent=FXMLLoader.load(getClass().getResource("WriteProofFOLArguments.fxml"));
-	    	Scene deductionScene=new Scene(deductionParent);
+	    	Parent quizParent=FXMLLoader.load(getClass().getResource("FOLQuizMenu.fxml"));
+	    	Scene quizParentScene=new Scene(quizParent);
 	    	Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
-	    	window.setScene(deductionScene);
+	    	window.setScene(quizParentScene);
 	    	window.show();
 	    }
 	    public void createConjunction()
@@ -479,33 +497,57 @@ public class WriteProofFOLController {
 	    	Stage infoStage=new Stage();
 	    	infoStage.getIcons().add(new Image("./application/Resources/Logo-FII.png"));
 	    	infoStage.setTitle("Rule info");
-	    	Parent infoParent=FXMLLoader.load(getClass().getResource("InferenceRulesInfoFOL.fxml"));
+	    	Parent infoParent=FXMLLoader.load(getClass().getResource("../NaturalDeductionFOL/InferenceRulesInfoFOL.fxml"));
 	    	Scene infoScene=new Scene(infoParent);
 	    	infoStage.setScene(infoScene);
 	    	infoStage.show();
 	    }
 	    
-	    public void export()
-	    {
-	    	FileChooser chooser=new FileChooser();
-			chooser.getExtensionFilters().add(new ExtensionFilter("Text Files","*.txt"));
-			File f=chooser.showOpenDialog(null);
-			if(f!=null)
-			{
-					try {
-						WriteFile.writeNaturalDeductionProofFOL(this.deductiveSystem, f.getAbsolutePath());
-						AlertBox.display("Succes!\nThe proof can be found in\n"+f.getAbsolutePath());
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						AlertBox.display("An error occured");
-					}
-				
-			}
-	    }
 	    public void remove()
 	    {
 	    	this.deductiveSystem.remove();
 	    	this.console.setText(deductiveSystem.toString());
+	    }
+	    
+	    public void next(ActionEvent event) throws IOException
+	    {
+	    	if(!this.deductiveSystem.getGoalReached())
+	    	{
+	    		AlertBox.display("Please solve the current exercise before progressing to the next one");
+	    	}
+	    	else
+	    	{
+	    		try {
+					int maxLevel=NaturalDeductionChapter.currentMaxLevel( false);
+					Parent nextParent=null;
+					Scene nextScene=null;
+					if(currentLevel>=maxLevel)
+					{
+						nextParent=FXMLLoader.load(getClass().getResource("QuizFinishedFOL.fxml"));
+				    	nextScene=new Scene(nextParent);
+					}
+					else
+					{
+						FXMLLoader loader=new FXMLLoader();
+				    	loader.setLocation(getClass().getResource("NaturalDeductionQuizFOL.fxml"));
+				    	nextParent=loader.load();
+				    	FNCQuizController controller=loader.getController();
+				    	controller.initializeData(this.currentLevel+1);
+				    	nextScene=new Scene(nextParent);
+					}
+					CurrentQuizLevel.incrementLevel("Natural Deduction", false);
+			    	Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+			    	window.setScene(nextScene);
+			    	window.show();
+
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	    	}
 	    }
 	 
 }

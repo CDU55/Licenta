@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="492.0" minWidth="705.0" prefHeight="492.0" prefWidth="705.0" stylesheets="@../Resources/theme.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.FOLQuiz.QuizFinishedFOLController">
+   <children>
+      <ImageView fitHeight="112.0" fitWidth="112.0" layoutX="39.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="330.0" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="50.0">
+         <image>
+            <Image url="@../Resources/Logo-UAIC.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="112.0" fitWidth="108.0" layoutX="449.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="330.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+         <image>
+            <Image url="@../Resources/Logo-FII.png" />
+         </image>
+      </ImageView>
+      <VBox layoutX="137.0" layoutY="215.0" prefHeight="208.0" prefWidth="431.0" spacing="25.0" AnchorPane.bottomAnchor="69.0" AnchorPane.leftAnchor="137.0" AnchorPane.rightAnchor="137.0" AnchorPane.topAnchor="215.0">
+         <children>
+            <AnchorPane prefHeight="115.0" prefWidth="431.0" VBox.vgrow="ALWAYS">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <children>
+                  <Label prefHeight="45.0" prefWidth="417.0" text="Congratulations!" AnchorPane.bottomAnchor="66.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="0.0">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="5.0" layoutY="34.0" prefHeight="38.0" prefWidth="417.0" text="You have finished this chapter" AnchorPane.bottomAnchor="39.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="34.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane VBox.vgrow="ALWAYS">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <children>
+                  <Button id="FirstOrderLogicBtn" mnemonicParsing="false" onAction="#back" prefHeight="77.0" prefWidth="321.0" text="Back" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="0.0" />
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

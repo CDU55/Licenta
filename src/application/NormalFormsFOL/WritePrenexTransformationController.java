@@ -123,7 +123,7 @@ public class WritePrenexTransformationController {
     {
     	Stage infoStage=new Stage();
     	infoStage.getIcons().add(new Image("./application/Resources/Logo-FII.png"));
-    	Parent infoParent=FXMLLoader.load(getClass().getResource("FNCRuleInformation.fxml"));
+    	Parent infoParent=FXMLLoader.load(getClass().getResource("PrenexTransformationRules.fxml"));
     	infoStage.setTitle("Rule info");
     	Scene infoScene=new Scene(infoParent);
     	infoStage.setScene(infoScene);

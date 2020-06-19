@@ -1,11 +1,13 @@
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import DbManagement.PrenexNormalFormChapter;
 import Exceptions.GoalReached;
 import Exceptions.InvalidInferenceRuleApplication;
 import Exceptions.InvalidLiteral;
@@ -54,10 +56,11 @@ public class MainClass {
 				{
 					System.out.println("Nope");
 				}
-				
 				System.out.println(f.syntaxTree.toString());
 				System.out.println(ResolutionProofCheckFOL.checkProof("C:\\Users\\Claudiu\\Desktop\\Test.txt", true));
-			} catch (InvalidPropositionalLogicFormula e) {
+				System.out.println(PrenexNormalFormChapter.getEntry(1));
+				System.out.println(PrenexNormalFormChapter.currentMaxLevel());
+			} catch (InvalidPropositionalLogicFormula | ClassNotFoundException | SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			

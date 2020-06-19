@@ -20,7 +20,7 @@ public class PostfixNotationFOL {
 		Queue<String> output = new LinkedList<String>();
 		int i = 0;
 		String current=new String();
-		formula=formula.replaceAll(" ","");
+		formula=formula.trim().replaceAll(" ","");
 		formula=new ConnectorReplacer().remodel(formula);
 		while (i < formula.length()) {
 			if (Character.isLetter(formula.charAt(i)) && formula.charAt(i)!='E' && formula.charAt(i)!='V') {
