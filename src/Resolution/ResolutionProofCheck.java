@@ -18,7 +18,7 @@ public class ResolutionProofCheck {
 	
 	private static Resolution resolution;
 	private static String literalForm="((!)?[a-zA-Z])";
-	private static String clauseForm="\\s*\\{\\s*"+literalForm+"?"+"(\\s*,\\s*"+literalForm+"\\s*)*\\}";
+	private static String clauseForm="\\s*\\{\\s*"+literalForm+"?"+"\\s*(\\s*,\\s*"+literalForm+"\\s*)*\\}";
 	private static String numberForm="[1-9][0-9]*";
 	private static String indexForm="(\\s*"+numberForm+"\\.\\s*)?";
 	private static String explanationForm="((\\s*\\(\\s*"+numberForm+"\\s*,\\s*"+numberForm+"\\s*,\\s*[a-zA-Z]\\s*\\))|(\\(\\s*premisa\\s*\\)))";

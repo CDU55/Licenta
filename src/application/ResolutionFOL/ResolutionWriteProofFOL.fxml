@@ -49,13 +49,22 @@
                   </AnchorPane>
                </children>
             </HBox>
-            <HBox prefHeight="43.0" prefWidth="661.0" spacing="40.0" VBox.vgrow="ALWAYS">
+            <HBox layoutX="10.0" layoutY="143.0" prefHeight="43.0" prefWidth="661.0" spacing="40.0">
                <children>
-                  <AnchorPane HBox.hgrow="ALWAYS">
+                  <AnchorPane prefHeight="39.0" prefWidth="194.0" HBox.hgrow="ALWAYS">
                      <children>
                         <Button mnemonicParsing="false" onAction="#apply" text="Apply" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
+                  <AnchorPane layoutX="10.0" layoutY="10.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#positiveFactorization" text="Positive Factorization" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </HBox>
+            <HBox prefHeight="43.0" prefWidth="661.0" spacing="40.0" VBox.vgrow="ALWAYS">
+               <children>
                   <AnchorPane layoutX="10.0" layoutY="10.0" HBox.hgrow="ALWAYS">
                      <children>
                         <Button mnemonicParsing="false" onAction="#generateProof" text="Generate Proof" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
@@ -63,7 +72,7 @@
                   </AnchorPane>
                   <AnchorPane layoutX="82.0" layoutY="10.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#setFormula" text="Set formula" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <Button mnemonicParsing="false" onAction="#setFormula" text="Set Formula" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
                </children>

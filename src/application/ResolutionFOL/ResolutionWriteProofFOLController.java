@@ -124,6 +124,12 @@ public class ResolutionWriteProofFOLController {
 		{
 		int index1 = clause1.getValue();
 		int index2 = clause2.getValue();
+		if(index1==index2)
+		{
+			AlertBox.display("Please select two different clauses");
+		}
+		else
+		{
 		try {
 			String l = literal.getText();
 			if(l.trim().charAt(0)=='!')
@@ -144,7 +150,34 @@ public class ResolutionWriteProofFOLController {
 			AlertBox.display(e.getMessage());
 		}
 		}
-
+		}
+	}
+	
+	public void positiveFactorization()
+	{
+		if (this.currentFormula == null) 
+		{
+			AlertBox.display("Please set a formula");
+		}
+		else
+		{
+		int index1 = clause1.getValue();
+		try {
+			String l = literal.getText();
+			 if(!l.trim().matches("[A-DF-UW-Z][a-zA-DF-UW-Z]*"))
+			{
+				AlertBox.display("Please provide a valid predicate symbol");
+			}
+			else
+			{
+				resolution.positiveFactorization(index1, l);
+				this.console.setText(resolution.toString());
+				initializeSpinners();
+			}
+		} catch (InvalidSubstitution | InvalidPropositionalLogicFormula e) {
+			AlertBox.display(e.getMessage());
+		}
+		}
 	}
 	
 	public void undo()

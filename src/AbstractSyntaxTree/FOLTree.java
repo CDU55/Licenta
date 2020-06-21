@@ -39,12 +39,12 @@ public class FOLTree {
 
 	private int calculateHeight(FOLTreeNode currentNode) {
 		if (currentNode == null) {
-			return -1;
+			return 0;
 		} else if (currentNode.isConnector()) {
 			return 1 + Math.max(calculateHeight(currentNode.getLeftChild()),
 					calculateHeight(currentNode.getRightChild()));
 		} else if (currentNode.isVariable()) {
-			return 0;
+			return 1;
 		} else {
 			if (currentNode.getArguments().size() == 0) {
 				return 0;

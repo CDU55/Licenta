@@ -97,26 +97,56 @@ public class ResolutionQuizFOLController {
 				}
 	    }
 	    public void apply() {
-			
 			int index1 = clause1.getValue();
 			int index2 = clause2.getValue();
+			if(index1!=index2)
+			{
+				AlertBox.display("Please select two different clauses");
+			}
+			else
+			{
 			try {
-				if(literal.getText().trim().charAt(0)=='!')
+				String l = literal.getText();
+				if(l.trim().charAt(0)=='!')
 				{
 					AlertBox.display("The literal must not be negated");
 				}
+				else if(!l.trim().matches("[A-DF-UW-Z][a-zA-DF-UW-Z]*"))
+				{
+					AlertBox.display("Please provide a valid predicate symbol");
+				}
 				else
 				{
-					resolution.applyResolution(index1, index2, literal.getText().trim());
+					resolution.applyResolution(index1, index2, literal.getText());
 					this.console.setText(resolution.toString());
 					initializeSpinners();
 				}
 			} catch (InvalidInferenceRuleApplication | GoalReached | InvalidSubstitution e) {
 				AlertBox.display(e.getMessage());
-			
 			}
-
+			}
 		}
+		
+		public void positiveFactorization()
+		{
+
+			int index1 = clause1.getValue();
+			try {
+				String l = literal.getText();
+				 if(!l.trim().matches("[A-DF-UW-Z][a-zA-DF-UW-Z]*"))
+				{
+					AlertBox.display("Please provide a valid predicate symbol");
+				}
+				else
+				{
+					resolution.positiveFactorization(index1, l);
+					this.console.setText(resolution.toString());
+					initializeSpinners();
+				}
+			} catch (InvalidSubstitution | InvalidPropositionalLogicFormula e) {
+				AlertBox.display(e.getMessage());
+			}
+			}
 		
 		public void undo()
 		{

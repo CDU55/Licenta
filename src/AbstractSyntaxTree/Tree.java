@@ -20,7 +20,7 @@ public abstract class Tree {
 	protected int calculateHeight(TreeNode currentNode)
 	{
 		if(currentNode==null)
-	        return -1;
+	        return 0;
 
 	    else return 1 + Math.max(calculateHeight(currentNode.getLeftChild()),calculateHeight(currentNode.getRightChild()));
 	}

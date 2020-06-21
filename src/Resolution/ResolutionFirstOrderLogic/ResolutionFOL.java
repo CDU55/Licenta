@@ -140,7 +140,40 @@ public class ResolutionFOL {
 			}
 		}
 	}
-
+	public void positiveFactorization(Integer clauseIndex,String literalStr) throws InvalidSubstitution, InvalidPropositionalLogicFormula
+	{
+		if(clauseIndex<1 || clauseIndex>this.clausesAndExplanations.size())
+		{
+			return;
+		}
+		ResolutionClauseFOL clause1=this.clausesAndExplanations.get(clauseIndex-1).clause;
+		LiteralFOL literal1=null;
+		LiteralFOL literal2=null;
+		for(LiteralFOL literal:clause1.literals)
+		{
+			if(literal.predicateSymbol.equals(literalStr) && !literal.negated && literal1==null)
+			{
+				literal1=literal;
+			}
+			else if(literal.predicateSymbol.equals(literalStr) && !literal.negated && literal2==null)
+			{
+				literal2=literal;
+				break;
+			}
+		}
+		if(literal1!=null && literal2!=null)
+		{
+			SubstitutionsResult sub=Unifier.findUnifier(new FOLTreeNode(literal1.predicateWithArguments), new FOLTreeNode(literal2.predicateWithArguments));
+			if(sub.validSubstitution)
+			{
+				clause1.literals.remove(literal1);
+			}
+			for(LiteralFOL literal : clause1.literals)
+			{
+				literal.applySubstitution(sub);
+			}
+		}
+	}
 	public void add(ResolutionClauseFOL clause,String explanation)
 	{
 		if(clause.literals.size()==0)

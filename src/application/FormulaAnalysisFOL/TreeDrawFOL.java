@@ -59,13 +59,19 @@ public class TreeDrawFOL {
 			context.fillText(label, x +20, y +40);
 			if(node.getArguments()!=null && !node.getArguments().isEmpty())
 			{
-				int distance=45/(node.getArguments().size()-1);
+				int distance=45;
+				if(node.getArguments().size()!=1)
+				{
+					distance=45/(node.getArguments().size()-1);
+				}
 				int angle=90;
 				for(FOLTreeNode arg:node.getArguments())
 			{
 					
-					int newX=(int)(x+length*Math.cos(angle));
-					int newY=(int)(y+length*Math.sin(angle));
+					int newX=(int)(x+length*Math.cos(Math.toRadians(angle)));
+					int newY=(int)(y+length*Math.sin(Math.toRadians(angle)));
+					context.setStroke(Color.MEDIUMSEAGREEN);
+					context.strokeLine(x+30, y+30, newX+30, newY+30);
 					drawNode(canvas,arg,newX,newY,length/2);
 					angle-=distance;
 			}

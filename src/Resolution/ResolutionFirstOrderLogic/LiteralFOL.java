@@ -2,6 +2,9 @@ package Resolution.ResolutionFirstOrderLogic;
 
 import AbstractSyntaxTree.FOLTreeNode;
 import Exceptions.InvalidLiteral;
+import Exceptions.InvalidPropositionalLogicFormula;
+import FirstOrderLogicSubstitutions.Substitution;
+import FirstOrderLogicSubstitutions.SubstitutionsResult;
 import Formulas.FOLFormula;
 import Parsers.CheckSyntax;
 
@@ -74,6 +77,19 @@ public class LiteralFOL {
 			throw new InvalidLiteral(literal+"is not a literal");
 		}
 		
+	}
+	
+	public void applySubstitution(SubstitutionsResult r) throws InvalidPropositionalLogicFormula
+	{
+		if(r.validSubstitution)
+		{
+			FOLFormula f=new FOLFormula(this.predicateWithArguments);
+			for(Substitution sub:r.substitutions)
+		{
+			f.executeSubstitution(sub);
+		}
+			this.predicateWithArguments=f.toString();
+		}
 	}
 
 	public LiteralFOL getComplement()

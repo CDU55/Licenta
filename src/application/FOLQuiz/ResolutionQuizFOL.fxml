@@ -59,9 +59,14 @@
             </AnchorPane>
             <HBox prefHeight="43.0" prefWidth="661.0" spacing="40.0" VBox.vgrow="ALWAYS">
                <children>
-                  <AnchorPane HBox.hgrow="ALWAYS">
+                  <AnchorPane prefHeight="47.0" prefWidth="148.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#apply" text="Apply" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="0.0" />
+                        <Button mnemonicParsing="false" onAction="#apply" text="Apply" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="10.0" layoutY="10.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#positiveFactorization" text="Positive Factorization" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
                </children>

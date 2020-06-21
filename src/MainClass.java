@@ -41,26 +41,15 @@ import Util.PythonFunctionEvaluation;
 
 public class MainClass {
 
-	public static void main(String[] args) throws IOException, InvalidProof {		
+	public static void main(String[] args) throws IOException, InvalidProof, InvalidLiteral, InvalidSubstitution {		
 		
 			try {
-				Formula f=new Formula("p /\\ ( q /\\ r)");
-				String literalForm="((!)?([A-DF-UW-Z][a-zA-DF-UW-Z]*\\(([a-zA-Z,\\s\\(\\)]*?)\\)))";
-				String clauseForm="\\s*\\{\\s*"+literalForm+"?"+"(\\s*,\\s*"+literalForm+"\\s*)*\\s*\\}";
-				Matcher clauseMatcher = Pattern.compile(clauseForm).matcher("{ P(b) }");
-				if(clauseMatcher.find())
-				{
-					System.out.println(clauseMatcher.group());
-				}
-				else
-				{
-					System.out.println("Nope");
-				}
-				System.out.println(f.syntaxTree.toString());
-				System.out.println(ResolutionProofCheckFOL.checkProof("C:\\Users\\Claudiu\\Desktop\\Test.txt", true));
-				System.out.println(PrenexNormalFormChapter.getEntry(1));
-				System.out.println(PrenexNormalFormChapter.currentMaxLevel());
-			} catch (InvalidPropositionalLogicFormula | ClassNotFoundException | SQLException e) {
+				ResolutionFOL r =new ResolutionFOL(new FOLFormula("Vx.Va.(P(a,x) \\/ P(x,a))"));
+				System.out.println(r.toString());
+				r.positiveFactorization(1, "P");
+				System.out.println(r.toString());
+				System.out.println(Math.sin(75));
+			} catch (InvalidPropositionalLogicFormula e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			
