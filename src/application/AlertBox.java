@@ -19,8 +19,8 @@ public class AlertBox {
 		window.initStyle(StageStyle.UNDECORATED);
 		window.setTitle("Notification");
 		window.initModality(Modality.APPLICATION_MODAL);
-		window.setMinWidth(250);
-		window.setHeight(300);
+		window.setMinWidth(400);
+		window.setHeight(600);
 		
 		Label label=new Label(message);
 		VBox layout=new VBox(20);

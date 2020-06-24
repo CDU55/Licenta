@@ -48,8 +48,8 @@ public class UniversalCuantifierDisjunction implements NormalFormTransformationR
 			right=new FOLTreeNode(formula.syntaxTree.getRoot().getRightChild().getLeftChild());
 			leftCuantified=false;
 		}
-		freeVariables=new FOLFormula(right).syntaxTree.getFree();
-		freeVariables.addAll(new FOLFormula(left).syntaxTree.getFree());
+		freeVariables=new FOLFormula(formula.syntaxTree.getRoot().getLeftChild()).syntaxTree.getFree();
+		freeVariables.addAll(new FOLFormula(formula.syntaxTree.getRoot().getRightChild()).syntaxTree.getFree());
 		cuantified=cuantifier.substring(1, cuantifier.length()-1);
 		if(!freeVariables.contains(cuantified))
 		{

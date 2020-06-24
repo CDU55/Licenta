@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="820.0" prefWidth="1252.0" stylesheets="@../Resources/theme.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.NaturalDeductionFOL.WriteProofFOLController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="820.0" prefWidth="1307.0" stylesheets="@../Resources/theme.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.NaturalDeductionFOL.WriteProofFOLController">
    <children>
       <ImageView fitHeight="67.0" fitWidth="108.0" layoutX="31.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="31.0" AnchorPane.topAnchor="24.0">
          <image>
@@ -130,31 +130,31 @@
             </HBox>
             <HBox prefHeight="72.0" prefWidth="906.0" spacing="50.0" VBox.vgrow="ALWAYS">
                <children>
-                  <AnchorPane HBox.hgrow="ALWAYS">
+                  <AnchorPane>
                      <children>
                         <Label layoutX="37.0" layoutY="2.0" text="Sequence 1" AnchorPane.bottomAnchor="68.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="3.0" />
                         <Spinner fx:id="sequence1" editable="true" layoutX="3.0" layoutY="46.0" prefHeight="37.0" prefWidth="165.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="54.0" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane layoutX="10.0" layoutY="10.0" HBox.hgrow="ALWAYS">
+                  <AnchorPane layoutX="10.0" layoutY="10.0">
                      <children>
                         <Label layoutX="37.0" layoutY="2.0" text="Sequence 2" AnchorPane.bottomAnchor="68.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="3.0" />
                         <Spinner fx:id="sequence2" editable="true" layoutX="3.0" layoutY="46.0" prefHeight="37.0" prefWidth="165.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="54.0" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane layoutX="192.0" layoutY="10.0" HBox.hgrow="ALWAYS">
+                  <AnchorPane layoutX="192.0" layoutY="10.0">
                      <children>
                         <Label layoutX="37.0" layoutY="2.0" text="Sequence 3" AnchorPane.bottomAnchor="68.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="3.0" />
                         <Spinner fx:id="sequence3" editable="true" layoutX="3.0" layoutY="46.0" prefHeight="37.0" prefWidth="165.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="54.0" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane prefHeight="94.0" prefWidth="182.0" HBox.hgrow="ALWAYS">
+                  <AnchorPane HBox.hgrow="ALWAYS">
                      <children>
                         <Label layoutX="37.0" layoutY="2.0" text="Argument 1" AnchorPane.bottomAnchor="68.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="3.0" />
                         <TextField fx:id="formula1" layoutY="48.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="48.0" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane layoutX="826.0" layoutY="10.0" prefHeight="94.0" prefWidth="182.0" HBox.hgrow="ALWAYS">
+                  <AnchorPane layoutX="826.0" layoutY="10.0" HBox.hgrow="ALWAYS">
                      <children>
                         <Label layoutX="37.0" layoutY="2.0" text="Argument 2" AnchorPane.bottomAnchor="68.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="3.0" />
                         <TextField fx:id="formula2" layoutY="48.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="48.0" />
@@ -180,7 +180,7 @@
                   </AnchorPane>
                   <AnchorPane HBox.hgrow="ALWAYS">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#remove" text="Remove" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <Button mnemonicParsing="false" onAction="#remove" text="Undo" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane layoutX="384.0" layoutY="10.0" HBox.hgrow="ALWAYS">

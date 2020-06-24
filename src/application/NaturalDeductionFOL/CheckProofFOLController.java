@@ -63,7 +63,7 @@ public class CheckProofFOLController {
 	    
 	    public void back(ActionEvent event) throws IOException
 	    {
-	    	Parent deductionParent=FXMLLoader.load(getClass().getResource("NaturalDeductionFOL.fxml"));
+	    	Parent deductionParent=FXMLLoader.load(getClass().getResource("NaturalDeductionFOLMenu.fxml"));
 	    	Scene deductionScene=new Scene(deductionParent);
 	    	Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
 	    	window.setScene(deductionScene);

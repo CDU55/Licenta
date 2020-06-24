@@ -138,24 +138,24 @@ public class ValidityCheckController {
 				}
 				else if(evaluationType==2)
 				{
-					if(result.equals("True"))
+					if(result.trim().equals("True"))
 					{
 						result=formula.toString()+" is satisfiable";
 					}
-					else if(result.equals("False"))
+					else if(result.trim().equals("False"))
 					{
-						result=formula.toString()+" is NOT satisfiable";
+						result=formula.toString()+" is NOT satisfiable (it is a Contradiction)";
 					}
 				}
 				else
 				{
-					if(result.equals("True"))
+					if(result.trim().equals("True"))
 					{
 						result=formula.toString()+" is a tautology";
 					}
-					else if(result.equals("False"))
+					else if(result.trim().equals("False"))
 					{
-						result=formula.toString()+" is NOT a tautology(it is a Contradiction)";
+						result=formula.toString()+" is NOT a tautology";
 					}
 				}
 				message.setText(result);

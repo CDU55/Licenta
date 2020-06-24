@@ -10,7 +10,7 @@ def load_formula(path):
         assignation_file.close()
         return assignation
     except Exception as e:
-        print("Error loading the formula :\n"+str(e))
+        print("Error loading the formula :\n" + str(e))
         exit(-1)
 
 
@@ -18,10 +18,10 @@ def load_domains(domains_path):
     try:
         file_domains = open(domains_path).read()
         domains = dict()
-        exec(file_domains, globals(), domains)
+        exec (file_domains, globals(), domains)
         return domains
     except Exception as e:
-        print("Error loading domains :\n"+str(e))
+        print("Error loading domains :\n" + str(e))
         exit(-1)
 
 
@@ -29,10 +29,10 @@ def load_assignation(assignation_path):
     try:
         file_domains = open(assignation_path).read()
         assignation = dict()
-        exec(file_domains, globals(), assignation)
+        exec (file_domains, globals(), assignation)
         return assignation
     except Exception as e:
-        print("Error loading assignations :\n"+str(e))
+        print("Error loading assignations :\n" + str(e))
         exit(-1)
 
 
@@ -117,31 +117,35 @@ def evaluate_formula(formula, assignation, domains):
             predicate_and_arguments = re.split('\(', formula['rawTerm'], 1)
             predicate_and_arguments[1] = predicate_and_arguments[1][:-1]
             for variable in assignation:
-                value=None
-                if  isinstance(assignation[variable],str):
-                    value='"'+assignation[variable]+'"'
+                value = None
+                if isinstance(assignation[variable], str):
+                    value = '"' + assignation[variable] + '"'
                 else:
-                    value=assignation[variable]
+                    value = assignation[variable]
                 predicate_and_arguments[1] = predicate_and_arguments[1].replace(variable, str(value))
-            return eval(predicate_and_arguments[0] + '(' + predicate_and_arguments[1] + ')')
+            result = eval(predicate_and_arguments[0] + '(' + predicate_and_arguments[1] + ')')
+            if result is not True and result is not False:
+                raise Exception(predicate_and_arguments[0] + " does not have a boolean return type")
+            return result
     except Exception as e:
-        print("Error evaluating the formula :\n"+str(e))
+        print("Error evaluating the formula :\n" + str(e))
         exit(-1)
 
 
 def start_evaluation(formula_path, implementations_path, assignation_path, domains_path):
     try:
         for function_or_predicate in load_functions_and_predicates(implementations_path):
-            exec(function_or_predicate, globals())
+            exec (function_or_predicate, globals())
         formula = load_formula(formula_path)
         domains = load_domains(domains_path)
         assignation = load_assignation(assignation_path)
-        return evaluate_formula(formula, assignation, domains)
+        result = evaluate_formula(formula, assignation, domains)
+        return result
     except Exception as e:
-        print("Error evaluating the formula :\n"+str(e))
+        print("Error evaluating the formula :\n" + str(e))
         exit(-1)
+
 
 print(start_evaluation(sys.argv[1],
                        sys.argv[2],
                        sys.argv[3], sys.argv[4]))
-

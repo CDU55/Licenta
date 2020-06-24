@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="659.0" prefWidth="845.0" stylesheets="@../Resources/theme.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="845.0" stylesheets="@../Resources/theme.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.NaturalDeductionFOL.RuleInfoController">
    <children>
       <ImageView fitHeight="112.0" fitWidth="112.0" layoutX="69.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="50.0">
          <image>
@@ -21,5 +22,6 @@
             <Image url="@../Resources/Inference%20RulesFOL.PNG" />
          </image>
       </ImageView>
+      <Hyperlink fx:id="link" layoutX="165.0" layoutY="663.0" onAction="#accesLink" text="https://profs.info.uaic.ro/~logica/logica-2019-2020/curs3_fol.pdf" textFill="#c76300" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="240.0" AnchorPane.rightAnchor="240.0" AnchorPane.topAnchor="663.0" />
    </children>
 </AnchorPane>

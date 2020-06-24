@@ -197,7 +197,15 @@ public class ResolutionProofCheck {
 		{
 			proof=pathOrProof;
 		}
-		return checkProofString(proof);
+		String checkResult=checkProofString(proof);
+		if(checkResult.toUpperCase().trim().equals("OK"))
+		{
+			return "Valid Proof";
+		}
+		else
+		{
+			return checkResult;
+		}
 	}
 
 }

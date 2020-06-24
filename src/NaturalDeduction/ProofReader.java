@@ -64,7 +64,14 @@ public class ProofReader {
 			}
 		}
 		String checkResult = checker.checkProof();
-		return checkResult;
+		if(checkResult.toUpperCase().trim().equals("OK"))
+		{
+			return "Valid Proof";
+		}
+		else
+		{
+			return checkResult;
+		}
 	}
 
 	public static String checkProofFromFile(String filePath) throws InvalidRuleName, IOException {
@@ -84,6 +91,13 @@ public class ProofReader {
 			}
 			 checkResult = checker.checkProof();
 			reader.close();
-		return checkResult;
+			if(checkResult.toUpperCase().trim().equals("OK"))
+			{
+				return "Valid Proof";
+			}
+			else
+			{
+				return checkResult;
+			}
 	}
 }

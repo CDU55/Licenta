@@ -7,6 +7,7 @@ import Formulas.Formula;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -17,6 +18,7 @@ public class TreeDraw {
 	public static void draw(Formula formula)
 	{
 		Stage window=new Stage();
+		window.getIcons().add(new Image("./application/Resources/Logo-FII.png"));
 		window.setTitle("Abstract Syntax Tree");
 		Canvas canvas = new Canvas();
 		canvas.setWidth(1600);
