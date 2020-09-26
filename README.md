@@ -34,7 +34,7 @@ We must first provided some information, the initial hypotheses and the goal seq
   <img src="/images/natural_deduction_prepare.PNG" width="450" title="main menu">
 </p>
 
-After that we can began writing our proof, each inference rule is represented by a button and the below them are the input fields for the parameters that the inference rule may require. The info button will provide more information about the inference rule and the export button will export the obtained proof as a txt file. Rules cannot be applied after the goal sequence was reached.
+After that we can began writing our proof, each inference rule is represented by a button and the below them are the input fields for the parameters that the inference rule may require. The info button will provide more information about the inference rules and the export button will export the obtained proof as a txt file. Rules cannot be applied after the goal sequence was reached.
 <p align="center">
   <img src="/images/natural_deduction.PNG" width="450" title="main menu">
 </p>
