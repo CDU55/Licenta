@@ -1,0 +1,12 @@
+/ConjunctionAssociativityFOL.class
+/DeMorganConjunctionFOL.class
+/DeMorganDisjunctionFOL.class
+/DisjunctionAssociativityFOL.class
+/FNCFOL.class
+/FNCTransformatorFOL.class
+/NewFunction.class
+/RemoveDoubleNegationFOL.class
+/ReplaceLeftDisjunctionFOL.class
+/ReplaceRightDisjunctionFOL.class
+/SkolemClausalTransformator.class
+/SkolemTransformator.class
