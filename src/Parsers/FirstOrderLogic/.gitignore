@@ -1,7 +1,9 @@
-/FirstOrderLogicParserConstants.java
-/ParseException.java
-/SimpleCharStream.java
-/Token.java
-/TokenMgrError.java
 /FirstOrderLogicParser.class
 /FirstOrderLogicParserTokenManager.class
+/FirstOrderLogicParser.java
+/FirstOrderLogicParserTokenManager.java
+/FirstOrderLogicParserConstants.class
+/ParseException.class
+/SimpleCharStream.class
+/Token.class
+/TokenMgrError.class
